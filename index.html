@@ -1721,27 +1721,24 @@
     }
   </script>
 <script>
-  // Handle Netlify Identity invite/recovery tokens landing on homepage
-  (function(){
+  // Netlify Identity - handle invite/recovery tokens AND admin redirect
+  window.netlifyIdentity.on("init", function(user) {
     var hash = window.location.hash;
-    if(hash && (
-      hash.indexOf('invite_token') > -1 ||
-      hash.indexOf('recovery_token') > -1 ||
-      hash.indexOf('confirmation_token') > -1
-    )){
-      // Redirect to dedicated auth page preserving the token
-      window.location.replace('/auth' + hash);
+    // If there is a token in the URL, open the correct dialog
+    if (hash.indexOf('invite_token') > -1) {
+      window.netlifyIdentity.open('signup');
+    } else if (hash.indexOf('recovery_token') > -1) {
+      window.netlifyIdentity.open('recovery');
+    } else if (hash.indexOf('confirmation_token') > -1) {
+      window.netlifyIdentity.open('confirm');
     }
-  })();
-  if(window.netlifyIdentity){
-    window.netlifyIdentity.on("init",function(user){
-      if(!user){
-        window.netlifyIdentity.on("login",function(){
-          document.location.href="/admin/";
-        });
-      }
-    });
-  }
+    // Redirect to admin after login
+    if (!user) {
+      window.netlifyIdentity.on("login", function() {
+        document.location.href = "/admin/";
+      });
+    }
+  });
 </script>
 </body>
 </html>
