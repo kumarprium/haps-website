@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>HAPS Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#0D2545;--gold:#C9922A;--gold-lt:#F2B84B;--cream:#FDF8F0;--white:#fff;--gray:#6B7280;--light:#F4F6F9;--green:#15803d;--red:#b91c1c}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh}
+    /* LOGIN */
+    .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy);padding:1rem}
+    .login-card{background:var(--white);border-radius:20px;padding:2.5rem;width:100%;max-width:360px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .login-card img{width:72px;height:72px;object-fit:contain;margin:0 auto .75rem;display:block}
+    .login-card h1{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--navy);margin-bottom:.25rem}
+    .login-card p{font-size:.82rem;color:var(--gray);margin-bottom:1.75rem}
+    .pin-input{width:100%;padding:.85rem 1rem;font-size:1.2rem;letter-spacing:.3em;text-align:center;font-family:'DM Sans',sans-serif;font-weight:600;color:var(--navy);background:var(--light);border:2px solid transparent;border-radius:10px;outline:none;transition:border-color .2s}
+    .pin-input:focus{border-color:var(--gold)}
+    .login-btn{width:100%;padding:.85rem;background:var(--gold);color:var(--white);border:none;border-radius:10px;font-size:1rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:.75rem;transition:background .2s}
+    .login-btn:hover{background:#b5831e}
+    .login-error{background:#fef2f2;color:var(--red);border:1px solid #fecaca;border-radius:8px;padding:.6rem .9rem;font-size:.85rem;margin-top:.75rem;display:none}
+    /* ADMIN PANEL */
+    .admin-wrap{display:none}
+    .admin-header{background:var(--navy);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .admin-header-left{display:flex;align-items:center;gap:.75rem}
+    .admin-header-left img{width:36px;height:36px;object-fit:contain}
+    .admin-header-left h1{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white)}
+    .admin-header-left span{font-size:.75rem;color:var(--gold-lt)}
+    .logout-btn{background:rgba(255,255,255,.1);color:var(--white);border:none;padding:.4rem .9rem;border-radius:6px;font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+    .logout-btn:hover{background:rgba(255,255,255,.2)}
+    .admin-body{max-width:900px;margin:2rem auto;padding:0 1.5rem 4rem}
+    /* TABS */
+    .tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
+    .tab{padding:.55rem 1.25rem;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer;border:2px solid var(--light);background:var(--white);color:var(--gray);font-family:'DM Sans',sans-serif;transition:all .2s}
+    .tab.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+    /* PANELS */
+    .panel{display:none}.panel.active{display:block}
+    .panel-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--navy);margin-bottom:.25rem}
+    .panel-sub{font-size:.88rem;color:var(--gray);margin-bottom:1.75rem}
+    /* FORM FIELDS */
+    .field{margin-bottom:1.1rem}
+    .field label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.35rem}
+    .field input,.field select,.field textarea{width:100%;padding:.7rem .9rem;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--navy);background:var(--light);border:1.5px solid transparent;border-radius:8px;outline:none;transition:border-color .2s}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);background:var(--white)}
+    .field textarea{resize:vertical;min-height:90px}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .save-btn{background:var(--gold);color:var(--white);border:none;padding:.75rem 1.75rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+    .save-btn:hover{background:#b5831e}
+    .save-msg{display:inline-block;margin-left:1rem;font-size:.85rem;font-weight:600;opacity:0;transition:opacity .3s}
+    .save-msg.show{opacity:1}
+    .save-msg.ok{color:var(--green)}.save-msg.err{color:var(--red)}
+    /* ITEMS LIST */
+    .items-list{list-style:none;margin-bottom:1.5rem}
+    .list-item{background:var(--white);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.6rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:0 1px 4px rgba(13,37,69,.06)}
+    .list-item-info h4{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:.15rem}
+    .list-item-info p{font-size:.78rem;color:var(--gray)}
+    .list-item-actions{display:flex;gap:.5rem;flex-shrink:0}
+    .btn-del{background:#fef2f2;color:var(--red);border:none;padding:.4rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+    .btn-del:hover{background:#fee2e2}
+    .badge{display:inline-block;font-size:.68rem;font-weight:700;padding:.15rem .5rem;border-radius:4px;text-transform:uppercase;margin-left:.4rem}
+    .badge-adm{background:#EBF5FB;color:#1A6A9A}.badge-exam{background:#FEF9E7;color:#9A6400}
+    .badge-event{background:#EAF7EA;color:#1A7A1A}.badge-holiday{background:#FEF0F0;color:#9A2020}.badge-general{background:var(--light);color:var(--gray)}
+    /* ADD FORM */
+    .add-form{background:var(--white);border-radius:14px;padding:1.5rem;box-shadow:0 1px 4px rgba(13,37,69,.06);margin-top:1.5rem}
+    .add-form h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:1.1rem;display:flex;align-items:center;gap:.4rem}
+    /* PHOTO UPLOAD */
+    .upload-zone{border:2px dashed #d0d5dd;border-radius:12px;padding:2rem;text-align:center;cursor:pointer;transition:border-color .2s;background:var(--light)}
+    .upload-zone:hover{border-color:var(--gold)}
+    .upload-zone .icon{font-size:2rem;margin-bottom:.5rem}
+    .upload-zone p{font-size:.85rem;color:var(--gray)}
+    .upload-zone input{display:none}
+    .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.75rem;margin-bottom:1rem}
+    .photo-thumb{border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1;background:var(--light)}
+    .photo-thumb img{width:100%;height:100%;object-fit:cover}
+    .photo-thumb .del-photo{position:absolute;top:.35rem;right:.35rem;background:rgba(185,28,28,.9);color:var(--white);border:none;border-radius:50%;width:24px;height:24px;font-size:.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .photo-thumb .photo-label{position:absolute;bottom:0;left:0;right:0;background:rgba(13,37,69,.75);color:var(--white);font-size:.68rem;padding:.3rem .4rem;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    /* SETTINGS */
+    .settings-card{background:var(--white);border-radius:14px;padding:1.5rem;box-shadow:0 1px 4px rgba(13,37,69,.06);margin-bottom:1.25rem}
+    .settings-card h3{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--light)}
+    /* INSTRUCTIONS */
+    .info-box{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:1rem 1.1rem;font-size:.85rem;color:#92400e;margin-bottom:1.5rem;line-height:1.6}
+    @media(max-width:600px){.field-row{grid-template-columns:1fr}.tabs{gap:.35rem}.tab{font-size:.8rem;padding:.45rem .9rem}}
+  </style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <img src="/images/logo.png" alt="HAPS" onerror="this.style.display='none'"/>
+    <h1>HAPS Admin Panel</h1>
+    <p>Enter your PIN to manage the website</p>
+    <input type="password" class="pin-input" id="pinInput" maxlength="20" placeholder="Enter PIN" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="login-btn" onclick="doLogin()">Login &#8594;</button>
+    <div class="login-error" id="loginError">Incorrect PIN. Please try again.</div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-wrap" id="adminWrap">
+  <div class="admin-header">
+    <div class="admin-header-left">
+      <img src="/images/logo.png" alt="HAPS" onerror="this.style.display='none'"/>
+      <div><h1>HAPS Admin Panel</h1><span>Holy Angels Public School</span></div>
+    </div>
+    <button class="logout-btn" onclick="doLogout()">&#128274; Logout</button>
+  </div>
+
+  <div class="admin-body">
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('notices')">&#128226; Notices</button>
+      <button class="tab" onclick="showTab('gallery')">&#128247; Gallery</button>
+      <button class="tab" onclick="showTab('downloads')">&#128196; Downloads</button>
+      <button class="tab" onclick="showTab('settings')">&#9881;&#65039; Settings</button>
+    </div>
+
+    <!-- NOTICES PANEL -->
+    <div class="panel active" id="panel-notices">
+      <div class="panel-title">School Notices</div>
+      <div class="panel-sub">Add and manage notices shown on the Notices page of the website.</div>
+      <div class="info-box">&#128161; Notices you add here are saved in your browser. To publish them to the live website, you need to export and upload them (see instructions at the bottom).</div>
+      <ul class="items-list" id="noticesList"></ul>
+      <div class="add-form">
+        <h3>&#43; Add New Notice</h3>
+        <div class="field-row">
+          <div class="field"><label>Title *</label><input type="text" id="n-title" placeholder="e.g. Admissions Open for 2026-27"/></div>
+          <div class="field"><label>Date *</label><input type="date" id="n-date"/></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Type</label><select id="n-type"><option value="adm">Admission</option><option value="exam">Exam</option><option value="event">Event</option><option value="holiday">Holiday</option><option value="general" selected>General</option></select></div>
+          <div class="field"><label>Campus</label><select id="n-campus"><option value="both">Both Campuses</option><option value="main">Main Campus Only</option><option value="poiwan">Poiwan Campus Only</option></select></div>
+        </div>
+        <div class="field"><label>Message *</label><textarea id="n-body" placeholder="What do you want to tell parents and students?"></textarea></div>
+        <button class="save-btn" onclick="addNotice()">Add Notice</button>
+        <span class="save-msg" id="n-msg"></span>
+      </div>
+    </div>
+
+    <!-- GALLERY PANEL -->
+    <div class="panel" id="panel-gallery">
+      <div class="panel-title">Photo Gallery</div>
+      <div class="panel-sub">Upload photos from school events, sports, cultural activities and campus life.</div>
+      <div class="info-box">&#128161; Photos are saved locally. After uploading, use the Export button to get the updated gallery file for the website.</div>
+      <div class="photo-grid" id="photoGrid"></div>
+      <div class="add-form">
+        <h3>&#43; Upload New Photo</h3>
+        <div class="field-row">
+          <div class="field"><label>Caption / Title *</label><input type="text" id="g-title" placeholder="e.g. Annual Sports Day 2025"/></div>
+          <div class="field"><label>Category</label><select id="g-cat"><option value="events">Events</option><option value="sports">Sports</option><option value="cultural">Cultural</option><option value="academics">Academics</option><option value="campus">Campus</option><option value="other">Other</option></select></div>
+        </div>
+        <div class="field"><label>Photo</label>
+          <div class="upload-zone" onclick="document.getElementById('g-file').click()">
+            <input type="file" id="g-file" accept="image/*" onchange="previewPhoto(this)"/>
+            <div class="icon">&#128247;</div>
+            <p>Click to choose a photo (JPG or PNG)</p>
+            <p id="g-filename" style="color:var(--navy);font-weight:600;margin-top:.35rem"></p>
+          </div>
+        </div>
+        <button class="save-btn" onclick="addPhoto()">Add Photo</button>
+        <span class="save-msg" id="g-msg"></span>
+      </div>
+    </div>
+
+    <!-- DOWNLOADS PANEL -->
+    <div class="panel" id="panel-downloads">
+      <div class="panel-title">Downloads &amp; Documents</div>
+      <div class="panel-sub">Manage downloadable files shown on the Downloads page.</div>
+      <ul class="items-list" id="downloadsList"></ul>
+      <div class="add-form">
+        <h3>&#43; Add New Document</h3>
+        <div class="field"><label>Document Title *</label><input type="text" id="d-title" placeholder="e.g. Holiday List 2026-27"/></div>
+        <div class="field"><label>Description</label><input type="text" id="d-desc" placeholder="Short description for visitors"/></div>
+        <div class="field-row">
+          <div class="field"><label>File URL (path on website) *</label><input type="text" id="d-url" placeholder="/files/HAPS_Holiday_List_2026-27.pdf"/></div>
+          <div class="field"><label>Category</label><select id="d-cat"><option value="admissions">Admissions</option><option value="academic">Academic</option><option value="circular">Circular</option><option value="other">Other</option></select></div>
+        </div>
+        <button class="save-btn" onclick="addDownload()">Add Document</button>
+        <span class="save-msg" id="d-msg"></span>
+      </div>
+    </div>
+
+    <!-- SETTINGS PANEL -->
+    <div class="panel" id="panel-settings">
+      <div class="panel-title">School Settings</div>
+      <div class="panel-sub">Update contact details and general school information.</div>
+      <div class="settings-card">
+        <h3>&#128222; Contact Information</h3>
+        <div class="field-row">
+          <div class="field"><label>Main Campus Phone</label><input type="tel" id="s-main" placeholder="9931921825"/></div>
+          <div class="field"><label>Poiwan Campus Phone</label><input type="tel" id="s-poiwan" placeholder="9128614032"/></div>
+        </div>
+        <div class="field"><label>Email Address</label><input type="email" id="s-email" placeholder="haps.aub@gmail.com"/></div>
+        <div class="field"><label>Announcement Bar Text</label><input type="text" id="s-ann" placeholder="Admissions open for 2026-27..."/></div>
+        <button class="save-btn" onclick="saveSettings()">Save Settings</button>
+        <span class="save-msg" id="s-msg"></span>
+      </div>
+      <div class="settings-card">
+        <h3>&#128274; Change Admin PIN</h3>
+        <div class="field-row">
+          <div class="field"><label>New PIN</label><input type="password" id="new-pin" placeholder="Enter new PIN"/></div>
+          <div class="field"><label>Confirm New PIN</label><input type="password" id="new-pin2" placeholder="Repeat new PIN"/></div>
+        </div>
+        <button class="save-btn" onclick="changePin()">Change PIN</button>
+        <span class="save-msg" id="pin-msg"></span>
+      </div>
+      <div class="settings-card">
+        <h3>&#128190; Export &amp; Publish Changes</h3>
+        <p style="font-size:.88rem;color:var(--gray);margin-bottom:1rem;line-height:1.65">After making changes (notices, gallery, downloads), click Export to download the updated data file. Then upload it to GitHub in the <code style="background:var(--light);padding:.1rem .4rem;border-radius:4px">_data/</code> folder as <code style="background:var(--light);padding:.1rem .4rem;border-radius:4px">site-data.json</code> — Netlify will automatically update the live website.</p>
+        <button class="save-btn" onclick="exportData()">&#8595; Export site-data.json</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── PIN AUTH ─────────────────────────────────────────────────
+  var DEFAULT_PIN = 'haps2026';
+  
+  function getPin() { return localStorage.getItem('haps_admin_pin') || DEFAULT_PIN; }
+  
+  function doLogin() {
+    var entered = document.getElementById('pinInput').value;
+    if (entered === getPin()) {
+      sessionStorage.setItem('haps_logged_in', '1');
+      document.getElementById('loginWrap').style.display = 'none';
+      document.getElementById('adminWrap').style.display = 'block';
+      loadAll();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+      document.getElementById('pinInput').value = '';
+      document.getElementById('pinInput').focus();
+    }
+  }
+  
+  function doLogout() {
+    sessionStorage.removeItem('haps_logged_in');
+    location.reload();
+  }
+  
+  // Auto-login if session active
+  if (sessionStorage.getItem('haps_logged_in') === '1') {
+    document.getElementById('loginWrap').style.display = 'none';
+    document.getElementById('adminWrap').style.display = 'block';
+  }
+
+  // ── TABS ─────────────────────────────────────────────────────
+  function showTab(id) {
+    document.querySelectorAll('.tab').forEach(function(t,i){
+      t.classList.toggle('active', ['notices','gallery','downloads','settings'][i] === id);
+    });
+    document.querySelectorAll('.panel').forEach(function(p){
+      p.classList.toggle('active', p.id === 'panel-' + id);
+    });
+  }
+
+  // ── DATA STORE ───────────────────────────────────────────────
+  function getData() {
+    try { return JSON.parse(localStorage.getItem('haps_data') || '{}'); } catch(e){ return {}; }
+  }
+  function saveData(d) { localStorage.setItem('haps_data', JSON.stringify(d)); }
+
+  function loadAll() {
+    loadNotices(); loadGallery(); loadDownloads(); loadSettings();
+  }
+
+  // ── NOTICES ──────────────────────────────────────────────────
+  function loadNotices() {
+    var d = getData();
+    var notices = d.notices || [];
+    var ul = document.getElementById('noticesList');
+    if (notices.length === 0) {
+      ul.innerHTML = '<li style="color:var(--gray);font-size:.88rem;padding:.5rem 0">No notices yet. Add one below.</li>';
+      return;
+    }
+    ul.innerHTML = notices.map(function(n, i) {
+      return '<li class="list-item">'
+        + '<div class="list-item-info"><h4>' + n.title + '<span class="badge badge-' + n.type + '">' + n.type + '</span></h4>'
+        + '<p>' + n.date + ' &middot; ' + (n.campus === 'both' ? 'Both Campuses' : n.campus) + '</p></div>'
+        + '<div class="list-item-actions"><button class="btn-del" onclick="deleteNotice(' + i + ')">Delete</button></div>'
+        + '</li>';
+    }).join('');
+  }
+
+  function addNotice() {
+    var title = document.getElementById('n-title').value.trim();
+    var date  = document.getElementById('n-date').value;
+    var type  = document.getElementById('n-type').value;
+    var campus= document.getElementById('n-campus').value;
+    var body  = document.getElementById('n-body').value.trim();
+    if (!title || !date || !body) { showMsg('n-msg','Please fill in all required fields.','err'); return; }
+    var d = getData();
+    if (!d.notices) d.notices = [];
+    d.notices.unshift({ title:title, date:date, type:type, campus:campus, body:body });
+    saveData(d);
+    loadNotices();
+    document.getElementById('n-title').value = '';
+    document.getElementById('n-date').value = '';
+    document.getElementById('n-body').value = '';
+    showMsg('n-msg', 'Notice added! Export to publish.', 'ok');
+  }
+
+  function deleteNotice(i) {
+    if (!confirm('Delete this notice?')) return;
+    var d = getData(); d.notices.splice(i, 1); saveData(d); loadNotices();
+  }
+
+  // ── GALLERY ──────────────────────────────────────────────────
+  var pendingPhoto = null;
+
+  function previewPhoto(input) {
+    if (!input.files || !input.files[0]) return;
+    var file = input.files[0];
+    document.getElementById('g-filename').textContent = file.name;
+    var reader = new FileReader();
+    reader.onload = function(e) { pendingPhoto = { src: e.target.result, name: file.name }; };
+    reader.readAsDataURL(file);
+  }
+
+  function loadGallery() {
+    var d = getData();
+    var photos = d.gallery || [];
+    var grid = document.getElementById('photoGrid');
+    if (photos.length === 0) { grid.innerHTML = '<p style="color:var(--gray);font-size:.88rem;padding:.5rem 0">No photos yet.</p>'; return; }
+    grid.innerHTML = photos.map(function(p, i) {
+      return '<div class="photo-thumb">'
+        + '<img src="' + p.src + '" alt="' + p.title + '"/>'
+        + '<button class="del-photo" onclick="deletePhoto(' + i + ')">&#10005;</button>'
+        + '<div class="photo-label">' + p.title + '</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  function addPhoto() {
+    var title = document.getElementById('g-title').value.trim();
+    var cat   = document.getElementById('g-cat').value;
+    if (!title) { showMsg('g-msg','Please enter a caption.','err'); return; }
+    if (!pendingPhoto) { showMsg('g-msg','Please select a photo.','err'); return; }
+    var d = getData();
+    if (!d.gallery) d.gallery = [];
+    d.gallery.unshift({ title:title, category:cat, src:pendingPhoto.src, name:pendingPhoto.name, date: new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) });
+    saveData(d);
+    loadGallery();
+    document.getElementById('g-title').value = '';
+    document.getElementById('g-filename').textContent = '';
+    document.getElementById('g-file').value = '';
+    pendingPhoto = null;
+    showMsg('g-msg','Photo added! Export to publish.','ok');
+  }
+
+  function deletePhoto(i) {
+    if (!confirm('Delete this photo?')) return;
+    var d = getData(); d.gallery.splice(i, 1); saveData(d); loadGallery();
+  }
+
+  // ── DOWNLOADS ────────────────────────────────────────────────
+  function loadDownloads() {
+    var d = getData();
+    var docs = d.downloads || [];
+    var ul = document.getElementById('downloadsList');
+    if (docs.length === 0) { ul.innerHTML = '<li style="color:var(--gray);font-size:.88rem;padding:.5rem 0">No extra documents added yet.</li>'; return; }
+    ul.innerHTML = docs.map(function(doc, i) {
+      return '<li class="list-item">'
+        + '<div class="list-item-info"><h4>' + doc.title + '</h4><p>' + doc.desc + ' &middot; <a href="' + doc.url + '" target="_blank" style="color:var(--gold)">' + doc.url + '</a></p></div>'
+        + '<div class="list-item-actions"><button class="btn-del" onclick="deleteDownload(' + i + ')">Delete</button></div>'
+        + '</li>';
+    }).join('');
+  }
+
+  function addDownload() {
+    var title = document.getElementById('d-title').value.trim();
+    var desc  = document.getElementById('d-desc').value.trim();
+    var url   = document.getElementById('d-url').value.trim();
+    var cat   = document.getElementById('d-cat').value;
+    if (!title || !url) { showMsg('d-msg','Please fill in title and file URL.','err'); return; }
+    var d = getData();
+    if (!d.downloads) d.downloads = [];
+    d.downloads.push({ title:title, desc:desc, url:url, category:cat });
+    saveData(d);
+    loadDownloads();
+    document.getElementById('d-title').value = '';
+    document.getElementById('d-desc').value = '';
+    document.getElementById('d-url').value = '';
+    showMsg('d-msg','Document added! Export to publish.','ok');
+  }
+
+  function deleteDownload(i) {
+    if (!confirm('Delete this document?')) return;
+    var d = getData(); d.downloads.splice(i, 1); saveData(d); loadDownloads();
+  }
+
+  // ── SETTINGS ─────────────────────────────────────────────────
+  function loadSettings() {
+    var d = getData();
+    var s = d.settings || {};
+    document.getElementById('s-main').value   = s.main_phone   || '9931921825';
+    document.getElementById('s-poiwan').value = s.poiwan_phone || '9128614032';
+    document.getElementById('s-email').value  = s.email        || 'haps.aub@gmail.com';
+    document.getElementById('s-ann').value    = s.announcement || 'Admissions open for 2026-27';
+  }
+
+  function saveSettings() {
+    var d = getData();
+    d.settings = {
+      main_phone:   document.getElementById('s-main').value.trim(),
+      poiwan_phone: document.getElementById('s-poiwan').value.trim(),
+      email:        document.getElementById('s-email').value.trim(),
+      announcement: document.getElementById('s-ann').value.trim()
+    };
+    saveData(d);
+    showMsg('s-msg','Settings saved!','ok');
+  }
+
+  function changePin() {
+    var p1 = document.getElementById('new-pin').value;
+    var p2 = document.getElementById('new-pin2').value;
+    if (!p1 || p1.length < 4) { showMsg('pin-msg','PIN must be at least 4 characters.','err'); return; }
+    if (p1 !== p2) { showMsg('pin-msg','PINs do not match.','err'); return; }
+    localStorage.setItem('haps_admin_pin', p1);
+    document.getElementById('new-pin').value = '';
+    document.getElementById('new-pin2').value = '';
+    showMsg('pin-msg','PIN changed successfully!','ok');
+  }
+
+  // ── EXPORT ───────────────────────────────────────────────────
+  function exportData() {
+    var d = getData();
+    var exportObj = {
+      notices:   d.notices   || [],
+      gallery:   (d.gallery  || []).map(function(p){ return { title:p.title, category:p.category, date:p.date, src:p.src }; }),
+      downloads: d.downloads || [],
+      settings:  d.settings  || {},
+      exported:  new Date().toISOString()
+    };
+    var blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'site-data.json';
+    a.click();
+  }
+
+  // ── HELPER ───────────────────────────────────────────────────
+  function showMsg(id, text, type) {
+    var el = document.getElementById(id);
+    el.textContent = text;
+    el.className = 'save-msg ' + type + ' show';
+    setTimeout(function(){ el.classList.remove('show'); }, 3000);
+  }
+</script>
+</body>
+</html>
