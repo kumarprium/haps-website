@@ -45,6 +45,16 @@
   to = "/admin/index.html"
   status = 200
 
+[[redirects]]
+  from = "/accept-invite"
+  to = "/accept-invite.html"
+  status = 200
+
+[[redirects]]
+  from = "/auth"
+  to = "/accept-invite.html"
+  status = 200
+
 # ── Security headers ──────────────────────────────────────────
 [[headers]]
   for = "/admin/*"
@@ -52,3 +62,9 @@
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     Cache-Control = "no-store"
+
+# ── Catch-all 404 ─────────────────────────────────────────────
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

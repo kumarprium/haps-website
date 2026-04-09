@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Page Not Found | HAPS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:#0D2545;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;text-align:center}
+    .card{background:#fff;border-radius:20px;padding:3rem 2.5rem;max-width:420px;width:100%}
+    img{width:80px;height:80px;object-fit:contain;margin:0 auto 1.25rem;display:block}
+    h1{font-family:'Playfair Display',serif;font-size:1.4rem;color:#0D2545;margin-bottom:.5rem}
+    p{color:#6B7280;font-size:.9rem;margin-bottom:1.75rem;line-height:1.65}
+    .btn{display:inline-block;padding:.75rem 1.75rem;background:#C9922A;color:#fff;border-radius:10px;text-decoration:none;font-weight:600;font-size:.95rem}
+    .btn:hover{background:#b5831e}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="/images/logo.png" alt="HAPS" onerror="this.style.display='none'"/>
+    <h1>Page Not Found</h1>
+    <p>The page you are looking for doesn't exist or may have moved.</p>
+    <a href="/" class="btn">Go to Homepage</a>
+  </div>
+  <script>
+    // If this is an identity token redirect, go to homepage which will handle it
+    var hash = window.location.hash;
+    if (hash && hash.indexOf('invite_token') > -1) {
+      window.location.replace('/' + hash);
+    }
+    if (hash && hash.indexOf('recovery_token') > -1) {
+      window.location.replace('/' + hash);
+    }
+  </script>
+</body>
+</html>

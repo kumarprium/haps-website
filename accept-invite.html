@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Set Your Password | HAPS Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:#0D2545;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+    .card{background:#fff;border-radius:20px;padding:2.5rem;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .top{text-align:center;margin-bottom:2rem}
+    .top img{width:72px;height:72px;object-fit:contain;display:block;margin:0 auto .75rem}
+    .top h1{font-family:'Playfair Display',serif;font-size:1.25rem;color:#0D2545;margin-bottom:.25rem}
+    .top p{font-size:.85rem;color:#6B7280}
+    label{display:block;font-size:.82rem;font-weight:600;color:#0D2545;margin-bottom:.35rem}
+    input{width:100%;padding:.75rem 1rem;font-family:'DM Sans',sans-serif;font-size:.95rem;color:#0D2545;background:#F4F6F9;border:2px solid transparent;border-radius:8px;outline:none;transition:border-color .2s;margin-bottom:1rem}
+    input:focus{border-color:#C9922A;background:#fff}
+    .btn{width:100%;padding:.85rem;background:#C9922A;color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:background .2s}
+    .btn:hover{background:#b5831e}
+    .btn:disabled{background:#ccc;cursor:not-allowed}
+    .msg{padding:.75rem 1rem;border-radius:8px;font-size:.88rem;margin-top:1rem;display:none}
+    .msg.error{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;display:block}
+    .msg.success{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;display:block}
+    .loading{text-align:center;padding:1rem;color:#6B7280;font-size:.9rem}
+    .spinner{display:inline-block;width:18px;height:18px;border:2px solid #e5e7eb;border-top:2px solid #C9922A;border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:.4rem}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="top">
+    <img src="/images/logo.png" alt="HAPS" onerror="this.style.display='none'"/>
+    <h1>Holy Angels Public School</h1>
+    <p id="subtitle">Set your admin password</p>
+  </div>
+
+  <div id="loadingView" class="loading">
+    <span class="spinner"></span> Reading your invite link...
+  </div>
+
+  <div id="formView" style="display:none">
+    <label for="pwd">New Password *</label>
+    <input type="password" id="pwd" placeholder="At least 8 characters" autocomplete="new-password"/>
+    <label for="pwd2">Confirm Password *</label>
+    <input type="password" id="pwd2" placeholder="Repeat your password" autocomplete="new-password"/>
+    <button class="btn" id="submitBtn" onclick="setPassword()">Set Password &amp; Login &#8594;</button>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <div id="successView" style="display:none;text-align:center;padding:1rem">
+    <div style="font-size:2.5rem;margin-bottom:.75rem">&#9989;</div>
+    <h3 style="font-family:'Playfair Display',serif;color:#0D2545;margin-bottom:.5rem">Password Set!</h3>
+    <p style="color:#6B7280;font-size:.9rem;margin-bottom:1.25rem">Redirecting to admin panel...</p>
+  </div>
+
+  <div id="errorView" style="display:none;text-align:center;padding:1rem">
+    <div style="font-size:2rem;margin-bottom:.75rem">&#9888;&#65039;</div>
+    <p style="color:#6B7280;font-size:.9rem;margin-bottom:1.25rem">This invite link has expired or already been used.<br/>Please ask for a new invite from Netlify.</p>
+    <a href="/" style="color:#C9922A;font-weight:600;font-size:.9rem">&#8592; Back to website</a>
+  </div>
+</div>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  var token = null;
+  var tokenType = null;
+
+  function getHashParams() {
+    var result = {};
+    var hash = window.location.hash.replace(/^#/, '');
+    hash.split('&').forEach(function(part) {
+      var eq = part.indexOf('=');
+      if (eq > -1) {
+        result[part.substring(0, eq)] = decodeURIComponent(part.substring(eq + 1));
+      }
+    });
+    return result;
+  }
+
+  function show(id) {
+    ['loadingView','formView','successView','errorView'].forEach(function(v) {
+      document.getElementById(v).style.display = v === id ? 'block' : 'none';
+    });
+  }
+
+  // Parse token from URL
+  var params = getHashParams();
+  if (params.invite_token) {
+    token = params.invite_token;
+    tokenType = 'signup';
+    document.getElementById('subtitle').textContent = 'Create your admin password';
+  } else if (params.recovery_token) {
+    token = params.recovery_token;
+    tokenType = 'recovery';
+    document.getElementById('subtitle').textContent = 'Reset your password';
+  }
+
+  if (!token) {
+    show('errorView');
+  }
+
+  // Use Netlify Identity widget to handle the token
+  window.netlifyIdentity.on('init', function(user) {
+    if (user) {
+      // Already logged in
+      show('successView');
+      setTimeout(function() { window.location.href = '/admin/'; }, 1500);
+      return;
+    }
+
+    if (token) {
+      // Open the appropriate dialog
+      if (tokenType === 'signup') {
+        window.netlifyIdentity.open('signup');
+      } else {
+        window.netlifyIdentity.open('recovery');
+      }
+      show('formView');
+    }
+  });
+
+  window.netlifyIdentity.on('signup', function(user) {
+    show('successView');
+    setTimeout(function() { window.location.href = '/admin/'; }, 1500);
+  });
+
+  window.netlifyIdentity.on('login', function(user) {
+    show('successView');
+    setTimeout(function() { window.location.href = '/admin/'; }, 1500);
+  });
+
+  window.netlifyIdentity.on('error', function(err) {
+    show('errorView');
+  });
+
+  // Direct API fallback - if widget doesn't show popup, use API directly
+  function setPassword() {
+    var pwd = document.getElementById('pwd').value;
+    var pwd2 = document.getElementById('pwd2').value;
+    var btn = document.getElementById('submitBtn');
+    var msg = document.getElementById('msg');
+
+    msg.className = 'msg';
+
+    if (pwd.length < 8) {
+      msg.textContent = 'Password must be at least 8 characters.';
+      msg.className = 'msg error';
+      return;
+    }
+    if (pwd !== pwd2) {
+      msg.textContent = 'Passwords do not match. Please try again.';
+      msg.className = 'msg error';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Setting password...';
+
+    // Direct API call to Netlify Identity
+    var url = '/.netlify/identity/verify';
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token, password: pwd, type: tokenType })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.access_token) {
+        show('successView');
+        setTimeout(function() { window.location.href = '/admin/'; }, 1500);
+      } else if (data.error) {
+        throw new Error(data.error);
+      } else {
+        show('successView');
+        setTimeout(function() { window.location.href = '/admin/'; }, 1500);
+      }
+    })
+    .catch(function(err) {
+      btn.disabled = false;
+      btn.innerHTML = 'Set Password &amp; Login &#8594;';
+      msg.textContent = 'Error: ' + (err.message || 'Something went wrong. The invite link may have expired.');
+      msg.className = 'msg error';
+    });
+  }
+</script>
+</body>
+</html>
