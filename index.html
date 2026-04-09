@@ -1721,6 +1721,18 @@
     }
   </script>
 <script>
+  // Handle Netlify Identity invite/recovery tokens landing on homepage
+  (function(){
+    var hash = window.location.hash;
+    if(hash && (
+      hash.indexOf('invite_token') > -1 ||
+      hash.indexOf('recovery_token') > -1 ||
+      hash.indexOf('confirmation_token') > -1
+    )){
+      // Redirect to dedicated auth page preserving the token
+      window.location.replace('/auth' + hash);
+    }
+  })();
   if(window.netlifyIdentity){
     window.netlifyIdentity.on("init",function(user){
       if(!user){
