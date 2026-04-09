@@ -1722,17 +1722,18 @@
   </script>
 <script>
   // Netlify Identity - handle invite/recovery tokens AND admin redirect
-  window.netlifyIdentity.on("init", function(user) {
+  // Redirect identity tokens to dedicated page immediately - no widget needed
+  (function(){
     var hash = window.location.hash;
-    // If there is a token in the URL, open the correct dialog
-    if (hash.indexOf('invite_token') > -1) {
-      window.netlifyIdentity.open('signup');
-    } else if (hash.indexOf('recovery_token') > -1) {
-      window.netlifyIdentity.open('recovery');
-    } else if (hash.indexOf('confirmation_token') > -1) {
-      window.netlifyIdentity.open('confirm');
+    if (hash && (
+      hash.indexOf('invite_token') > -1 ||
+      hash.indexOf('recovery_token') > -1
+    )) {
+      window.location.replace('/accept-invite' + hash);
+      return;
     }
-    // Redirect to admin after login
+  })();
+  window.netlifyIdentity.on("init", function(user) {
     if (!user) {
       window.netlifyIdentity.on("login", function() {
         document.location.href = "/admin/";

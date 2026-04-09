@@ -1,4 +1,5 @@
-# Page redirects (clean URLs)
+# ── Page redirects (clean URLs) ───────────────────────────────
+
 [[redirects]]
   from = "/about"
   to = "/about.html"
@@ -44,7 +45,12 @@
   to = "/auth.html"
   status = 200
 
-# CMS headers
+[[redirects]]
+  from = "/accept-invite"
+  to = "/accept-invite.html"
+  status = 200
+
+# ── CMS security headers ──────────────────────────────────────
 [[headers]]
   for = "/admin/*"
   [headers.values]
