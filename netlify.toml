@@ -50,6 +50,17 @@
   to = "/accept-invite.html"
   status = 200
 
+# ── Netlify Identity email link configuration ─────────────────
+# This tells Netlify where to send users when they click
+# the invite / recovery links in their emails
+
+[identity]
+  [identity.emails]
+    invitation = "/accept-invite"
+    recovery = "/accept-invite"
+    email_change = "/accept-invite"
+    confirmation = "/accept-invite"
+
 # ── CMS security headers ──────────────────────────────────────
 [[headers]]
   for = "/admin/*"
