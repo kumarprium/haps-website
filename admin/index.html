@@ -20,16 +20,16 @@
     .login-btn{width:100%;padding:.85rem;background:var(--gold);color:var(--white);border:none;border-radius:10px;font-size:1rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:.75rem;transition:background .2s}
     .login-btn:hover{background:#b5831e}
     .login-error{background:#fef2f2;color:var(--red);border:1px solid #fecaca;border-radius:8px;padding:.6rem .9rem;font-size:.85rem;margin-top:.75rem;display:none}
-    /* ADMIN PANEL */
+    /* ADMIN */
     .admin-wrap{display:none}
     .admin-header{background:var(--navy);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-    .admin-header-left{display:flex;align-items:center;gap:.75rem}
-    .admin-header-left img{width:36px;height:36px;object-fit:contain}
-    .admin-header-left h1{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white)}
-    .admin-header-left span{font-size:.75rem;color:var(--gold-lt)}
-    .logout-btn{background:rgba(255,255,255,.1);color:var(--white);border:none;padding:.4rem .9rem;border-radius:6px;font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+    .ahl{display:flex;align-items:center;gap:.75rem}
+    .ahl img{width:36px;height:36px;object-fit:contain}
+    .ahl h1{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white)}
+    .ahl span{font-size:.72rem;color:var(--gold-lt)}
+    .logout-btn{background:rgba(255,255,255,.1);color:var(--white);border:none;padding:.4rem .9rem;border-radius:6px;font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif}
     .logout-btn:hover{background:rgba(255,255,255,.2)}
-    .admin-body{max-width:900px;margin:2rem auto;padding:0 1.5rem 4rem}
+    .admin-body{max-width:860px;margin:2rem auto;padding:0 1.5rem 4rem}
     /* TABS */
     .tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
     .tab{padding:.55rem 1.25rem;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer;border:2px solid var(--light);background:var(--white);color:var(--gray);font-family:'DM Sans',sans-serif;transition:all .2s}
@@ -38,54 +38,58 @@
     .panel{display:none}.panel.active{display:block}
     .panel-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--navy);margin-bottom:.25rem}
     .panel-sub{font-size:.88rem;color:var(--gray);margin-bottom:1.75rem}
-    /* FORM FIELDS */
-    .field{margin-bottom:1.1rem}
+    /* FIELDS */
+    .field{margin-bottom:1rem}
     .field label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.35rem}
     .field input,.field select,.field textarea{width:100%;padding:.7rem .9rem;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--navy);background:var(--light);border:1.5px solid transparent;border-radius:8px;outline:none;transition:border-color .2s}
     .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);background:var(--white)}
     .field textarea{resize:vertical;min-height:90px}
     .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    .save-btn{background:var(--gold);color:var(--white);border:none;padding:.75rem 1.75rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+    .save-btn{background:var(--gold);color:var(--white);border:none;padding:.75rem 1.75rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;display:inline-flex;align-items:center;gap:.5rem}
     .save-btn:hover{background:#b5831e}
-    .save-msg{display:inline-block;margin-left:1rem;font-size:.85rem;font-weight:600;opacity:0;transition:opacity .3s}
-    .save-msg.show{opacity:1}
-    .save-msg.ok{color:var(--green)}.save-msg.err{color:var(--red)}
-    /* ITEMS LIST */
+    .save-btn:disabled{background:#ccc;cursor:not-allowed}
+    /* STATUS */
+    .status-bar{padding:.75rem 1rem;border-radius:8px;font-size:.88rem;font-weight:600;margin-bottom:1.25rem;display:none;align-items:center;gap:.5rem}
+    .status-bar.show{display:flex}
+    .status-bar.ok{background:#f0fdf4;color:var(--green);border:1px solid #bbf7d0}
+    .status-bar.err{background:#fef2f2;color:var(--red);border:1px solid #fecaca}
+    .status-bar.loading{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+    .spinner{width:16px;height:16px;border:2px solid rgba(0,0,0,.1);border-top:2px solid currentColor;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    /* ITEMS */
     .items-list{list-style:none;margin-bottom:1.5rem}
     .list-item{background:var(--white);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.6rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:0 1px 4px rgba(13,37,69,.06)}
-    .list-item-info h4{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:.15rem}
-    .list-item-info p{font-size:.78rem;color:var(--gray)}
-    .list-item-actions{display:flex;gap:.5rem;flex-shrink:0}
+    .li-info h4{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:.15rem}
+    .li-info p{font-size:.78rem;color:var(--gray)}
     .btn-del{background:#fef2f2;color:var(--red);border:none;padding:.4rem .8rem;border-radius:6px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
     .btn-del:hover{background:#fee2e2}
-    .badge{display:inline-block;font-size:.68rem;font-weight:700;padding:.15rem .5rem;border-radius:4px;text-transform:uppercase;margin-left:.4rem}
+    .badge{display:inline-block;font-size:.68rem;font-weight:700;padding:.15rem .5rem;border-radius:4px;text-transform:uppercase;margin-left:.4rem;vertical-align:middle}
     .badge-adm{background:#EBF5FB;color:#1A6A9A}.badge-exam{background:#FEF9E7;color:#9A6400}
     .badge-event{background:#EAF7EA;color:#1A7A1A}.badge-holiday{background:#FEF0F0;color:#9A2020}.badge-general{background:var(--light);color:var(--gray)}
     /* ADD FORM */
-    .add-form{background:var(--white);border-radius:14px;padding:1.5rem;box-shadow:0 1px 4px rgba(13,37,69,.06);margin-top:1.5rem}
-    .add-form h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:1.1rem;display:flex;align-items:center;gap:.4rem}
-    /* PHOTO UPLOAD */
-    .upload-zone{border:2px dashed #d0d5dd;border-radius:12px;padding:2rem;text-align:center;cursor:pointer;transition:border-color .2s;background:var(--light)}
+    .add-form{background:var(--white);border-radius:14px;padding:1.5rem;box-shadow:0 1px 4px rgba(13,37,69,.06);margin-top:1.25rem}
+    .add-form h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:1.1rem}
+    /* PHOTO */
+    .upload-zone{border:2px dashed #d0d5dd;border-radius:12px;padding:2rem;text-align:center;cursor:pointer;background:var(--light);transition:border-color .2s}
     .upload-zone:hover{border-color:var(--gold)}
-    .upload-zone .icon{font-size:2rem;margin-bottom:.5rem}
-    .upload-zone p{font-size:.85rem;color:var(--gray)}
     .upload-zone input{display:none}
-    .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.75rem;margin-bottom:1rem}
+    .upload-zone .icon{font-size:2rem;margin-bottom:.4rem}
+    .upload-zone p{font-size:.85rem;color:var(--gray)}
+    .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1rem}
     .photo-thumb{border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1;background:var(--light)}
     .photo-thumb img{width:100%;height:100%;object-fit:cover}
-    .photo-thumb .del-photo{position:absolute;top:.35rem;right:.35rem;background:rgba(185,28,28,.9);color:var(--white);border:none;border-radius:50%;width:24px;height:24px;font-size:.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
-    .photo-thumb .photo-label{position:absolute;bottom:0;left:0;right:0;background:rgba(13,37,69,.75);color:var(--white);font-size:.68rem;padding:.3rem .4rem;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .photo-thumb .del-ph{position:absolute;top:.3rem;right:.3rem;background:rgba(185,28,28,.9);color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:.65rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .photo-thumb .ph-label{position:absolute;bottom:0;left:0;right:0;background:rgba(13,37,69,.75);color:#fff;font-size:.65rem;padding:.25rem .4rem;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     /* SETTINGS */
     .settings-card{background:var(--white);border-radius:14px;padding:1.5rem;box-shadow:0 1px 4px rgba(13,37,69,.06);margin-bottom:1.25rem}
     .settings-card h3{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--light)}
-    /* INSTRUCTIONS */
-    .info-box{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:1rem 1.1rem;font-size:.85rem;color:#92400e;margin-bottom:1.5rem;line-height:1.6}
-    @media(max-width:600px){.field-row{grid-template-columns:1fr}.tabs{gap:.35rem}.tab{font-size:.8rem;padding:.45rem .9rem}}
+    .deploy-status{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:1rem 1.1rem;font-size:.85rem;color:var(--green);margin-bottom:1rem;display:none}
+    @media(max-width:600px){.field-row{grid-template-columns:1fr}.tabs{gap:.3rem}.tab{font-size:.78rem;padding:.4rem .8rem}}
   </style>
 </head>
 <body>
 
-<!-- LOGIN SCREEN -->
+<!-- LOGIN -->
 <div class="login-wrap" id="loginWrap">
   <div class="login-card">
     <img src="/images/logo.png" alt="HAPS" onerror="this.style.display='none'"/>
@@ -97,17 +101,21 @@
   </div>
 </div>
 
-<!-- ADMIN PANEL -->
+<!-- ADMIN -->
 <div class="admin-wrap" id="adminWrap">
   <div class="admin-header">
-    <div class="admin-header-left">
+    <div class="ahl">
       <img src="/images/logo.png" alt="HAPS" onerror="this.style.display='none'"/>
-      <div><h1>HAPS Admin Panel</h1><span>Holy Angels Public School</span></div>
+      <div><h1>HAPS Admin Panel</h1><span>Holy Angels Public School &middot; myhaps.in</span></div>
     </div>
     <button class="logout-btn" onclick="doLogout()">&#128274; Logout</button>
   </div>
 
   <div class="admin-body">
+
+    <!-- GLOBAL STATUS BAR -->
+    <div class="status-bar" id="globalStatus"></div>
+
     <div class="tabs">
       <button class="tab active" onclick="showTab('notices')">&#128226; Notices</button>
       <button class="tab" onclick="showTab('gallery')">&#128247; Gallery</button>
@@ -115,11 +123,10 @@
       <button class="tab" onclick="showTab('settings')">&#9881;&#65039; Settings</button>
     </div>
 
-    <!-- NOTICES PANEL -->
+    <!-- NOTICES -->
     <div class="panel active" id="panel-notices">
       <div class="panel-title">School Notices</div>
-      <div class="panel-sub">Add and manage notices shown on the Notices page of the website.</div>
-      <div class="info-box">&#128161; Notices you add here are saved in your browser. To publish them to the live website, you need to export and upload them (see instructions at the bottom).</div>
+      <div class="panel-sub">Add notices — they go live on the website automatically within 2 minutes.</div>
       <ul class="items-list" id="noticesList"></ul>
       <div class="add-form">
         <h3>&#43; Add New Notice</h3>
@@ -132,16 +139,14 @@
           <div class="field"><label>Campus</label><select id="n-campus"><option value="both">Both Campuses</option><option value="main">Main Campus Only</option><option value="poiwan">Poiwan Campus Only</option></select></div>
         </div>
         <div class="field"><label>Message *</label><textarea id="n-body" placeholder="What do you want to tell parents and students?"></textarea></div>
-        <button class="save-btn" onclick="addNotice()">Add Notice</button>
-        <span class="save-msg" id="n-msg"></span>
+        <button class="save-btn" id="n-btn" onclick="addNotice()">&#128226; Publish Notice</button>
       </div>
     </div>
 
-    <!-- GALLERY PANEL -->
+    <!-- GALLERY -->
     <div class="panel" id="panel-gallery">
       <div class="panel-title">Photo Gallery</div>
-      <div class="panel-sub">Upload photos from school events, sports, cultural activities and campus life.</div>
-      <div class="info-box">&#128161; Photos are saved locally. After uploading, use the Export button to get the updated gallery file for the website.</div>
+      <div class="panel-sub">Upload photos — they appear on the Gallery page automatically within 2 minutes.</div>
       <div class="photo-grid" id="photoGrid"></div>
       <div class="add-form">
         <h3>&#43; Upload New Photo</h3>
@@ -153,37 +158,35 @@
           <div class="upload-zone" onclick="document.getElementById('g-file').click()">
             <input type="file" id="g-file" accept="image/*" onchange="previewPhoto(this)"/>
             <div class="icon">&#128247;</div>
-            <p>Click to choose a photo (JPG or PNG)</p>
+            <p>Click to choose a photo (JPG or PNG, max 5MB)</p>
             <p id="g-filename" style="color:var(--navy);font-weight:600;margin-top:.35rem"></p>
           </div>
         </div>
-        <button class="save-btn" onclick="addPhoto()">Add Photo</button>
-        <span class="save-msg" id="g-msg"></span>
+        <button class="save-btn" id="g-btn" onclick="addPhoto()">&#128247; Publish Photo</button>
       </div>
     </div>
 
-    <!-- DOWNLOADS PANEL -->
+    <!-- DOWNLOADS -->
     <div class="panel" id="panel-downloads">
       <div class="panel-title">Downloads &amp; Documents</div>
       <div class="panel-sub">Manage downloadable files shown on the Downloads page.</div>
       <ul class="items-list" id="downloadsList"></ul>
       <div class="add-form">
-        <h3>&#43; Add New Document</h3>
+        <h3>&#43; Add New Document Link</h3>
         <div class="field"><label>Document Title *</label><input type="text" id="d-title" placeholder="e.g. Holiday List 2026-27"/></div>
         <div class="field"><label>Description</label><input type="text" id="d-desc" placeholder="Short description for visitors"/></div>
         <div class="field-row">
-          <div class="field"><label>File URL (path on website) *</label><input type="text" id="d-url" placeholder="/files/HAPS_Holiday_List_2026-27.pdf"/></div>
+          <div class="field"><label>File URL *</label><input type="text" id="d-url" placeholder="/files/HAPS_Holiday_List_2026-27.pdf"/></div>
           <div class="field"><label>Category</label><select id="d-cat"><option value="admissions">Admissions</option><option value="academic">Academic</option><option value="circular">Circular</option><option value="other">Other</option></select></div>
         </div>
-        <button class="save-btn" onclick="addDownload()">Add Document</button>
-        <span class="save-msg" id="d-msg"></span>
+        <button class="save-btn" id="d-btn" onclick="addDownload()">&#128196; Publish Document</button>
       </div>
     </div>
 
-    <!-- SETTINGS PANEL -->
+    <!-- SETTINGS -->
     <div class="panel" id="panel-settings">
       <div class="panel-title">School Settings</div>
-      <div class="panel-sub">Update contact details and general school information.</div>
+      <div class="panel-sub">Update contact details shown on the website.</div>
       <div class="settings-card">
         <h3>&#128222; Contact Information</h3>
         <div class="field-row">
@@ -191,260 +194,384 @@
           <div class="field"><label>Poiwan Campus Phone</label><input type="tel" id="s-poiwan" placeholder="9128614032"/></div>
         </div>
         <div class="field"><label>Email Address</label><input type="email" id="s-email" placeholder="haps.aub@gmail.com"/></div>
-        <div class="field"><label>Announcement Bar Text</label><input type="text" id="s-ann" placeholder="Admissions open for 2026-27..."/></div>
-        <button class="save-btn" onclick="saveSettings()">Save Settings</button>
-        <span class="save-msg" id="s-msg"></span>
+        <div class="field"><label>Announcement Bar Text (shown on every page)</label><input type="text" id="s-ann" placeholder="Admissions open for 2026-27..."/></div>
+        <button class="save-btn" id="s-btn" onclick="saveSettings()">&#128190; Save &amp; Publish Settings</button>
       </div>
       <div class="settings-card">
         <h3>&#128274; Change Admin PIN</h3>
         <div class="field-row">
-          <div class="field"><label>New PIN</label><input type="password" id="new-pin" placeholder="Enter new PIN"/></div>
+          <div class="field"><label>New PIN</label><input type="password" id="new-pin" placeholder="Enter new PIN (min 4 characters)"/></div>
           <div class="field"><label>Confirm New PIN</label><input type="password" id="new-pin2" placeholder="Repeat new PIN"/></div>
         </div>
         <button class="save-btn" onclick="changePin()">Change PIN</button>
-        <span class="save-msg" id="pin-msg"></span>
-      </div>
-      <div class="settings-card">
-        <h3>&#128190; Export &amp; Publish Changes</h3>
-        <p style="font-size:.88rem;color:var(--gray);margin-bottom:1rem;line-height:1.65">After making changes (notices, gallery, downloads), click Export to download the updated data file. Then upload it to GitHub in the <code style="background:var(--light);padding:.1rem .4rem;border-radius:4px">_data/</code> folder as <code style="background:var(--light);padding:.1rem .4rem;border-radius:4px">site-data.json</code> — Netlify will automatically update the live website.</p>
-        <button class="save-btn" onclick="exportData()">&#8595; Export site-data.json</button>
+        <span id="pin-msg" style="margin-left:.75rem;font-size:.85rem;font-weight:600"></span>
       </div>
     </div>
+
   </div>
 </div>
 
 <script>
-  // ── PIN AUTH ─────────────────────────────────────────────────
+  // ── CONFIG ────────────────────────────────────────────────────
+  var GH_TOKEN  = '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';
+  var GH_USER   = 'kumarprium';
+  var GH_REPO   = 'haps-website';
+  var GH_BRANCH = 'main';
+  var DATA_FILE = '_data/site-data.json';
   var DEFAULT_PIN = 'haps2026';
-  
-  function getPin() { return localStorage.getItem('haps_admin_pin') || DEFAULT_PIN; }
-  
-  function doLogin() {
-    var entered = document.getElementById('pinInput').value;
-    if (entered === getPin()) {
-      sessionStorage.setItem('haps_logged_in', '1');
-      document.getElementById('loginWrap').style.display = 'none';
-      document.getElementById('adminWrap').style.display = 'block';
-      loadAll();
+
+  // ── AUTH ──────────────────────────────────────────────────────
+  function getPin(){ return localStorage.getItem('haps_pin') || DEFAULT_PIN; }
+  function doLogin(){
+    var p = document.getElementById('pinInput').value;
+    if(p === getPin()){
+      sessionStorage.setItem('haps_ok','1');
+      document.getElementById('loginWrap').style.display='none';
+      document.getElementById('adminWrap').style.display='block';
+      init();
     } else {
-      document.getElementById('loginError').style.display = 'block';
-      document.getElementById('pinInput').value = '';
-      document.getElementById('pinInput').focus();
+      document.getElementById('loginError').style.display='block';
+      document.getElementById('pinInput').value='';
     }
   }
-  
-  function doLogout() {
-    sessionStorage.removeItem('haps_logged_in');
-    location.reload();
+  function doLogout(){ sessionStorage.removeItem('haps_ok'); location.reload(); }
+  if(sessionStorage.getItem('haps_ok')==='1'){
+    document.getElementById('loginWrap').style.display='none';
+    document.getElementById('adminWrap').style.display='block';
   }
-  
-  // Auto-login if session active
-  if (sessionStorage.getItem('haps_logged_in') === '1') {
-    document.getElementById('loginWrap').style.display = 'none';
-    document.getElementById('adminWrap').style.display = 'block';
+  document.addEventListener('DOMContentLoaded', function(){
+    if(sessionStorage.getItem('haps_ok')==='1') init();
+  });
+  document.getElementById('pinInput').addEventListener('keydown', function(e){
+    if(e.key==='Enter') doLogin();
+  });
+
+  // ── TABS ──────────────────────────────────────────────────────
+  var TAB_NAMES = ['notices','gallery','downloads','settings'];
+  function showTab(id){
+    document.querySelectorAll('.tab').forEach(function(t,i){ t.classList.toggle('active', TAB_NAMES[i]===id); });
+    document.querySelectorAll('.panel').forEach(function(p){ p.classList.toggle('active', p.id==='panel-'+id); });
   }
 
-  // ── TABS ─────────────────────────────────────────────────────
-  function showTab(id) {
-    document.querySelectorAll('.tab').forEach(function(t,i){
-      t.classList.toggle('active', ['notices','gallery','downloads','settings'][i] === id);
+  // ── STATUS ────────────────────────────────────────────────────
+  function setStatus(msg, type){
+    var el = document.getElementById('globalStatus');
+    el.innerHTML = (type==='loading' ? '<div class="spinner"></div>' : '') + msg;
+    el.className = 'status-bar show ' + type;
+    if(type !== 'loading') setTimeout(function(){ el.classList.remove('show'); }, 5000);
+  }
+
+  // ── GITHUB API ────────────────────────────────────────────────
+  var GH_BASE = 'https://api.github.com';
+  var fileCache = {};
+
+  function ghHeaders(){
+    return {
+      'Authorization': 'token ' + GH_TOKEN,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    };
+  }
+
+  function ghGet(path){
+    return fetch(GH_BASE + path, { headers: ghHeaders() }).then(function(r){ return r.json(); });
+  }
+
+  function ghPut(path, body){
+    return fetch(GH_BASE + path, {
+      method: 'PUT',
+      headers: ghHeaders(),
+      body: JSON.stringify(body)
+    }).then(function(r){
+      if(!r.ok) return r.json().then(function(e){ throw new Error(e.message||'GitHub error'); });
+      return r.json();
     });
-    document.querySelectorAll('.panel').forEach(function(p){
-      p.classList.toggle('active', p.id === 'panel-' + id);
+  }
+
+  // Get file SHA (needed to update existing files)
+  function getFileSha(filePath){
+    return ghGet('/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+filePath+'?ref='+GH_BRANCH)
+      .then(function(d){ return d.sha || null; })
+      .catch(function(){ return null; });
+  }
+
+  // Write a file to GitHub
+  function writeFile(filePath, content, message){
+    return getFileSha(filePath).then(function(sha){
+      var body = {
+        message: message,
+        content: btoa(unescape(encodeURIComponent(content))),
+        branch: GH_BRANCH
+      };
+      if(sha) body.sha = sha;
+      return ghPut('/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+filePath, body);
     });
   }
 
-  // ── DATA STORE ───────────────────────────────────────────────
-  function getData() {
-    try { return JSON.parse(localStorage.getItem('haps_data') || '{}'); } catch(e){ return {}; }
+  // Write binary (base64 image) to GitHub
+  function writeBinary(filePath, base64Data, message){
+    return getFileSha(filePath).then(function(sha){
+      // Strip data URL prefix to get pure base64
+      var b64 = base64Data.split(',')[1] || base64Data;
+      var body = {
+        message: message,
+        content: b64,
+        branch: GH_BRANCH
+      };
+      if(sha) body.sha = sha;
+      return ghPut('/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+filePath, body);
+    });
   }
-  function saveData(d) { localStorage.setItem('haps_data', JSON.stringify(d)); }
 
-  function loadAll() {
-    loadNotices(); loadGallery(); loadDownloads(); loadSettings();
+  // ── DATA MANAGEMENT ───────────────────────────────────────────
+  var siteData = { notices:[], gallery:[], downloads:[], settings:{} };
+
+  function init(){
+    setStatus('Loading data...', 'loading');
+    ghGet('/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+DATA_FILE+'?ref='+GH_BRANCH)
+      .then(function(d){
+        if(d.content){
+          try{
+            var json = decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
+            siteData = JSON.parse(json);
+            siteData.notices   = siteData.notices   || [];
+            siteData.gallery   = siteData.gallery   || [];
+            siteData.downloads = siteData.downloads || [];
+            siteData.settings  = siteData.settings  || {};
+          }catch(e){ console.error('Parse error', e); }
+        }
+        renderAll();
+        setStatus('&#10003; Connected to myhaps.in', 'ok');
+      })
+      .catch(function(e){
+        console.log('No data file yet, starting fresh');
+        renderAll();
+        setStatus('&#10003; Ready — no data file yet, will create on first save', 'ok');
+      });
+  }
+
+  function saveToGitHub(message){
+    return writeFile(DATA_FILE, JSON.stringify(siteData, null, 2), message);
+  }
+
+  function renderAll(){
+    renderNotices(); renderGallery(); renderDownloads(); loadSettings();
   }
 
   // ── NOTICES ──────────────────────────────────────────────────
-  function loadNotices() {
-    var d = getData();
-    var notices = d.notices || [];
+  function renderNotices(){
     var ul = document.getElementById('noticesList');
-    if (notices.length === 0) {
-      ul.innerHTML = '<li style="color:var(--gray);font-size:.88rem;padding:.5rem 0">No notices yet. Add one below.</li>';
-      return;
-    }
-    ul.innerHTML = notices.map(function(n, i) {
-      return '<li class="list-item">'
-        + '<div class="list-item-info"><h4>' + n.title + '<span class="badge badge-' + n.type + '">' + n.type + '</span></h4>'
-        + '<p>' + n.date + ' &middot; ' + (n.campus === 'both' ? 'Both Campuses' : n.campus) + '</p></div>'
-        + '<div class="list-item-actions"><button class="btn-del" onclick="deleteNotice(' + i + ')">Delete</button></div>'
-        + '</li>';
+    var notices = siteData.notices || [];
+    if(!notices.length){ ul.innerHTML='<li style="color:var(--gray);font-size:.88rem;padding:.75rem 0">No notices yet. Add one below.</li>'; return; }
+    ul.innerHTML = notices.map(function(n,i){
+      return '<li class="list-item"><div class="li-info"><h4>'+n.title+'<span class="badge badge-'+n.type+'">'+n.type+'</span></h4>'
+        +'<p>'+n.date+' &middot; '+(n.campus==='both'?'Both Campuses':n.campus)+'</p></div>'
+        +'<button class="btn-del" onclick="deleteNotice('+i+')">Delete</button></li>';
     }).join('');
   }
 
-  function addNotice() {
+  function addNotice(){
     var title = document.getElementById('n-title').value.trim();
     var date  = document.getElementById('n-date').value;
     var type  = document.getElementById('n-type').value;
     var campus= document.getElementById('n-campus').value;
     var body  = document.getElementById('n-body').value.trim();
-    if (!title || !date || !body) { showMsg('n-msg','Please fill in all required fields.','err'); return; }
-    var d = getData();
-    if (!d.notices) d.notices = [];
-    d.notices.unshift({ title:title, date:date, type:type, campus:campus, body:body });
-    saveData(d);
-    loadNotices();
-    document.getElementById('n-title').value = '';
-    document.getElementById('n-date').value = '';
-    document.getElementById('n-body').value = '';
-    showMsg('n-msg', 'Notice added! Export to publish.', 'ok');
+    if(!title||!date||!body){ setStatus('Please fill in Title, Date and Message.','err'); return; }
+    var btn = document.getElementById('n-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spinner"></div> Publishing...';
+    setStatus('Publishing notice to website...', 'loading');
+    siteData.notices = siteData.notices || [];
+    siteData.notices.unshift({title:title,date:date,type:type,campus:campus,body:body,published:true});
+    saveToGitHub('Add notice: '+title)
+      .then(function(){
+        renderNotices();
+        document.getElementById('n-title').value='';
+        document.getElementById('n-date').value='';
+        document.getElementById('n-body').value='';
+        btn.disabled=false; btn.innerHTML='&#128226; Publish Notice';
+        setStatus('&#10003; Notice published! Live on website within 2 minutes.','ok');
+      })
+      .catch(function(e){
+        btn.disabled=false; btn.innerHTML='&#128226; Publish Notice';
+        setStatus('Error: '+e.message,'err');
+        siteData.notices.shift();
+      });
   }
 
-  function deleteNotice(i) {
-    if (!confirm('Delete this notice?')) return;
-    var d = getData(); d.notices.splice(i, 1); saveData(d); loadNotices();
+  function deleteNotice(i){
+    if(!confirm('Delete this notice from the website?')) return;
+    var title = siteData.notices[i].title;
+    setStatus('Deleting...','loading');
+    siteData.notices.splice(i,1);
+    saveToGitHub('Delete notice: '+title)
+      .then(function(){ renderNotices(); setStatus('&#10003; Notice deleted.','ok'); })
+      .catch(function(e){ setStatus('Error: '+e.message,'err'); });
   }
 
   // ── GALLERY ──────────────────────────────────────────────────
   var pendingPhoto = null;
 
-  function previewPhoto(input) {
-    if (!input.files || !input.files[0]) return;
+  function previewPhoto(input){
+    if(!input.files||!input.files[0]) return;
     var file = input.files[0];
-    document.getElementById('g-filename').textContent = file.name;
+    if(file.size > 5*1024*1024){ setStatus('Photo is too large. Please use a photo under 5MB.','err'); return; }
+    document.getElementById('g-filename').textContent = file.name + ' (' + Math.round(file.size/1024) + 'KB)';
     var reader = new FileReader();
-    reader.onload = function(e) { pendingPhoto = { src: e.target.result, name: file.name }; };
+    reader.onload = function(e){ pendingPhoto = {data:e.target.result, name:file.name, type:file.type}; };
     reader.readAsDataURL(file);
   }
 
-  function loadGallery() {
-    var d = getData();
-    var photos = d.gallery || [];
+  function renderGallery(){
     var grid = document.getElementById('photoGrid');
-    if (photos.length === 0) { grid.innerHTML = '<p style="color:var(--gray);font-size:.88rem;padding:.5rem 0">No photos yet.</p>'; return; }
-    grid.innerHTML = photos.map(function(p, i) {
+    var photos = siteData.gallery || [];
+    if(!photos.length){ grid.innerHTML='<p style="color:var(--gray);font-size:.88rem;padding:.5rem 0 1rem">No photos yet. Upload one below.</p>'; return; }
+    grid.innerHTML = photos.map(function(p,i){
       return '<div class="photo-thumb">'
-        + '<img src="' + p.src + '" alt="' + p.title + '"/>'
-        + '<button class="del-photo" onclick="deletePhoto(' + i + ')">&#10005;</button>'
-        + '<div class="photo-label">' + p.title + '</div>'
-        + '</div>';
+        +'<img src="'+p.url+'" alt="'+p.title+'" loading="lazy"/>'
+        +'<button class="del-ph" onclick="deletePhoto('+i+')">&#10005;</button>'
+        +'<div class="ph-label">'+p.title+'</div></div>';
     }).join('');
   }
 
-  function addPhoto() {
+  function addPhoto(){
     var title = document.getElementById('g-title').value.trim();
     var cat   = document.getElementById('g-cat').value;
-    if (!title) { showMsg('g-msg','Please enter a caption.','err'); return; }
-    if (!pendingPhoto) { showMsg('g-msg','Please select a photo.','err'); return; }
-    var d = getData();
-    if (!d.gallery) d.gallery = [];
-    d.gallery.unshift({ title:title, category:cat, src:pendingPhoto.src, name:pendingPhoto.name, date: new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) });
-    saveData(d);
-    loadGallery();
-    document.getElementById('g-title').value = '';
-    document.getElementById('g-filename').textContent = '';
-    document.getElementById('g-file').value = '';
-    pendingPhoto = null;
-    showMsg('g-msg','Photo added! Export to publish.','ok');
+    if(!title){ setStatus('Please enter a caption for the photo.','err'); return; }
+    if(!pendingPhoto){ setStatus('Please select a photo to upload.','err'); return; }
+    var btn = document.getElementById('g-btn');
+    btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Uploading...';
+    setStatus('Uploading photo...','loading');
+    // Generate unique filename
+    var ext = pendingPhoto.name.split('.').pop().toLowerCase() || 'jpg';
+    var fname = 'images/uploads/'+Date.now()+'-'+title.replace(/[^a-z0-9]/gi,'_').toLowerCase()+'.'+ext;
+    writeBinary(fname, pendingPhoto.data, 'Upload photo: '+title)
+      .then(function(){
+        var photoUrl = '/'+fname;
+        siteData.gallery = siteData.gallery || [];
+        siteData.gallery.unshift({
+          title: title,
+          category: cat,
+          url: photoUrl,
+          date: new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})
+        });
+        return saveToGitHub('Add gallery photo: '+title);
+      })
+      .then(function(){
+        renderGallery();
+        document.getElementById('g-title').value='';
+        document.getElementById('g-filename').textContent='';
+        document.getElementById('g-file').value='';
+        pendingPhoto=null;
+        btn.disabled=false; btn.innerHTML='&#128247; Publish Photo';
+        setStatus('&#10003; Photo published! Live on website within 2 minutes.','ok');
+      })
+      .catch(function(e){
+        btn.disabled=false; btn.innerHTML='&#128247; Publish Photo';
+        setStatus('Error uploading: '+e.message,'err');
+      });
   }
 
-  function deletePhoto(i) {
-    if (!confirm('Delete this photo?')) return;
-    var d = getData(); d.gallery.splice(i, 1); saveData(d); loadGallery();
+  function deletePhoto(i){
+    if(!confirm('Delete this photo from the website?')) return;
+    var title = siteData.gallery[i].title;
+    setStatus('Deleting...','loading');
+    siteData.gallery.splice(i,1);
+    saveToGitHub('Delete photo: '+title)
+      .then(function(){ renderGallery(); setStatus('&#10003; Photo deleted.','ok'); })
+      .catch(function(e){ setStatus('Error: '+e.message,'err'); });
   }
 
   // ── DOWNLOADS ────────────────────────────────────────────────
-  function loadDownloads() {
-    var d = getData();
-    var docs = d.downloads || [];
+  function renderDownloads(){
     var ul = document.getElementById('downloadsList');
-    if (docs.length === 0) { ul.innerHTML = '<li style="color:var(--gray);font-size:.88rem;padding:.5rem 0">No extra documents added yet.</li>'; return; }
-    ul.innerHTML = docs.map(function(doc, i) {
-      return '<li class="list-item">'
-        + '<div class="list-item-info"><h4>' + doc.title + '</h4><p>' + doc.desc + ' &middot; <a href="' + doc.url + '" target="_blank" style="color:var(--gold)">' + doc.url + '</a></p></div>'
-        + '<div class="list-item-actions"><button class="btn-del" onclick="deleteDownload(' + i + ')">Delete</button></div>'
-        + '</li>';
+    var docs = siteData.downloads || [];
+    if(!docs.length){ ul.innerHTML='<li style="color:var(--gray);font-size:.88rem;padding:.75rem 0">No extra documents added yet.</li>'; return; }
+    ul.innerHTML = docs.map(function(d,i){
+      return '<li class="list-item"><div class="li-info"><h4>'+d.title+'</h4>'
+        +'<p>'+d.desc+' &middot; <a href="'+d.url+'" target="_blank" style="color:var(--gold)">'+d.url+'</a></p></div>'
+        +'<button class="btn-del" onclick="deleteDownload('+i+')">Delete</button></li>';
     }).join('');
   }
 
-  function addDownload() {
+  function addDownload(){
     var title = document.getElementById('d-title').value.trim();
     var desc  = document.getElementById('d-desc').value.trim();
     var url   = document.getElementById('d-url').value.trim();
     var cat   = document.getElementById('d-cat').value;
-    if (!title || !url) { showMsg('d-msg','Please fill in title and file URL.','err'); return; }
-    var d = getData();
-    if (!d.downloads) d.downloads = [];
-    d.downloads.push({ title:title, desc:desc, url:url, category:cat });
-    saveData(d);
-    loadDownloads();
-    document.getElementById('d-title').value = '';
-    document.getElementById('d-desc').value = '';
-    document.getElementById('d-url').value = '';
-    showMsg('d-msg','Document added! Export to publish.','ok');
+    if(!title||!url){ setStatus('Please fill in Title and File URL.','err'); return; }
+    var btn = document.getElementById('d-btn');
+    btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Publishing...';
+    setStatus('Publishing...','loading');
+    siteData.downloads = siteData.downloads || [];
+    siteData.downloads.push({title:title,desc:desc,url:url,category:cat});
+    saveToGitHub('Add download: '+title)
+      .then(function(){
+        renderDownloads();
+        document.getElementById('d-title').value='';
+        document.getElementById('d-desc').value='';
+        document.getElementById('d-url').value='';
+        btn.disabled=false; btn.innerHTML='&#128196; Publish Document';
+        setStatus('&#10003; Document published!','ok');
+      })
+      .catch(function(e){
+        btn.disabled=false; btn.innerHTML='&#128196; Publish Document';
+        setStatus('Error: '+e.message,'err');
+        siteData.downloads.pop();
+      });
   }
 
-  function deleteDownload(i) {
-    if (!confirm('Delete this document?')) return;
-    var d = getData(); d.downloads.splice(i, 1); saveData(d); loadDownloads();
+  function deleteDownload(i){
+    if(!confirm('Delete this document?')) return;
+    var title = siteData.downloads[i].title;
+    siteData.downloads.splice(i,1);
+    saveToGitHub('Delete download: '+title)
+      .then(function(){ renderDownloads(); setStatus('&#10003; Deleted.','ok'); })
+      .catch(function(e){ setStatus('Error: '+e.message,'err'); });
   }
 
   // ── SETTINGS ─────────────────────────────────────────────────
-  function loadSettings() {
-    var d = getData();
-    var s = d.settings || {};
+  function loadSettings(){
+    var s = siteData.settings || {};
     document.getElementById('s-main').value   = s.main_phone   || '9931921825';
     document.getElementById('s-poiwan').value = s.poiwan_phone || '9128614032';
     document.getElementById('s-email').value  = s.email        || 'haps.aub@gmail.com';
     document.getElementById('s-ann').value    = s.announcement || 'Admissions open for 2026-27';
   }
 
-  function saveSettings() {
-    var d = getData();
-    d.settings = {
+  function saveSettings(){
+    var btn = document.getElementById('s-btn');
+    btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Saving...';
+    setStatus('Saving settings...','loading');
+    siteData.settings = {
       main_phone:   document.getElementById('s-main').value.trim(),
       poiwan_phone: document.getElementById('s-poiwan').value.trim(),
       email:        document.getElementById('s-email').value.trim(),
       announcement: document.getElementById('s-ann').value.trim()
     };
-    saveData(d);
-    showMsg('s-msg','Settings saved!','ok');
+    saveToGitHub('Update school settings')
+      .then(function(){
+        btn.disabled=false; btn.innerHTML='&#128190; Save &amp; Publish Settings';
+        setStatus('&#10003; Settings saved! Live on website within 2 minutes.','ok');
+      })
+      .catch(function(e){
+        btn.disabled=false; btn.innerHTML='&#128190; Save &amp; Publish Settings';
+        setStatus('Error: '+e.message,'err');
+      });
   }
 
-  function changePin() {
+  // ── PIN ───────────────────────────────────────────────────────
+  function changePin(){
     var p1 = document.getElementById('new-pin').value;
     var p2 = document.getElementById('new-pin2').value;
-    if (!p1 || p1.length < 4) { showMsg('pin-msg','PIN must be at least 4 characters.','err'); return; }
-    if (p1 !== p2) { showMsg('pin-msg','PINs do not match.','err'); return; }
-    localStorage.setItem('haps_admin_pin', p1);
-    document.getElementById('new-pin').value = '';
-    document.getElementById('new-pin2').value = '';
-    showMsg('pin-msg','PIN changed successfully!','ok');
-  }
-
-  // ── EXPORT ───────────────────────────────────────────────────
-  function exportData() {
-    var d = getData();
-    var exportObj = {
-      notices:   d.notices   || [],
-      gallery:   (d.gallery  || []).map(function(p){ return { title:p.title, category:p.category, date:p.date, src:p.src }; }),
-      downloads: d.downloads || [],
-      settings:  d.settings  || {},
-      exported:  new Date().toISOString()
-    };
-    var blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: 'application/json' });
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'site-data.json';
-    a.click();
-  }
-
-  // ── HELPER ───────────────────────────────────────────────────
-  function showMsg(id, text, type) {
-    var el = document.getElementById(id);
-    el.textContent = text;
-    el.className = 'save-msg ' + type + ' show';
-    setTimeout(function(){ el.classList.remove('show'); }, 3000);
+    var msg = document.getElementById('pin-msg');
+    if(!p1||p1.length<4){ msg.textContent='PIN must be at least 4 characters.'; msg.style.color='var(--red)'; return; }
+    if(p1!==p2){ msg.textContent='PINs do not match.'; msg.style.color='var(--red)'; return; }
+    localStorage.setItem('haps_pin',p1);
+    document.getElementById('new-pin').value='';
+    document.getElementById('new-pin2').value='';
+    msg.textContent='PIN changed!'; msg.style.color='var(--green)';
+    setTimeout(function(){ msg.textContent=''; },3000);
   }
 </script>
 </body>
