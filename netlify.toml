@@ -1,3 +1,7 @@
+# ── Functions ─────────────────────────────────────────────────
+[functions]
+  directory = "netlify/functions"
+
 # ── Page redirects (clean URLs) ───────────────────────────────
 
 [[redirects]]
@@ -45,16 +49,6 @@
   to = "/admin/index.html"
   status = 200
 
-[[redirects]]
-  from = "/accept-invite"
-  to = "/accept-invite.html"
-  status = 200
-
-[[redirects]]
-  from = "/auth"
-  to = "/accept-invite.html"
-  status = 200
-
 # ── Security headers ──────────────────────────────────────────
 [[headers]]
   for = "/admin/*"
@@ -64,6 +58,16 @@
     Cache-Control = "no-store"
 
 # ── Catch-all 404 ─────────────────────────────────────────────
+[[redirects]]
+  from = "/accept-invite"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/auth"
+  to = "/index.html"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/404.html"
