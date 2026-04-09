@@ -189,8 +189,7 @@
   </div>
 
   <!-- Netlify Identity for CMS login -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
+  
   <script>
     // Nav
     (function(){
@@ -215,7 +214,12 @@
 
     // Gallery data — populated from _gallery markdown files via Netlify build
     // For static hosting, photos are listed here and updated by the CMS
-    var galleryItems = [];  // CMS will populate this via build process
+    var galleryItems = (function(){
+      try {
+        var stored = localStorage.getItem('haps_gallery');
+        return stored ? JSON.parse(stored) : [];
+      } catch(e) { return []; }
+    })();
 
     // Filter
     document.querySelectorAll('.filter-btn').forEach(function(btn){
@@ -278,14 +282,7 @@
     // Initial render
     renderGallery('all');
 
-    // Netlify Identity redirect
-    if(window.netlifyIdentity){
-      window.netlifyIdentity.on('init',function(user){
-        if(!user){
-          window.netlifyIdentity.on('login',function(){document.location.href='/admin/';});
-        }
-      });
-    }
+
   </script>
 </body>
 </html>

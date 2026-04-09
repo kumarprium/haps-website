@@ -68,7 +68,6 @@
     .page-form h3{font-family:var(--heading);font-size:1.3rem;color:var(--navy);margin-bottom:.3rem}
     .page-form p{color:var(--gray);font-size:.88rem;margin-bottom:1.25rem}
     @media(max-width:900px){.contact-grid{grid-template-columns:1fr}}</style>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <div class="ann-bar">&#128226; Admissions open 2026&#8211;27 &middot; <a href="tel:9931921825">Main: 9931921825</a> &middot; <a href="tel:9128614032">Poiwan: 9128614032</a></div>
@@ -220,16 +219,6 @@
       document.getElementById('pageFormOK').style.display = 'block';
     }
   </script>
-<script>
-  if(window.netlifyIdentity){
-    window.netlifyIdentity.on("init",function(user){
-      if(!user){
-        window.netlifyIdentity.on("login",function(){
-          document.location.href="/admin/";
-        });
-      }
-    });
-  }
-</script>
+
 </body>
 </html>

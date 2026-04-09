@@ -63,7 +63,6 @@
     .notice-content p{font-size:.86rem;color:var(--gray);line-height:1.6}
     .notice-campus{font-size:.75rem;font-weight:600;color:var(--gold);margin-top:.35rem}
     @media(max-width:680px){.notice-card{flex-direction:column;gap:.75rem}}</style>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <div class="ann-bar">&#128226; Admissions open 2026&#8211;27 &middot; <a href="tel:9931921825">Main: 9931921825</a> &middot; <a href="tel:9128614032">Poiwan: 9128614032</a></div>
@@ -165,16 +164,36 @@
       });
     });
   </script>
-<script>
-  if(window.netlifyIdentity){
-    window.netlifyIdentity.on("init",function(user){
-      if(!user){
-        window.netlifyIdentity.on("login",function(){
-          document.location.href="/admin/";
-        });
-      }
-    });
-  }
-</script>
+
+
+  <script>
+  // Load notices added via admin panel
+  (function(){
+    try {
+      var stored = localStorage.getItem('haps_notices');
+      if (!stored) return;
+      var notices = JSON.parse(stored);
+      if (!notices || !notices.length) return;
+      var list = document.getElementById('noticeList');
+      if (!list) return;
+      var badges = {adm:'nt-adm',exam:'nt-exam',event:'nt-event',holiday:'nt-holiday',general:'nt-general'};
+      var labels = {adm:'Admission',exam:'Exam',event:'Event',holiday:'Holiday',general:'General'};
+      var campusLabel = {both:'Both Campuses',main:'Main Campus',poiwan:'Poiwan Campus'};
+      var newCards = notices.map(function(n){
+        var d = new Date(n.id);
+        var day = String(d.getDate()).padStart(2,'0');
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var mon = months[d.getMonth()];
+        var yr = d.getFullYear();
+        return '<div class="notice-card" data-type="'+n.type+'">'
+          +'<div class="nd-box"><div class="nd-day">'+day+'</div><div class="nd-mon">'+mon+'</div><div class="nd-yr">'+yr+'</div></div>'
+          +'<div class="notice-content"><span class="notice-type '+badges[n.type]+'">'+labels[n.type]+'</span>'
+          +'<h3>'+n.title+'</h3><p>'+n.body+'</p>'
+          +'<div class="notice-campus">&#128205; '+campusLabel[n.campus]+'</div></div></div>';
+      }).join('');
+      list.insertAdjacentHTML('afterbegin', newCards);
+    } catch(e) {}
+  })();
+  </script>
 </body>
 </html>

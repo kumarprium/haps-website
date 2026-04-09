@@ -118,7 +118,6 @@
     @media(max-width:900px){.prog-card{grid-template-columns:1fr}.prog-sidebar{flex-direction:row;justify-content:flex-start;gap:1rem;padding:1.25rem 1.5rem}.assess-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr 1fr}}
     @media(max-width:680px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.nav-links.mobile-show{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--white);box-shadow:var(--shadow-md);padding:1rem 1.5rem;z-index:100;gap:0}.nav-links.mobile-show a{padding:.7rem 0;border-bottom:1px solid var(--light)}.footer-inner{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
   </style>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <div class="ann-bar">📣 Admissions open for 2026–27 · Nursery to Class 10 · <a href="tel:9931921825">Call 9931921825</a> or <a href="tel:9128614032">9128614032</a></div>
@@ -281,16 +280,6 @@
       document.getElementById('formSuccess').style.display='block';
     }
   </script>
-<script>
-  if(window.netlifyIdentity){
-    window.netlifyIdentity.on("init",function(user){
-      if(!user){
-        window.netlifyIdentity.on("login",function(){
-          document.location.href="/admin/";
-        });
-      }
-    });
-  }
-</script>
+
 </body>
 </html>

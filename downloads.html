@@ -57,7 +57,6 @@
     .dl-badge{font-size:.68rem;font-weight:700;padding:.15rem .55rem;border-radius:4px;text-transform:uppercase;letter-spacing:.04em}
     .dl-pdf{background:#FDECEA;color:#C0392B}.dl-img{background:#EAF3FF;color:#1A56DB}
     @media(max-width:600px){.dl-card{grid-template-columns:1fr}.dl-ico{display:none}}</style>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <div class="ann-bar">&#128226; Admissions open 2026&#8211;27 &middot; <a href="tel:9931921825">Main: 9931921825</a> &middot; <a href="tel:9128614032">Poiwan: 9128614032</a></div>
@@ -160,16 +159,33 @@
     }
   
   </script>
-<script>
-  if(window.netlifyIdentity){
-    window.netlifyIdentity.on("init",function(user){
-      if(!user){
-        window.netlifyIdentity.on("login",function(){
-          document.location.href="/admin/";
-        });
-      }
-    });
-  }
-</script>
+
+
+  <script>
+  // Load documents added via admin panel
+  (function(){
+    try {
+      var stored = localStorage.getItem('haps_documents');
+      if (!stored) return;
+      var docs = JSON.parse(stored);
+      if (!docs || !docs.length) return;
+      // Find the downloads grid and prepend
+      var section = document.querySelector('.section-inner');
+      if (!section) return;
+      var heading = '<h3 style="font-family:var(--heading);font-size:1.2rem;color:var(--navy);margin:0 0 1.25rem;padding-bottom:.5rem;border-bottom:2px solid var(--light)">&#128203; Recently Added</h3>';
+      var cards = docs.map(function(d){
+        return '<div class="dl-card" style="display:grid;grid-template-columns:60px 1fr auto;align-items:center;gap:1.1rem;padding:1.25rem 1.5rem;border-radius:14px;background:var(--white);box-shadow:var(--shadow-sm);border:1px solid rgba(13,37,69,.06);margin-bottom:1rem">'
+          +'<div style="width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;background:#FDECEA">&#128196;</div>'
+          +'<div><h3 style="font-size:.98rem;font-weight:600;color:var(--navy);margin-bottom:.2rem">'+d.title+'</h3>'
+          +'<p style="font-size:.83rem;color:var(--gray)">'+(d.description||'')+'</p></div>'
+          +'<a href="'+d.file+'" download="'+d.filename+'" class="btn btn-gold" style="white-space:nowrap">&#8595; Download</a>'
+          +'</div>';
+      }).join('');
+      var wrapper = document.createElement('div');
+      wrapper.innerHTML = heading + cards;
+      section.insertBefore(wrapper, section.firstChild);
+    } catch(e){}
+  })();
+  </script>
 </body>
 </html>
