@@ -57,6 +57,7 @@
     .dl-badge{font-size:.68rem;font-weight:700;padding:.15rem .55rem;border-radius:4px;text-transform:uppercase;letter-spacing:.04em}
     .dl-pdf{background:#FDECEA;color:#C0392B}.dl-img{background:#EAF3FF;color:#1A56DB}
     @media(max-width:600px){.dl-card{grid-template-columns:1fr}.dl-ico{display:none}}</style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <div class="ann-bar">&#128226; Admissions open 2026&#8211;27 &middot; <a href="tel:9931921825">Main: 9931921825</a> &middot; <a href="tel:9128614032">Poiwan: 9128614032</a></div>
@@ -159,5 +160,16 @@
     }
   
   </script>
+<script>
+  if(window.netlifyIdentity){
+    window.netlifyIdentity.on("init",function(user){
+      if(!user){
+        window.netlifyIdentity.on("login",function(){
+          document.location.href="/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>

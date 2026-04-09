@@ -70,6 +70,7 @@
     .shared-card h3{font-family:var(--heading);font-size:.9rem;color:var(--navy);margin-bottom:.25rem}
     .shared-card p{font-size:.78rem;color:var(--gray)}
     @media(max-width:800px){.campus-grid{grid-template-columns:1fr}.cf-dg{grid-template-columns:1fr}}</style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <div class="ann-bar">&#128226; Admissions open 2026&#8211;27 &middot; <a href="tel:9931921825">Main: 9931921825</a> &middot; <a href="tel:9128614032">Poiwan: 9128614032</a></div>
@@ -224,5 +225,16 @@
     }
   
   </script>
+<script>
+  if(window.netlifyIdentity){
+    window.netlifyIdentity.on("init",function(user){
+      if(!user){
+        window.netlifyIdentity.on("login",function(){
+          document.location.href="/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>

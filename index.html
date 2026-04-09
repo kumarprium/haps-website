@@ -1,12 +1,1735 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>HAPS Admin Panel</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Holy Angels Public School (HAPS) – CBSE school in Aurangabad, Bihar with campuses at Maharana Pratap Nagar and Poiwan. Admissions open for 2026-27." />
+  <title>Holy Angels Public School (HAPS) | CBSE School in Aurangabad, Bihar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────── */
+    :root {
+      --navy:   #0D2545;
+      --gold:   #C9922A;
+      --gold-lt:#F2B84B;
+      --cream:  #FDF8F0;
+      --white:  #FFFFFF;
+      --gray:   #6B7280;
+      --light:  #F4F6F9;
+      --red:    #C0392B;
+
+      --heading: 'Playfair Display', Georgia, serif;
+      --body:    'DM Sans', sans-serif;
+
+      --shadow-sm: 0 2px 8px rgba(13,37,69,.08);
+      --shadow-md: 0 8px 32px rgba(13,37,69,.12);
+      --shadow-lg: 0 20px 60px rgba(13,37,69,.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      color: var(--navy);
+      background: var(--white);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ─── ANNOUNCEMENT BAR ───────────────────────────── */
+    .ann-bar {
+      background: var(--navy);
+      color: var(--gold-lt);
+      text-align: center;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      padding: .5rem 1rem;
+    }
+    .ann-bar a { color: var(--gold-lt); text-decoration: underline; }
+
+    /* ─── NAV ────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: var(--white);
+      border-bottom: 2px solid var(--cream);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: .75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 52px;
+      width: 52px;
+      object-fit: contain;
+    }
+    .nav-logo-text { line-height: 1.2; }
+    .nav-logo-text .school-name {
+      display: block;
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--navy);
+    }
+    .nav-logo-text .school-sub {
+      display: block;
+      font-size: .73rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: .2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      display: block;
+      padding: .45rem .75rem;
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background .2s, color .2s;
+    }
+    .nav-links a:hover { background: var(--light); color: var(--gold); }
+    .nav-links a.active { color: var(--gold); font-weight: 600; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .6rem 1.4rem;
+      border-radius: 8px;
+      font-family: var(--body);
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s, background .18s;
+      border: none;
+    }
+    .btn:active { transform: scale(.97); }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(201,146,42,.35);
+    }
+    .btn-gold:hover {
+      background: #b5831e;
+      box-shadow: 0 6px 20px rgba(201,146,42,.45);
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+    }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+    .btn-lg { padding: .85rem 2rem; font-size: 1rem; border-radius: 10px; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .4rem;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .mobile-open .hamburger span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .mobile-open .hamburger span:nth-child(2) { opacity: 0; }
+    .mobile-open .hamburger span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* ─── HERO ───────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+    }
+    /* decorative circles */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,146,42,.15) 0%, transparent 70%);
+      top: -200px; right: -150px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,146,42,.08) 0%, transparent 70%);
+      bottom: -100px; left: -80px;
+      pointer-events: none;
+    }
+    /* diagonal accent */
+    .hero-accent {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 50%, rgba(201,146,42,.06) 50%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(201,146,42,.18);
+      border: 1px solid rgba(201,146,42,.35);
+      color: var(--gold-lt);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px;
+      background: var(--gold-lt);
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.4); }
+    }
+    .hero h1 {
+      font-family: var(--heading);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      color: var(--gold-lt);
+      font-style: normal;
+      display: block;
+    }
+    .hero-sub {
+      color: rgba(255,255,255,.72);
+      font-size: 1.08rem;
+      max-width: 480px;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-phones {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-phone {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      color: rgba(255,255,255,.7);
+      font-size: .88rem;
+    }
+    .hero-phone .icon {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem;
+    }
+    .hero-phone strong { color: var(--white); font-weight: 600; display: block; }
+
+    /* Hero card panel */
+    .hero-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      animation: floatIn .8s ease .3s both;
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-card h3 {
+      font-family: var(--heading);
+      font-size: 1.25rem;
+      color: var(--navy);
+      margin-bottom: 1.25rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--cream);
+    }
+    .hc-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      padding: .65rem 0;
+      border-bottom: 1px solid var(--light);
+    }
+    .hc-row:last-child { border-bottom: none; }
+    .hc-icon {
+      width: 36px; height: 36px;
+      flex-shrink: 0;
+      background: var(--light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .hc-label { font-size: .78rem; color: var(--gray); font-weight: 500; }
+    .hc-value { font-size: .9rem; color: var(--navy); font-weight: 600; }
+    .badge-cbse {
+      display: inline-block;
+      background: #EAF3FF;
+      color: #1A56DB;
+      font-size: .72rem;
+      font-weight: 700;
+      padding: .15rem .6rem;
+      border-radius: 4px;
+      letter-spacing: .04em;
+      margin-top: .15rem;
+    }
+    .hero-enq-btn {
+      width: 100%;
+      margin-top: 1.25rem;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* ─── STATS BAR ──────────────────────────────────── */
+    .stats-bar {
+      background: var(--gold);
+      padding: 1.5rem 1.5rem;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+      color: var(--white);
+    }
+    .stat-num {
+      font-family: var(--heading);
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .8rem;
+      font-weight: 500;
+      opacity: .85;
+      letter-spacing: .04em;
+      margin-top: .2rem;
+    }
+
+    /* ─── SECTION COMMON ─────────────────────────────── */
+    section { padding: 5rem 1.5rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .tag {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .6rem;
+    }
+    h2.section-title {
+      font-family: var(--heading);
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .section-lead {
+      color: var(--gray);
+      font-size: 1.05rem;
+      max-width: 580px;
+      font-weight: 300;
+    }
+    .section-header { margin-bottom: 3rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-lead { margin: 0 auto; }
+
+    /* ─── WHY HAPS ───────────────────────────────────── */
+    .why { background: var(--cream); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .why-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid transparent;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .why-card:hover {
+      border-left-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .why-emoji { font-size: 1.9rem; margin-bottom: .9rem; }
+    .why-card h3 {
+      font-family: var(--heading);
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .why-card p { font-size: .9rem; color: var(--gray); }
+
+    /* ─── ACADEMICS ──────────────────────────────────── */
+    .ac-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .ac-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .ac-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .ac-header {
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .ac-num {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--navy);
+      color: var(--gold-lt);
+      font-family: var(--heading);
+      font-size: 1.3rem;
+      font-weight: 900;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ac-header h3 {
+      font-family: var(--heading);
+      font-size: 1.05rem;
+      color: var(--navy);
+    }
+    .ac-header span {
+      font-size: .78rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+    .ac-body {
+      padding: 0 1.5rem 1.5rem;
+      border-top: 1px solid var(--light);
+    }
+    .ac-subjects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: 1rem;
+    }
+    .subj-pill {
+      background: var(--light);
+      color: var(--navy);
+      font-size: .75rem;
+      font-weight: 600;
+      padding: .3rem .7rem;
+      border-radius: 100px;
+    }
+    .ac-full { grid-column: span 3; }
+    .ac-activities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+    .act-tag {
+      background: rgba(201,146,42,.1);
+      color: #8B5A0A;
+      font-size: .8rem;
+      font-weight: 600;
+      padding: .35rem .9rem;
+      border-radius: 8px;
+    }
+
+    /* ─── CAMPUSES ───────────────────────────────────── */
+    .campuses { background: var(--navy); }
+    .campuses .tag { color: var(--gold-lt); }
+    .campuses .section-title { color: var(--white); }
+    .campuses .section-lead { color: rgba(255,255,255,.6); }
+    .campus-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .campus-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: background .25s, transform .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .campus-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gold);
+    }
+    .campus-card:hover {
+      background: rgba(255,255,255,.08);
+      transform: translateY(-4px);
+    }
+    .campus-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      background: rgba(201,146,42,.2);
+      padding: .3rem .8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .campus-card h3 {
+      font-family: var(--heading);
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .campus-card .address {
+      color: rgba(255,255,255,.6);
+      font-size: .9rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: .4rem;
+    }
+    .campus-detail-row {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      color: rgba(255,255,255,.75);
+      font-size: .88rem;
+      padding: .5rem 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .campus-detail-row strong { color: var(--white); }
+    .campus-phone-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--gold);
+      color: var(--white);
+      padding: .65rem 1.25rem;
+      border-radius: 8px;
+      font-size: .88rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 1.25rem;
+      transition: background .2s;
+    }
+    .campus-phone-btn:hover { background: #b5831e; }
+
+    /* Map embed placeholder */
+    .campus-map {
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 1.25rem;
+      height: 160px;
+      background: rgba(255,255,255,.06);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.35);
+      font-size: .85rem;
+      text-align: center;
+      border: 1px dashed rgba(255,255,255,.15);
+    }
+
+    /* ─── ADMISSIONS ─────────────────────────────────── */
+    .admissions { background: var(--cream); }
+    .adm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .adm-steps { counter-reset: step; }
+    .adm-step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      counter-increment: step;
+    }
+    .step-num {
+      width: 40px; height: 40px;
+      flex-shrink: 0;
+      background: var(--navy);
+      color: var(--gold-lt);
+      font-family: var(--heading);
+      font-size: 1.1rem;
+      font-weight: 900;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .adm-step h4 {
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .25rem;
+    }
+    .adm-step p { font-size: .88rem; color: var(--gray); }
+    .adm-cta-box {
+      background: var(--navy);
+      border-radius: 20px;
+      padding: 2rem;
+      color: var(--white);
+    }
+    .adm-cta-box h3 {
+      font-family: var(--heading);
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: .75rem;
+    }
+    .adm-cta-box p {
+      color: rgba(255,255,255,.65);
+      font-size: .92rem;
+      margin-bottom: 1.5rem;
+    }
+    .adm-feature-list {
+      list-style: none;
+      margin-bottom: 1.75rem;
+    }
+    .adm-feature-list li {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      color: rgba(255,255,255,.8);
+      font-size: .9rem;
+      padding: .4rem 0;
+    }
+    .adm-feature-list li::before {
+      content: '✓';
+      color: var(--gold-lt);
+      font-weight: 700;
+    }
+    .adm-cta-btn {
+      width: 100%;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* ─── NOTICE BOARD ───────────────────────────────── */
+    .notices { background: var(--white); }
+    .notice-list { list-style: none; }
+    .notice-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--light);
+      align-items: flex-start;
+    }
+    .notice-item:last-child { border-bottom: none; }
+    .notice-date {
+      min-width: 50px;
+      text-align: center;
+      background: var(--light);
+      border-radius: 8px;
+      padding: .4rem;
+      flex-shrink: 0;
+    }
+    .notice-date .day {
+      font-family: var(--heading);
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .notice-date .month {
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .notice-content h4 {
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .2rem;
+    }
+    .notice-content p { font-size: .83rem; color: var(--gray); }
+    .notice-tag {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 700;
+      padding: .15rem .5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-top: .3rem;
+    }
+    .nt-adm { background: #EBF5FB; color: #1A6A9A; }
+    .nt-exam { background: #FEF9E7; color: #9A6400; }
+    .nt-event { background: #EAF7EA; color: #1A7A1A; }
+    .nt-general { background: var(--light); color: var(--gray); }
+
+    /* ─── CONTACT STRIP ──────────────────────────────── */
+    .contact-strip {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3a6b 100%);
+      padding: 4rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-strip::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(201,146,42,.2), transparent 70%);
+    }
+    .cs-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .cs-inner h2 {
+      font-family: var(--heading);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .cs-inner p {
+      color: rgba(255,255,255,.65);
+      font-size: .95rem;
+    }
+    .cs-contacts {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .cs-contact {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+    }
+    .cs-contact-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .cs-contact-label { font-size: .72rem; color: rgba(255,255,255,.5); }
+    .cs-contact-val { font-size: .92rem; font-weight: 600; color: var(--white); }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: #091c38;
+      color: rgba(255,255,255,.6);
+      padding: 3rem 1.5rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+    .footer-logo img { height: 44px; width: 44px; object-fit: contain; }
+    .footer-logo-text .school-name {
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--white);
+    }
+    .footer-logo-text .school-sub {
+      font-size: .7rem;
+      color: var(--gold-lt);
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .footer-about { font-size: .85rem; line-height: 1.7; max-width: 300px; }
+    .footer-col h4 {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      margin-bottom: .9rem;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: .45rem; }
+    .footer-links a {
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+      font-size: .85rem;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--gold-lt); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+      font-size: .78rem;
+    }
+    .footer-bottom a { color: rgba(255,255,255,.45); text-decoration: none; }
+
+    /* ─── ENQUIRY MODAL ──────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9,28,56,.7);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 480px;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(20px);
+      transition: transform .3s;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .modal-header h3 {
+      font-family: var(--heading);
+      font-size: 1.4rem;
+      color: var(--navy);
+    }
+    .modal-close {
+      background: var(--light);
+      border: none;
+      border-radius: 8px;
+      width: 32px; height: 32px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy);
+      transition: background .2s;
+    }
+    .modal-close:hover { background: #dde0e5; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .35rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: .7rem .9rem;
+      font-family: var(--body);
+      font-size: .9rem;
+      color: var(--navy);
+      background: var(--light);
+      border: 1.5px solid transparent;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: var(--white);
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-submit { width: 100%; justify-content: center; margin-top: .5rem; }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .form-success .check { font-size: 2.5rem; margin-bottom: .75rem; }
+    .form-success h4 {
+      font-family: var(--heading);
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .form-success p { color: var(--gray); font-size: .9rem; }
+    .honeypot { display: none !important; }
+
+    /* ─── FLOATING WHATSAPP BTN ──────────────────────── */
+    .fab-wa {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.5);
+      text-decoration: none;
+      z-index: 999;
+      animation: waPulse 2.5s infinite;
+    }
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,.5); }
+      50% { box-shadow: 0 4px 30px rgba(37,211,102,.75), 0 0 0 12px rgba(37,211,102,.1); }
+    }
+    .fab-wa svg { width: 28px; height: 28px; fill: var(--white); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { max-width: 400px; }
+      .ac-grid { grid-template-columns: 1fr; }
+      .ac-full { grid-column: span 1; }
+      .campus-grid { grid-template-columns: 1fr; }
+      .adm-grid { grid-template-columns: 1fr; }
+      .cs-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 680px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.mobile-show {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: var(--white);
+        box-shadow: var(--shadow-md);
+        padding: 1rem 1.5rem;
+        z-index: 100;
+        gap: 0;
+      }
+      .nav-links.mobile-show a { padding: .7rem 0; border-bottom: 1px solid var(--light); }
+      .footer-inner { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .stats-inner { gap: 1.5rem; }
+    }
+  </style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="ann-bar">
+    📣 Admissions open for 2026–27 &nbsp;·&nbsp; Nursery to Class 10
+    &nbsp;·&nbsp; <a href="tel:9931921825">Call 9931921825</a> or
+    <a href="tel:9128614032">9128614032</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">
+        <img src="/images/logo.png" alt="HAPS Logo" width="52" height="52"
+             onerror="this.style.display='none'" />
+        <div class="nav-logo-text">
+          <span class="school-name">Holy Angels Public School</span>
+          <span class="school-sub">CBSE · Aurangabad, Bihar</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/academics">Academics</a></li>
+        <li><a href="/campuses">Campuses</a></li>
+        <li><a href="/admissions">Admissions</a></li>
+        <li><a href="/notices">Notices</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/downloads">Downloads</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+      <button class="btn btn-gold nav-cta" onclick="openModal()">Enquire Now</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-accent"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Admissions Open 2026–27
+        </div>
+        <h1>
+          Where Every Child
+          <em>Finds Their Wings.</em>
+        </h1>
+        <p class="hero-sub">
+          Holy Angels Public School (HAPS) — a trusted name in CBSE education
+          in Aurangabad, Bihar for nearly 30 years. Two campuses, one unwavering
+          commitment to excellence.
+        </p>
+        <div class="hero-ctas">
+          <button class="btn btn-gold btn-lg" onclick="openModal()">
+            Enquire for Admission
+          </button>
+          <a href="/about" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.4)">
+            Know Our Story
+          </a>
+        </div>
+        <div class="hero-phones">
+          <div class="hero-phone">
+            <div class="icon">📞</div>
+            <div>
+              <strong>Main Campus</strong>
+              <a href="tel:9931921825" style="color:rgba(255,255,255,.65);font-size:.88rem;text-decoration:none">9931921825</a>
+            </div>
+          </div>
+          <div class="hero-phone">
+            <div class="icon">📞</div>
+            <div>
+              <strong>Poiwan Campus</strong>
+              <a href="tel:9128614032" style="color:rgba(255,255,255,.65);font-size:.88rem;text-decoration:none">9128614032</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick-info card -->
+      <div class="hero-card">
+        <h3>School at a Glance</h3>
+        <div class="hc-row">
+          <div class="hc-icon">🎓</div>
+          <div>
+            <div class="hc-label">Board &amp; Classes</div>
+            <div class="hc-value">Nursery — Class 10</div>
+            <div><span class="badge-cbse">CBSE Curriculum</span></div>
+          </div>
+        </div>
+        <div class="hc-row">
+          <div class="hc-icon">🏫</div>
+          <div>
+            <div class="hc-label">Campuses</div>
+            <div class="hc-value">2 Campuses in Aurangabad</div>
+            <div style="font-size:.8rem;color:var(--gray);margin-top:.2rem">
+              Maharana Pratap Nagar &amp; Poiwan
+            </div>
+          </div>
+        </div>
+        <div class="hc-row">
+          <div class="hc-icon">📅</div>
+          <div>
+            <div class="hc-label">Established</div>
+            <div class="hc-value">Nearly 30 Years of Legacy</div>
+          </div>
+        </div>
+        <div class="hc-row">
+          <div class="hc-icon">✉️</div>
+          <div>
+            <div class="hc-label">Email</div>
+            <div class="hc-value">
+              <a href="/cdn-cgi/l/email-protection#9ef6ffeeedb0ffebfcdef9f3fff7f2b0fdf1f3" style="color:var(--gold);text-decoration:none"><span class="__cf_email__" data-cfemail="c4aca5b4b7eaa5b1a684a3a9a5ada8eaa7aba9">[email&#160;protected]</span></a>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-gold btn-lg hero-enq-btn" onclick="openModal()">
+          Apply for Admission →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Years of Legacy</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Campuses</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Classes (Nursery – X)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">CBSE</div>
+        <div class="stat-label">Affiliated Curriculum</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Focus on Values</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY HAPS -->
+  <section class="why">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="tag">Why Choose HAPS</span>
+        <h2 class="section-title">A School That Cares Beyond the Classroom</h2>
+        <p class="section-lead">
+          Parents across Aurangabad trust HAPS for its balance of academic rigour,
+          strong values and nurturing environment.
+        </p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-emoji">📚</div>
+          <h3>CBSE-Aligned Academics</h3>
+          <p>Structured curriculum from Nursery to Class 10 with regular assessments, test preparation and conceptual clarity.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-emoji">👩‍🏫</div>
+          <h3>Experienced Teachers</h3>
+          <p>Dedicated educators who combine subject expertise with genuine care for each student's progress and well-being.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-emoji">🛡️</div>
+          <h3>Safe &amp; Supportive</h3>
+          <p>A secure, supervised environment where children feel comfortable, confident and encouraged to participate.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-emoji">🌱</div>
+          <h3>Value-Based Education</h3>
+          <p>Discipline, moral values and character development are woven into daily school life — not just textbooks.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-emoji">🎨</div>
+          <h3>Co-Curricular Activities</h3>
+          <p>Sports, arts, cultural events and competitions that develop creativity, teamwork and confidence in students.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-emoji">👨‍👩‍👧</div>
+          <h3>Parent Partnership</h3>
+          <p>Regular parent-teacher interaction, transparent communication and a collaborative approach to your child's growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMICS -->
+  <section class="academics" style="background:var(--white);">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="tag">Curriculum &amp; Classes</span>
+        <h2 class="section-title">Structured Learning from Day One</h2>
+        <p class="section-lead">
+          Our CBSE curriculum is designed for holistic development — building strong
+          foundations early and preparing students for board examinations confidently.
+        </p>
+      </div>
+      <div class="ac-grid">
+        <div class="ac-card">
+          <div class="ac-header">
+            <div class="ac-num">I</div>
+            <div>
+              <h3>Pre-Primary</h3>
+              <span>Nursery · LKG · UKG</span>
+            </div>
+          </div>
+          <div class="ac-body">
+            <p style="font-size:.85rem;color:var(--gray);">Play-based learning builds early literacy, numeracy and social skills in a joyful, activity-rich setting.</p>
+            <div class="ac-subjects">
+              <span class="subj-pill">English Rhymes</span>
+              <span class="subj-pill">Art & Craft</span>
+              <span class="subj-pill">Early Maths</span>
+              <span class="subj-pill">Stories & Music</span>
+            </div>
+          </div>
+        </div>
+        <div class="ac-card">
+          <div class="ac-header">
+            <div class="ac-num">II</div>
+            <div>
+              <h3>Primary</h3>
+              <span>Classes I – V</span>
+            </div>
+          </div>
+          <div class="ac-body">
+            <p style="font-size:.85rem;color:var(--gray);">Strong foundational skills in language, mathematics and science through activity-based, interactive teaching.</p>
+            <div class="ac-subjects">
+              <span class="subj-pill">English</span>
+              <span class="subj-pill">Hindi</span>
+              <span class="subj-pill">Mathematics</span>
+              <span class="subj-pill">EVS</span>
+              <span class="subj-pill">General Knowledge</span>
+            </div>
+          </div>
+        </div>
+        <div class="ac-card">
+          <div class="ac-header">
+            <div class="ac-num">III</div>
+            <div>
+              <h3>Middle &amp; Secondary</h3>
+              <span>Classes VI – X</span>
+            </div>
+          </div>
+          <div class="ac-body">
+            <p style="font-size:.85rem;color:var(--gray);">Rigorous CBSE syllabus with regular tests, projects and board-oriented preparation for Classes IX and X.</p>
+            <div class="ac-subjects">
+              <span class="subj-pill">Science</span>
+              <span class="subj-pill">Mathematics</span>
+              <span class="subj-pill">Social Science</span>
+              <span class="subj-pill">English</span>
+              <span class="subj-pill">Hindi</span>
+              <span class="subj-pill">Sanskrit / IT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activities row -->
+      <div style="margin-top:2rem;background:var(--light);border-radius:16px;padding:1.75rem;">
+        <p class="tag">Beyond Academics</p>
+        <h3 style="font-family:var(--heading);font-size:1.2rem;color:var(--navy);margin-bottom:.75rem;">
+          Co-Curricular &amp; Extra-Curricular Activities
+        </h3>
+        <div class="ac-activities">
+          <span class="act-tag">🏏 Cricket</span>
+          <span class="act-tag">🏃 Athletics</span>
+          <span class="act-tag">🎨 Drawing & Painting</span>
+          <span class="act-tag">🎭 Cultural Events</span>
+          <span class="act-tag">📖 Elocution</span>
+          <span class="act-tag">🎤 Debate</span>
+          <span class="act-tag">🧪 Science Exhibition</span>
+          <span class="act-tag">🎉 Annual Function</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPUSES -->
+  <section class="campuses">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="tag">Our Campuses</span>
+        <h2 class="section-title">Two Campuses Serving Aurangabad</h2>
+        <p class="section-lead">
+          Both campuses offer the same quality of CBSE education, caring teachers
+          and a safe environment — closer to where you live.
+        </p>
+      </div>
+      <div class="campus-grid">
+
+        <!-- Campus 1 -->
+        <div class="campus-card">
+          <div class="campus-label">🏫 Main Campus</div>
+          <h3>Maharana Pratap Nagar</h3>
+          <div class="address">
+            <span>📍</span>
+            <span>New Area, Maharana Pratap Nagar, Aurangabad, Bihar</span>
+          </div>
+          <div class="campus-detail-row">
+            <span>📞</span>
+            <span><strong><a href="tel:9931921825" style="color:var(--white);text-decoration:none">9931921825</a></strong></span>
+          </div>
+          <div class="campus-detail-row">
+            <span>🎓</span>
+            <span>Nursery to Class 10 · <strong>CBSE</strong></span>
+          </div>
+          <div class="campus-detail-row">
+            <span>📅</span>
+            <span>Established for <strong>nearly 30 years</strong></span>
+          </div>
+          <a href="tel:9931921825" class="campus-phone-btn">📞 Call Main Campus</a>
+          <div class="campus-map">
+            🗺️ Map embed coming soon<br>
+            <small style="display:block;margin-top:.3rem;opacity:.6">Add Google Maps iframe for this campus</small>
+          </div>
+        </div>
+
+        <!-- Campus 2 -->
+        <div class="campus-card">
+          <div class="campus-label">🏫 Poiwan Campus</div>
+          <h3>Nawgarh Moad, Poiwan</h3>
+          <div class="address">
+            <span>📍</span>
+            <span>Nawgarh Moad, Poiwan, Aurangabad, Bihar</span>
+          </div>
+          <div class="campus-detail-row">
+            <span>📞</span>
+            <span><strong><a href="tel:9128614032" style="color:var(--white);text-decoration:none">9128614032</a></strong></span>
+          </div>
+          <div class="campus-detail-row">
+            <span>🎓</span>
+            <span>Nursery to Class 10 · <strong>CBSE</strong></span>
+          </div>
+          <div class="campus-detail-row">
+            <span>✨</span>
+            <span>New campus · <strong>Same HAPS standards</strong></span>
+          </div>
+          <a href="tel:9128614032" class="campus-phone-btn">📞 Call Poiwan Campus</a>
+          <div class="campus-map">
+            🗺️ Map embed coming soon<br>
+            <small style="display:block;margin-top:.3rem;opacity:.6">Add Google Maps iframe for this campus</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMISSIONS -->
+  <section class="admissions">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="tag">Admissions 2026–27</span>
+        <h2 class="section-title">Simple Steps to Join HAPS</h2>
+        <p class="section-lead">
+          Admissions are open for all classes from Nursery to Class 10, subject to seat availability.
+        </p>
+      </div>
+      <div class="adm-grid">
+        <div class="adm-steps">
+          <div class="adm-step">
+            <div class="step-num">1</div>
+            <div>
+              <h4>Visit or Call the School</h4>
+              <p>Call either campus or walk in during school hours to get details about available seats and the admission process.</p>
+            </div>
+          </div>
+          <div class="adm-step">
+            <div class="step-num">2</div>
+            <div>
+              <h4>Campus Visit &amp; Interaction</h4>
+              <p>Take a brief campus tour and meet our team to understand our teaching approach, facilities and school culture.</p>
+            </div>
+          </div>
+          <div class="adm-step">
+            <div class="step-num">3</div>
+            <div>
+              <h4>Fill Admission Form</h4>
+              <p>Collect the admission form from the school office, fill it, and submit with required documents (birth certificate, photographs, previous report card).</p>
+            </div>
+          </div>
+          <div class="adm-step">
+            <div class="step-num">4</div>
+            <div>
+              <h4>Assessment (LKG &amp; above)</h4>
+              <p>For Classes VI and above, students may be asked to appear for a brief written or oral interaction with the academic team.</p>
+            </div>
+          </div>
+          <div class="adm-step">
+            <div class="step-num">5</div>
+            <div>
+              <h4>Confirmation &amp; Fee Payment</h4>
+              <p>On confirmation of admission, complete the fee payment and other formalities. Your child's journey at HAPS begins!</p>
+            </div>
+          </div>
+        </div>
+        <div class="adm-cta-box">
+          <h3>Ready to Join HAPS?</h3>
+          <p>Fill a quick enquiry and our team will get in touch with you within one working day to guide you through the admission process.</p>
+          <ul class="adm-feature-list">
+            <li>Open for Nursery to Class 10</li>
+            <li>Transparent, hassle-free process</li>
+            <li>CBSE curriculum, caring teachers</li>
+            <li>Both campuses — choose the nearest</li>
+            <li>Strong legacy — trusted for 30 years</li>
+          </ul>
+          <button class="btn btn-gold btn-lg adm-cta-btn" onclick="openModal()">
+            Fill Enquiry Form →
+          </button>
+          <div style="text-align:center;margin-top:1rem;">
+            <a href="tel:9931921825" style="color:rgba(255,255,255,.55);font-size:.82rem;text-decoration:none;">
+              Or call: 9931921825 / 9128614032
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTICE BOARD -->
+  <section class="notices">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="tag">Notice Board</span>
+        <h2 class="section-title">Latest Updates from HAPS</h2>
+      </div>
+      <ul class="notice-list">
+        <li class="notice-item">
+          <div class="notice-date">
+            <div class="day">08</div>
+            <div class="month">Apr</div>
+          </div>
+          <div class="notice-content">
+            <h4>Admissions Open for 2026–27 Academic Session</h4>
+            <p>Seats available for Nursery to Class 10 at both campuses. Contact the school office for details.</p>
+            <span class="notice-tag nt-adm">Admission</span>
+          </div>
+        </li>
+        <li class="notice-item">
+          <div class="notice-date">
+            <div class="day">01</div>
+            <div class="month">Apr</div>
+          </div>
+          <div class="notice-content">
+            <h4>New Academic Session 2026–27 Begins</h4>
+            <p>The new academic year has commenced at both campuses. All students are expected to attend from the first day.</p>
+            <span class="notice-tag nt-general">General</span>
+          </div>
+        </li>
+        <li class="notice-item">
+          <div class="notice-date">
+            <div class="day">20</div>
+            <div class="month">Mar</div>
+          </div>
+          <div class="notice-content">
+            <h4>Annual Function 2025–26 — A Grand Celebration</h4>
+            <p>HAPS students showcased their talents in dance, drama and music at the Annual Function. Thank you to all parents who attended.</p>
+            <span class="notice-tag nt-event">Event</span>
+          </div>
+        </li>
+        <li class="notice-item">
+          <div class="notice-date">
+            <div class="day">10</div>
+            <div class="month">Mar</div>
+          </div>
+          <div class="notice-content">
+            <h4>Class X Board Exams — Best Wishes to All Students</h4>
+            <p>HAPS wishes all Class X students the very best for their CBSE board examinations. You are well-prepared and ready!</p>
+            <span class="notice-tag nt-exam">Exam</span>
+          </div>
+        </li>
+      </ul>
+      <div style="margin-top:1.75rem;">
+        <a href="/notices" class="btn btn-outline">View All Notices →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT STRIP -->
+  <div class="contact-strip">
+    <div class="cs-inner">
+      <div>
+        <h2>Get in Touch with HAPS</h2>
+        <p>Have questions? Our team is here to help — call, email or walk in any time during school hours.</p>
+      </div>
+      <div class="cs-contacts">
+        <a href="tel:9931921825" class="cs-contact" style="text-decoration:none">
+          <div class="cs-contact-icon">📞</div>
+          <div>
+            <div class="cs-contact-label">Main Campus</div>
+            <div class="cs-contact-val">9931921825</div>
+          </div>
+        </a>
+        <a href="tel:9128614032" class="cs-contact" style="text-decoration:none">
+          <div class="cs-contact-icon">📞</div>
+          <div>
+            <div class="cs-contact-label">Poiwan Campus</div>
+            <div class="cs-contact-val">9128614032</div>
+          </div>
+        </a>
+        <a href="/cdn-cgi/l/email-protection#ea828b9a99c48b9f88aa8d878b8386c4898587" class="cs-contact" style="text-decoration:none">
+          <div class="cs-contact-icon">✉️</div>
+          <div>
+            <div class="cs-contact-label">Email Us</div>
+            <div class="cs-contact-val"><span class="__cf_email__" data-cfemail="bcd4ddcccf92ddc9defcdbd1ddd5d092dfd3d1">[email&#160;protected]</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <a class="footer-logo" href="/">
+          <img src="/images/logo.png" alt="HAPS Logo" width="44" height="44"
+               onerror="this.style.display='none'" />
+          <div class="footer-logo-text">
+            <div class="school-name">Holy Angels Public School (HAPS)</div>
+            <div class="school-sub">CBSE · Aurangabad, Bihar</div>
+          </div>
+        </a>
+        <p class="footer-about">
+          A trusted CBSE school in Aurangabad, Bihar with nearly 30 years of nurturing
+          confident, disciplined and value-driven students. Two campuses, one mission.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About HAPS</a></li>
+          <li><a href="/academics">Academics</a></li>
+          <li><a href="/campuses">Campuses</a></li>
+          <li><a href="/admissions">Admissions</a></li>
+          <li><a href="/notices">Notices</a></li>
+          <li><a href="/downloads">Downloads</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="tel:9931921825">Main: 9931921825</a></li>
+          <li><a href="tel:9128614032">Poiwan: 9128614032</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#c4aca5b4b7eaa5b1a684a3a9a5ada8eaa7aba9"><span class="__cf_email__" data-cfemail="f098918083de918592b0979d91999cde939f9d">[email&#160;protected]</span></a></li>
+        </ul>
+        <div style="margin-top:1.25rem;">
+          <h4>Campuses</h4>
+          <ul class="footer-links">
+            <li><a href="/campuses">Maharana Pratap Nagar</a></li>
+            <li><a href="/campuses">Nawgarh Moad, Poiwan</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Holy Angels Public School (HAPS). All rights reserved.</span>
+      <span>CBSE Curriculum School · Aurangabad, Bihar</span>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a class="fab-wa" href="https://wa.me/919931921825?text=Hello%2C%20I%20am%20interested%20in%20admissions%20at%20HAPS%20for%202026-27."
+     target="_blank" rel="noopener" title="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 .5C7.44.5.5 7.44.5 16c0 2.83.74 5.5 2.03 7.83L.5 31.5l7.87-2.05A15.43 15.43 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm0 28.1a12.57 12.57 0 01-6.4-1.75l-.46-.27-4.67 1.22 1.25-4.55-.3-.47A12.55 12.55 0 1116 28.6zm6.9-9.4c-.38-.19-2.24-1.1-2.59-1.23-.35-.12-.6-.19-.85.19-.25.38-.97 1.23-1.19 1.48-.22.25-.44.28-.82.09-.38-.19-1.6-.59-3.05-1.88-1.13-1-1.89-2.24-2.11-2.62-.22-.38-.02-.58.17-.77.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.12-.25.06-.47-.03-.66-.09-.19-.85-2.04-1.16-2.79-.3-.73-.61-.63-.85-.64h-.72c-.25 0-.66.09-1.01.47-.34.38-1.31 1.28-1.31 3.12 0 1.84 1.34 3.62 1.53 3.87.19.25 2.64 4.03 6.4 5.65.9.39 1.6.62 2.14.79.9.28 1.72.24 2.37.15.72-.11 2.24-.92 2.56-1.8.31-.89.31-1.65.22-1.8-.09-.16-.34-.25-.72-.44z"/>
+    </svg>
+  </a>
+
+  <!-- ENQUIRY MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Admission Enquiry Form">
+      <div class="modal-header">
+        <div>
+          <h3>Admission Enquiry</h3>
+          <p style="font-size:.82rem;color:var(--gray);margin-top:.2rem">We'll call you within one working day.</p>
+        </div>
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      </div>
+      <div id="formBody">
+        <form id="enquiryForm" onsubmit="submitForm(event)" novalidate>
+          <!-- honeypot -->
+          <div class="honeypot"><input tabindex="-1" name="website" autocomplete="off"></div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="childName">Child's Name *</label>
+              <input type="text" id="childName" name="childName" required placeholder="e.g. Rahul Kumar" />
+            </div>
+            <div class="form-group">
+              <label for="classApplied">Class Applying For *</label>
+              <select id="classApplied" name="classApplied" required>
+                <option value="">Select class</option>
+                <option>Nursery</option><option>LKG</option><option>UKG</option>
+                <option>Class I</option><option>Class II</option><option>Class III</option>
+                <option>Class IV</option><option>Class V</option><option>Class VI</option>
+                <option>Class VII</option><option>Class VIII</option><option>Class IX</option>
+                <option>Class X</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="parentName">Parent / Guardian Name *</label>
+            <input type="text" id="parentName" name="parentName" required placeholder="e.g. Ramesh Kumar" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="mobile">Mobile Number *</label>
+              <input type="tel" id="mobile" name="mobile" required maxlength="10" placeholder="10-digit number" />
+            </div>
+            <div class="form-group">
+              <label for="campus">Preferred Campus</label>
+              <select id="campus" name="campus">
+                <option value="">Not sure yet</option>
+                <option>Maharana Pratap Nagar (Main)</option>
+                <option>Nawgarh Moad, Poiwan</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Message / Query (optional)</label>
+            <textarea id="message" name="message" placeholder="Any questions about the school, fees, transport…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold btn-lg form-submit">Submit Enquiry →</button>
+        </form>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="check">✅</div>
+        <h4>Enquiry Received!</h4>
+        <p>Thank you. Our team will call you on the number provided within one working day. You can also reach us directly at <strong>9931921825</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    (function(){
+      var h=document.getElementById('hamburger'), n=document.getElementById('navLinks');
+      if(h){h.addEventListener('click',function(){n.classList.toggle('mobile-show');document.querySelector('nav').classList.toggle('mobile-open');});}
+    })();
+
+    function openModal(){
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow='hidden';
+    }
+    function closeModal(){
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow='';
+    }
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
+    function submitForm(e){
+      e.preventDefault();
+      var f=document.getElementById('enquiryForm');
+      var m=document.getElementById('mobile').value.trim();
+      if(f.querySelector('[name="website"]').value)return;
+      if(m.length!==10||!/^\d{10}$/.test(m)){alert('Please enter a valid 10-digit mobile number.');return;}
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()}).catch(function(){});
+      document.getElementById('formBody').style.display='none';
+      document.getElementById('formSuccess').style.display='block';
+    }
+
+    // Notice board tabs (homepage)
+    var noticeTabs=document.querySelectorAll('.notice-tab');
+    if(noticeTabs.length){
+      noticeTabs.forEach(function(tab){
+        tab.addEventListener('click',function(){
+          noticeTabs.forEach(function(t){t.classList.remove('active');});
+          tab.classList.add('active');
+        });
+      });
+    }
+
+    // Counters animation
+    function animateCounter(el){
+      var target=parseInt(el.dataset.target)||0;
+      var duration=1500, step=target/duration*16;
+      var current=0;
+      var timer=setInterval(function(){
+        current+=step;
+        if(current>=target){current=target;clearInterval(timer);}
+        el.textContent=Math.floor(current)+(el.dataset.suffix||'');
+      },16);
+    }
+    var counters=document.querySelectorAll('[data-target]');
+    if(counters.length){
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){animateCounter(entry.target);io.unobserve(entry.target);}
+        });
+      });
+      counters.forEach(function(c){io.observe(c);});
+    }
+  </script>
+<script>
+  if(window.netlifyIdentity){
+    window.netlifyIdentity.on("init",function(user){
+      if(!user){
+        window.netlifyIdentity.on("login",function(){
+          document.location.href="/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
