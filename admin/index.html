@@ -116,7 +116,7 @@
 </div>
 
 <!-- ── ADMIN PAGE ─────────────────────────────────────────── -->
-<div id="adminPage">
+<div id="adminPage" style="display:none">
   <div class="top-bar">
     <div class="top-bar-left">
       <img src="/images/logo.png" alt="HAPS" onerror="this.style.display='none'"/>
@@ -270,17 +270,24 @@
   function getPin() { return localStorage.getItem('haps_pin') || DEFAULT_PIN; }
 
   function doLogin() {
-    var p = document.getElementById('pinInput').value;
-    if (p === getPin()) {
+    var p = document.getElementById('pinInput').value.trim();
+    var correct = getPin();
+    if (p === correct) {
       sessionStorage.setItem('haps_ok', '1');
-      document.getElementById('loginPage').style.display = 'none';
-      document.getElementById('adminPage').style.display = 'block';
-      init();
+      showAdmin();
     } else {
       document.getElementById('loginErr').style.display = 'block';
       document.getElementById('pinInput').value = '';
       document.getElementById('pinInput').focus();
     }
+  }
+
+  function showAdmin() {
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('adminPage').style.display = 'block';
+    document.getElementById('adminPage').style.visibility = 'visible';
+    document.getElementById('adminPage').style.opacity = '1';
+    init();
   }
 
   function doLogout() {
@@ -294,11 +301,17 @@
   }
 
   // Check session on load
-  if (sessionStorage.getItem('haps_ok') === '1') {
-    document.getElementById('loginPage').style.display = 'none';
-    document.getElementById('adminPage').style.display = 'block';
-    window.addEventListener('DOMContentLoaded', init);
-  }
+  (function() {
+    if (sessionStorage.getItem('haps_ok') === '1') {
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('adminPage').style.display = 'block';
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    }
+  })();
 
   // ── TABS ─────────────────────────────────────────────────
   var TABS = ['notices','gallery','downloads','settings'];
