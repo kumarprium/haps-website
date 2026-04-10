@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>HAPS Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#F4F6F9;min-height:100vh}
+.topbar{background:#0D2545;padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99}
+.topbar-left{display:flex;align-items:center;gap:.6rem}
+.topbar-left img{width:34px;height:34px;object-fit:contain}
+.topbar-left span{font-family:'Playfair Display',serif;color:#fff;font-size:.95rem}
+.topbar-left small{color:#F2B84B;font-size:.7rem;display:block}
+.logout{background:rgba(255,255,255,.12);color:#fff;border:none;padding:.4rem .9rem;border-radius:6px;font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif}
+.logout:hover{background:rgba(255,255,255,.22)}
+.wrap{max-width:800px;margin:1.5rem auto;padding:0 1rem 4rem}
+.tabs{display:flex;gap:.4rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.tab{padding:.5rem 1.1rem;border-radius:7px;font-size:.85rem;font-weight:600;cursor:pointer;border:2px solid #e5e7eb;background:#fff;color:#6B7280;font-family:'DM Sans',sans-serif}
+.tab.on{background:#0D2545;color:#fff;border-color:#0D2545}
+.panel{display:none}.panel.on{display:block}
+.box{background:#fff;border-radius:12px;padding:1.25rem;margin-bottom:1rem;box-shadow:0 2px 8px rgba(13,37,69,.08)}
+.box h2{font-family:'Playfair Display',serif;font-size:1rem;color:#0D2545;margin-bottom:1rem}
+label{display:block;font-size:.8rem;font-weight:600;color:#0D2545;margin-bottom:.3rem}
+input,select,textarea{width:100%;padding:.65rem .85rem;font-family:'DM Sans',sans-serif;font-size:.88rem;color:#0D2545;background:#F4F6F9;border:1.5px solid transparent;border-radius:7px;outline:none;margin-bottom:.75rem;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:#C9922A;background:#fff}
+textarea{resize:vertical;min-height:80px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.pbtn{background:#C9922A;color:#fff;border:none;padding:.7rem 1.5rem;border-radius:7px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:.4rem}
+.pbtn:hover{background:#b5831e}
+.pbtn:disabled{background:#ccc;cursor:not-allowed}
+.spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top:2px solid #fff;border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.alert{padding:.65rem .9rem;border-radius:7px;font-size:.85rem;font-weight:600;margin-bottom:1rem;display:none}
+.alert.show{display:block}
+.alert.ok{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
+.alert.err{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca}
+.alert.busy{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+.ilist{list-style:none}
+.iitem{background:#F4F6F9;border-radius:8px;padding:.8rem 1rem;margin-bottom:.4rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem}
+.iitem h4{font-size:.85rem;font-weight:600;color:#0D2545;margin-bottom:.15rem}
+.iitem p{font-size:.75rem;color:#6B7280;line-height:1.5}
+.dbtn{background:#fef2f2;color:#b91c1c;border:none;padding:.3rem .7rem;border-radius:5px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0}
+.dbtn:hover{background:#fee2e2}
+.badge{display:inline-block;font-size:.63rem;font-weight:700;padding:.1rem .45rem;border-radius:3px;text-transform:uppercase;margin-left:.3rem}
+.ba{background:#EBF5FB;color:#1A6A9A}.be{background:#FEF9E7;color:#9A6400}.bev{background:#EAF7EA;color:#1A7A1A}.bh{background:#FEF0F0;color:#9A2020}.bg{background:#f3f4f6;color:#6B7280}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.5rem;margin-bottom:.75rem}
+.pthumb{border-radius:7px;overflow:hidden;position:relative;aspect-ratio:1;background:#F4F6F9}
+.pthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.pthumb .pdel{position:absolute;top:.2rem;right:.2rem;background:rgba(185,28,28,.88);color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:.6rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pthumb .plabel{position:absolute;bottom:0;left:0;right:0;background:rgba(13,37,69,.72);color:#fff;font-size:.58rem;padding:.15rem .3rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.uzone{border:2px dashed #d0d5dd;border-radius:8px;padding:1.2rem;text-align:center;cursor:pointer;background:#F4F6F9;transition:border-color .2s;margin-bottom:.75rem}
+.uzone:hover{border-color:#C9922A}
+.uzone input{display:none}
+.uzone p{font-size:.82rem;color:#6B7280}
+.uzone .uname{color:#0D2545;font-weight:600;font-size:.8rem;margin-top:.25rem}
+@media(max-width:500px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <img src="/images/logo.png" alt="" onerror="this.style.display='none'"/>
+    <div><span>HAPS Admin Panel</span><small>Holy Angels Public School</small></div>
+  </div>
+  <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<div class="wrap">
+  <div class="alert" id="alert"></div>
+
+  <div class="tabs">
+    <button class="tab on" onclick="tab('notices',this)">Notices</button>
+    <button class="tab" onclick="tab('gallery',this)">Gallery</button>
+    <button class="tab" onclick="tab('downloads',this)">Downloads</button>
+    <button class="tab" onclick="tab('settings',this)">Settings</button>
+  </div>
+
+  <!-- NOTICES -->
+  <div class="panel on" id="p-notices">
+    <div class="box">
+      <h2>Add New Notice</h2>
+      <div class="row">
+        <div><label>Title *</label><input id="nt" placeholder="e.g. Admissions Open"/></div>
+        <div><label>Date *</label><input type="date" id="nd"/></div>
+      </div>
+      <div class="row">
+        <div><label>Type</label>
+          <select id="nty">
+            <option value="adm">Admission</option>
+            <option value="exam">Exam</option>
+            <option value="event">Event</option>
+            <option value="holiday">Holiday</option>
+            <option value="general" selected>General</option>
+          </select>
+        </div>
+        <div><label>Campus</label>
+          <select id="nc">
+            <option value="both">Both Campuses</option>
+            <option value="main">Main Campus Only</option>
+            <option value="poiwan">Poiwan Campus Only</option>
+          </select>
+        </div>
+      </div>
+      <label>Message *</label>
+      <textarea id="nb" placeholder="Notice content..."></textarea>
+      <button class="pbtn" id="n-btn" onclick="addNotice()">Publish Notice</button>
+    </div>
+    <div class="box">
+      <h2>Current Notices</h2>
+      <ul class="ilist" id="nlist"><li style="color:#6B7280;font-size:.85rem">Loading...</li></ul>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="panel" id="p-gallery">
+    <div class="box">
+      <h2>Upload New Photo</h2>
+      <div class="row">
+        <div><label>Caption *</label><input id="gt" placeholder="e.g. Sports Day 2025"/></div>
+        <div><label>Category</label>
+          <select id="gc">
+            <option value="events">Events</option>
+            <option value="sports">Sports</option>
+            <option value="cultural">Cultural</option>
+            <option value="academics">Academics</option>
+            <option value="campus">Campus</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <label>Photo (JPG/PNG, max 5MB)</label>
+      <div class="uzone" onclick="document.getElementById('gf').click()">
+        <input type="file" id="gf" accept="image/*" onchange="pickPhoto(this)"/>
+        <div style="font-size:1.8rem">&#128247;</div>
+        <p>Click to choose a photo</p>
+        <p class="uname" id="gfn"></p>
+      </div>
+      <button class="pbtn" id="g-btn" onclick="uploadPhoto()">Publish Photo</button>
+    </div>
+    <div class="box">
+      <h2>Current Photos</h2>
+      <div class="pgrid" id="pgrid"></div>
+      <p id="nophotos" style="color:#6B7280;font-size:.85rem;display:none">No photos yet.</p>
+    </div>
+  </div>
+
+  <!-- DOWNLOADS -->
+  <div class="panel" id="p-downloads">
+    <div class="box">
+      <h2>Add Document Link</h2>
+      <label>Title *</label><input id="dt" placeholder="e.g. Holiday List 2026-27"/>
+      <label>Description</label><input id="dd" placeholder="Short description"/>
+      <div class="row">
+        <div><label>File URL *</label><input id="du" placeholder="/files/filename.pdf"/></div>
+        <div><label>Category</label>
+          <select id="dc">
+            <option value="admissions">Admissions</option>
+            <option value="academic">Academic</option>
+            <option value="circular">Circular</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <button class="pbtn" id="d-btn" onclick="addDownload()">Add Document</button>
+    </div>
+    <div class="box">
+      <h2>Current Documents</h2>
+      <ul class="ilist" id="dlist"><li style="color:#6B7280;font-size:.85rem">Loading...</li></ul>
+    </div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="panel" id="p-settings">
+    <div class="box">
+      <h2>Contact Information</h2>
+      <div class="row">
+        <div><label>Main Campus Phone</label><input id="sm"/></div>
+        <div><label>Poiwan Campus Phone</label><input id="sp"/></div>
+      </div>
+      <label>Email</label><input id="se" type="email"/>
+      <label>Announcement Bar Text</label><input id="sa"/>
+      <button class="pbtn" id="s-btn" onclick="saveSettings()">Save & Publish</button>
+    </div>
+    <div class="box">
+      <h2>Change PIN</h2>
+      <div class="row">
+        <div><label>New PIN</label><input type="password" id="p1" placeholder="Min 4 characters"/></div>
+        <div><label>Confirm PIN</label><input type="password" id="p2" placeholder="Repeat PIN"/></div>
+      </div>
+      <button class="pbtn" onclick="changePin()">Change PIN</button>
+      <span id="pmsg" style="margin-left:.6rem;font-size:.83rem;font-weight:600"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── AUTH CHECK ───────────────────────────────────────────────
+if (sessionStorage.getItem('haps_auth') !== 'yes') {
+  window.location.href = '/admin/index.html';
+}
+
+function logout() {
+  sessionStorage.removeItem('haps_auth');
+  window.location.href = '/admin/index.html';
+}
+
+// ── TABS ─────────────────────────────────────────────────────
+function tab(id, el) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('on'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('on'); });
+  document.getElementById('p-' + id).classList.add('on');
+  el.classList.add('on');
+}
+
+// ── STATUS ───────────────────────────────────────────────────
+function msg(text, type) {
+  var el = document.getElementById('alert');
+  el.textContent = text;
+  el.className = 'alert show ' + type;
+  if (type !== 'busy') setTimeout(function(){ el.classList.remove('show'); }, 6000);
+}
+
+// ── CONFIG ───────────────────────────────────────────────────
+var GH   = { user:'kumarprium', repo:'haps-website', branch:'main' };
+var DATA = '_data/site-data.json';
+var FN   = '/.netlify/functions/github';
+var D    = { notices:[], gallery:[], downloads:[], settings:{} };
+
+// ── GITHUB API ───────────────────────────────────────────────
+function gh(method, path, payload) {
+  return fetch(FN, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ method:method, path:path, payload:payload })
+  }).then(function(r){ return r.json(); });
+}
+
+function sha(fp) {
+  return gh('GET', '/repos/'+GH.user+'/'+GH.repo+'/contents/'+fp+'?ref='+GH.branch)
+    .then(function(d){ return d.sha||null; }).catch(function(){ return null; });
+}
+
+function put(fp, content, message) {
+  return sha(fp).then(function(s){
+    var b = { message:message, content:btoa(unescape(encodeURIComponent(content))), branch:GH.branch };
+    if(s) b.sha = s;
+    return gh('PUT', '/repos/'+GH.user+'/'+GH.repo+'/contents/'+fp, b);
+  });
+}
+
+function putBin(fp, b64, message) {
+  return sha(fp).then(function(s){
+    var raw = b64.indexOf(',')>-1 ? b64.split(',')[1] : b64;
+    var b = { message:message, content:raw, branch:GH.branch };
+    if(s) b.sha = s;
+    return gh('PUT', '/repos/'+GH.user+'/'+GH.repo+'/contents/'+fp, b);
+  });
+}
+
+function save(message) {
+  return put(DATA, JSON.stringify(D, null, 2), message);
+}
+
+function setBtnLoading(id, text) {
+  var b = document.getElementById(id);
+  b.disabled = true;
+  b.innerHTML = '<div class="spin"></div> ' + text;
+  return b;
+}
+
+function resetBtn(id, text) {
+  var b = document.getElementById(id);
+  b.disabled = false;
+  b.textContent = text;
+}
+
+// ── INIT ─────────────────────────────────────────────────────
+msg('Loading data...', 'busy');
+gh('GET', '/repos/'+GH.user+'/'+GH.repo+'/contents/'+DATA+'?ref='+GH.branch)
+  .then(function(d){
+    if(d.content){
+      try{
+        var json = decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
+        var p = JSON.parse(json);
+        D.notices   = p.notices   || [];
+        D.gallery   = p.gallery   || [];
+        D.downloads = p.downloads || [];
+        D.settings  = p.settings  || {};
+      }catch(e){ console.warn(e); }
+    }
+    render();
+    msg('Ready — ' + D.notices.length + ' notices, ' + D.gallery.length + ' photos', 'ok');
+  })
+  .catch(function(){
+    render();
+    msg('Ready — no data yet, start adding!', 'ok');
+  });
+
+function render() { renderNotices(); renderPhotos(); renderDownloads(); loadSettings(); }
+
+// ── NOTICES ──────────────────────────────────────────────────
+function renderNotices() {
+  var ul = document.getElementById('nlist');
+  if(!D.notices.length){ ul.innerHTML='<li style="color:#6B7280;font-size:.85rem">No notices yet.</li>'; return; }
+  var bc = {adm:'ba',exam:'be',event:'bev',holiday:'bh',general:'bg'};
+  ul.innerHTML = D.notices.map(function(n,i){
+    return '<li class="iitem"><div class="item-info"><h4>'+n.title+'<span class="badge '+(bc[n.type]||'bg')+'">'+n.type+'</span></h4>'
+      +'<p>'+n.date+' &middot; '+(n.campus==='both'?'Both':n.campus==='main'?'Main':'Poiwan')+'</p>'
+      +'<p>'+n.body+'</p></div>'
+      +'<button class="dbtn" onclick="delNotice('+i+')">Delete</button></li>';
+  }).join('');
+}
+
+function addNotice() {
+  var t=document.getElementById('nt').value.trim();
+  var d=document.getElementById('nd').value;
+  var ty=document.getElementById('nty').value;
+  var c=document.getElementById('nc').value;
+  var b=document.getElementById('nb').value.trim();
+  if(!t||!d||!b){ msg('Please fill Title, Date and Message.','err'); return; }
+  var btn=setBtnLoading('n-btn','Publishing...');
+  msg('Publishing notice...','busy');
+  D.notices.unshift({title:t,date:d,type:ty,campus:c,body:b});
+  save('Add notice: '+t)
+    .then(function(){
+      renderNotices();
+      document.getElementById('nt').value='';
+      document.getElementById('nd').value='';
+      document.getElementById('nb').value='';
+      resetBtn('n-btn','Publish Notice');
+      msg('Notice published! Live in ~2 minutes.','ok');
+    })
+    .catch(function(e){ D.notices.shift(); resetBtn('n-btn','Publish Notice'); msg('Error: '+e.message,'err'); });
+}
+
+function delNotice(i) {
+  if(!confirm('Delete "'+D.notices[i].title+'"?')) return;
+  var t=D.notices[i].title; D.notices.splice(i,1);
+  msg('Deleting...','busy');
+  save('Delete notice: '+t).then(function(){ renderNotices(); msg('Deleted.','ok'); }).catch(function(e){ msg('Error: '+e.message,'err'); });
+}
+
+// ── GALLERY ──────────────────────────────────────────────────
+var pending = null;
+
+function pickPhoto(inp) {
+  if(!inp.files||!inp.files[0]) return;
+  var f=inp.files[0];
+  if(f.size>5*1024*1024){ msg('Photo too large. Please use under 5MB.','err'); return; }
+  document.getElementById('gfn').textContent = f.name+' ('+Math.round(f.size/1024)+' KB)';
+  var r=new FileReader();
+  r.onload=function(e){ pending={data:e.target.result,name:f.name}; };
+  r.readAsDataURL(f);
+}
+
+function renderPhotos() {
+  var grid=document.getElementById('pgrid');
+  var np=document.getElementById('nophotos');
+  if(!D.gallery.length){ grid.innerHTML=''; np.style.display='block'; return; }
+  np.style.display='none';
+  grid.innerHTML=D.gallery.map(function(p,i){
+    return '<div class="pthumb"><img src="'+p.url+'" alt="'+p.title+'" loading="lazy"/>'
+      +'<button class="pdel" onclick="delPhoto('+i+')">&#10005;</button>'
+      +'<div class="plabel">'+p.title+'</div></div>';
+  }).join('');
+}
+
+function uploadPhoto() {
+  var t=document.getElementById('gt').value.trim();
+  var c=document.getElementById('gc').value;
+  if(!t){ msg('Please enter a caption.','err'); return; }
+  if(!pending){ msg('Please select a photo.','err'); return; }
+  var btn=setBtnLoading('g-btn','Uploading...');
+  msg('Uploading photo...','busy');
+  var ext=pending.name.split('.').pop().toLowerCase()||'jpg';
+  var fp='images/uploads/'+Date.now()+'-'+t.replace(/[^a-z0-9]/gi,'_').toLowerCase()+'.'+ext;
+  putBin(fp, pending.data, 'Upload: '+t)
+    .then(function(){
+      D.gallery.unshift({title:t,category:c,url:'/'+fp,date:new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})});
+      return save('Add photo: '+t);
+    })
+    .then(function(){
+      renderPhotos();
+      document.getElementById('gt').value='';
+      document.getElementById('gfn').textContent='';
+      document.getElementById('gf').value='';
+      pending=null;
+      resetBtn('g-btn','Publish Photo');
+      msg('Photo published! Live on Gallery page in ~2 minutes.','ok');
+    })
+    .catch(function(e){ resetBtn('g-btn','Publish Photo'); msg('Error: '+e.message,'err'); });
+}
+
+function delPhoto(i) {
+  if(!confirm('Delete "'+D.gallery[i].title+'"?')) return;
+  var t=D.gallery[i].title; D.gallery.splice(i,1);
+  msg('Deleting...','busy');
+  save('Delete photo: '+t).then(function(){ renderPhotos(); msg('Deleted.','ok'); }).catch(function(e){ msg('Error: '+e.message,'err'); });
+}
+
+// ── DOWNLOADS ────────────────────────────────────────────────
+function renderDownloads() {
+  var ul=document.getElementById('dlist');
+  if(!D.downloads.length){ ul.innerHTML='<li style="color:#6B7280;font-size:.85rem">No documents yet.</li>'; return; }
+  ul.innerHTML=D.downloads.map(function(d,i){
+    return '<li class="iitem"><div><h4>'+d.title+'</h4><p>'+(d.desc||'')+'</p><p><a href="'+d.url+'" target="_blank" style="color:#C9922A">'+d.url+'</a></p></div>'
+      +'<button class="dbtn" onclick="delDownload('+i+')">Delete</button></li>';
+  }).join('');
+}
+
+function addDownload() {
+  var t=document.getElementById('dt').value.trim();
+  var d=document.getElementById('dd').value.trim();
+  var u=document.getElementById('du').value.trim();
+  var c=document.getElementById('dc').value;
+  if(!t||!u){ msg('Please fill Title and File URL.','err'); return; }
+  var btn=setBtnLoading('d-btn','Adding...');
+  msg('Adding...','busy');
+  D.downloads.push({title:t,desc:d,url:u,category:c});
+  save('Add download: '+t)
+    .then(function(){
+      renderDownloads();
+      document.getElementById('dt').value='';
+      document.getElementById('dd').value='';
+      document.getElementById('du').value='';
+      resetBtn('d-btn','Add Document');
+      msg('Document added!','ok');
+    })
+    .catch(function(e){ D.downloads.pop(); resetBtn('d-btn','Add Document'); msg('Error: '+e.message,'err'); });
+}
+
+function delDownload(i) {
+  if(!confirm('Delete this document?')) return;
+  var t=D.downloads[i].title; D.downloads.splice(i,1);
+  save('Delete: '+t).then(function(){ renderDownloads(); msg('Deleted.','ok'); }).catch(function(e){ msg('Error: '+e.message,'err'); });
+}
+
+// ── SETTINGS ─────────────────────────────────────────────────
+function loadSettings() {
+  var s=D.settings||{};
+  document.getElementById('sm').value = s.main_phone   || '9931921825';
+  document.getElementById('sp').value = s.poiwan_phone || '9128614032';
+  document.getElementById('se').value = s.email        || 'haps.aub@gmail.com';
+  document.getElementById('sa').value = s.announcement || 'Admissions open for 2026-27';
+}
+
+function saveSettings() {
+  var btn=setBtnLoading('s-btn','Saving...');
+  msg('Saving settings...','busy');
+  D.settings = {
+    main_phone:   document.getElementById('sm').value.trim(),
+    poiwan_phone: document.getElementById('sp').value.trim(),
+    email:        document.getElementById('se').value.trim(),
+    announcement: document.getElementById('sa').value.trim()
+  };
+  save('Update settings')
+    .then(function(){ resetBtn('s-btn','Save & Publish'); msg('Settings saved! Live in ~2 minutes.','ok'); })
+    .catch(function(e){ resetBtn('s-btn','Save & Publish'); msg('Error: '+e.message,'err'); });
+}
+
+// ── PIN ───────────────────────────────────────────────────────
+function changePin() {
+  var p1=document.getElementById('p1').value;
+  var p2=document.getElementById('p2').value;
+  var m=document.getElementById('pmsg');
+  if(!p1||p1.length<4){ m.style.color='#b91c1c'; m.textContent='Min 4 characters.'; return; }
+  if(p1!==p2){ m.style.color='#b91c1c'; m.textContent='PINs do not match.'; return; }
+  localStorage.setItem('haps_pin', p1);
+  document.getElementById('p1').value='';
+  document.getElementById('p2').value='';
+  m.style.color='#15803d'; m.textContent='PIN changed!';
+  setTimeout(function(){ m.textContent=''; },3000);
+}
+</script>
+</body>
+</html>
