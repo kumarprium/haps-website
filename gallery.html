@@ -2,90 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <meta name="description" content="Photo Gallery - Holy Angels Public School (HAPS), Aurangabad, Bihar. School events, sports, cultural activities and campus photos."/>
+  <meta name="description" content="Photo Gallery - Holy Angels Public School (HAPS), Aurangabad, Bihar."/>
   <title>Gallery | Holy Angels Public School (HAPS)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#0D2545;--gold:#C9922A;--gold-lt:#F2B84B;--cream:#FDF8F0;--white:#FFFFFF;--gray:#6B7280;--light:#F4F6F9;--heading:'Playfair Display',Georgia,serif;--body:'DM Sans',sans-serif;--shadow-sm:0 2px 8px rgba(13,37,69,.08);--shadow-md:0 8px 32px rgba(13,37,69,.12);--shadow-lg:0 20px 60px rgba(13,37,69,.18)}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--body);color:var(--navy);background:var(--white);line-height:1.65;overflow-x:hidden}img{display:block;max-width:100%}
+    :root{--navy:#0D2545;--gold:#C9922A;--gold-lt:#F2B84B;--cream:#FDF8F0;--white:#FFFFFF;--gray:#6B7280;--light:#F4F6F9;--shadow-sm:0 2px 8px rgba(13,37,69,.08);--shadow-md:0 8px 32px rgba(13,37,69,.12);--shadow-lg:0 20px 60px rgba(13,37,69,.18)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:"DM Sans",sans-serif;color:var(--navy);background:var(--white);line-height:1.65;overflow-x:hidden}img{display:block;max-width:100%}
     .ann-bar{background:var(--navy);color:var(--gold-lt);text-align:center;font-size:.82rem;font-weight:500;letter-spacing:.04em;padding:.5rem 1rem}.ann-bar a{color:var(--gold-lt);text-decoration:underline}
-    nav{position:sticky;top:0;z-index:999;background:var(--white);border-bottom:2px solid var(--cream);box-shadow:var(--shadow-sm)}
+    nav{position:sticky;top:0;z-index:200;background:var(--white);border-bottom:2px solid var(--cream);box-shadow:var(--shadow-sm)}
     .nav-inner{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
     .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}.nav-logo img{height:52px;width:52px;object-fit:contain}
-    .nav-logo-text .school-name{display:block;font-family:var(--heading);font-weight:700;font-size:1.05rem;color:var(--navy)}.nav-logo-text .school-sub{display:block;font-size:.73rem;color:var(--gold);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+    .nav-logo-text .school-name{display:block;font-family:"Playfair Display",serif;font-weight:700;font-size:1.05rem;color:var(--navy)}.nav-logo-text .school-sub{display:block;font-size:.73rem;color:var(--gold);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
     .nav-links{display:flex;align-items:center;gap:.2rem;list-style:none}.nav-links a{display:block;padding:.45rem .75rem;font-size:.88rem;font-weight:500;color:var(--navy);text-decoration:none;border-radius:6px;transition:background .2s,color .2s}.nav-links a:hover{background:var(--light);color:var(--gold)}.nav-links a.active{color:var(--gold);font-weight:600}
-    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.4rem;border-radius:8px;font-family:var(--body);font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:transform .18s,box-shadow .18s,background .18s;border:none}.btn:active{transform:scale(.97)}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.4rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:transform .18s,box-shadow .18s,background .18s;border:none}.btn:active{transform:scale(.97)}
     .btn-gold{background:var(--gold);color:var(--white);box-shadow:0 4px 14px rgba(201,146,42,.35)}.btn-gold:hover{background:#b5831e;transform:translateY(-1px)}
     .btn-lg{padding:.85rem 2rem;font-size:1rem;border-radius:10px}
     .hamburger{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px}.hamburger span{display:block;width:26px;height:2.5px;background:var(--navy);border-radius:2px;transition:transform .3s,opacity .3s}
     .mobile-open .hamburger span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}.mobile-open .hamburger span:nth-child(2){opacity:0}.mobile-open .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
-    .page-hero{background:var(--navy);padding:4.5rem 1.5rem;position:relative;overflow:hidden}.page-hero::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,146,42,.12) 0%,transparent 70%);top:-150px;right:-100px;pointer-events:none}
+    .page-hero{background:var(--navy);padding:4.5rem 1.5rem;position:relative;overflow:hidden}.page-hero::before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,146,42,.12) 0%,transparent 70%);top:-150px;right:-100px;pointer-events:none}
     .page-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2}
-    .breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:1rem;list-style:none}.breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none}.breadcrumb a:hover{color:var(--gold-lt)}.breadcrumb li:not(:last-child)::after{content:"›";margin-left:.5rem}
-    .page-hero h1{font-family:var(--heading);font-size:clamp(2rem,4.5vw,3.2rem);color:var(--white);line-height:1.2;margin-bottom:.75rem}.page-hero p{color:rgba(255,255,255,.65);font-size:1.05rem;max-width:560px;font-weight:300}
+    .breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:1rem;list-style:none}.breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none}.breadcrumb li:not(:last-child)::after{content:"&#8250;";margin-left:.5rem}
+    .page-hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,4.5vw,3.2rem);color:var(--white);line-height:1.2;margin-bottom:.75rem}.page-hero p{color:rgba(255,255,255,.65);font-size:1.05rem;max-width:560px;font-weight:300}
     section{padding:5rem 1.5rem}.section-inner{max-width:1200px;margin:0 auto}
-
-    /* FILTER */
-    .filter-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
-    .filter-btn{padding:.45rem 1.1rem;border-radius:100px;font-size:.82rem;font-weight:600;border:1.5px solid var(--light);background:var(--white);color:var(--gray);cursor:pointer;transition:all .2s;font-family:var(--body)}
+    .filter-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+    .filter-btn{padding:.45rem 1rem;border-radius:100px;font-size:.82rem;font-weight:600;border:1.5px solid var(--light);background:var(--white);color:var(--gray);cursor:pointer;transition:all .2s;font-family:"DM Sans",sans-serif}
     .filter-btn.active,.filter-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
-
-    /* GALLERY GRID */
-    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
     .gallery-item{border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);cursor:pointer;position:relative;background:var(--light);transition:transform .25s,box-shadow .25s}
     .gallery-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-    .gallery-item img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .4s}
+    .gallery-item img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .4s}
     .gallery-item:hover img{transform:scale(1.04)}
-    .gallery-caption{padding:.9rem 1rem}
+    .gallery-caption{padding:.85rem 1rem}
     .gallery-caption h4{font-size:.92rem;font-weight:600;color:var(--navy);margin-bottom:.2rem}
     .gallery-caption .meta{display:flex;align-items:center;justify-content:space-between}
     .gallery-caption .date{font-size:.75rem;color:var(--gray)}
-    .gallery-caption .cat-badge{font-size:.68rem;font-weight:700;padding:.2rem .6rem;border-radius:4px;text-transform:uppercase;letter-spacing:.04em}
+    .cat-badge{font-size:.68rem;font-weight:700;padding:.2rem .6rem;border-radius:4px;text-transform:uppercase;letter-spacing:.04em}
     .cat-events{background:#EBF5FB;color:#1A6A9A}.cat-sports{background:#EAF7EA;color:#1A7A1A}
     .cat-cultural{background:#FEF9E7;color:#9A6400}.cat-academics{background:#F3E8FF;color:#6B21A8}
     .cat-campus{background:var(--light);color:var(--gray)}.cat-other{background:var(--light);color:var(--gray)}
-
-    /* EMPTY STATE */
     .empty-state{text-align:center;padding:4rem 1rem;color:var(--gray)}
-    .empty-state .icon{font-size:3rem;margin-bottom:1rem}
-    .empty-state h3{font-family:var(--heading);font-size:1.3rem;color:var(--navy);margin-bottom:.5rem}
-    .empty-state p{font-size:.9rem;max-width:400px;margin:0 auto}
-
+    .empty-state .icon{font-size:3rem;margin-bottom:.75rem}
+    .empty-state h3{font-family:"Playfair Display",serif;font-size:1.2rem;color:var(--navy);margin-bottom:.5rem}
     /* LIGHTBOX */
     .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:3000;display:none;align-items:center;justify-content:center;padding:1rem}
     .lightbox.open{display:flex}
-    .lightbox-inner{position:relative;max-width:900px;width:100%;max-height:90vh}
-    .lightbox-inner img{width:100%;max-height:80vh;object-fit:contain;border-radius:8px;display:block}
-    .lightbox-caption{color:var(--white);text-align:center;margin-top:.75rem;font-size:.9rem}
-    .lightbox-close{position:absolute;top:-40px;right:0;background:none;border:none;color:var(--white);font-size:1.8rem;cursor:pointer;line-height:1;opacity:.8}.lightbox-close:hover{opacity:1}
-    .lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:var(--white);font-size:1.6rem;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
-    .lightbox-prev{left:-56px}.lightbox-next{right:-56px}
-    .lightbox-prev:hover,.lightbox-next:hover{background:rgba(255,255,255,.3)}
-
-    /* MODAL */
-    .modal-overlay{position:fixed;inset:0;background:rgba(9,28,56,.7);backdrop-filter:blur(4px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s}.modal-overlay.open{opacity:1;pointer-events:all}
-    .modal{background:var(--white);border-radius:20px;width:100%;max-width:480px;padding:2rem;box-shadow:var(--shadow-lg);transform:translateY(20px);transition:transform .3s}.modal-overlay.open .modal{transform:translateY(0)}
-    .modal-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem}.modal-header h3{font-family:var(--heading);font-size:1.4rem;color:var(--navy)}
-    .modal-close{background:var(--light);border:none;border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;color:var(--navy)}.modal-close:hover{background:#dde0e5}
-    .form-group{margin-bottom:1rem}.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.35rem}
-    .form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;font-family:var(--body);font-size:.9rem;color:var(--navy);background:var(--light);border:1.5px solid transparent;border-radius:8px;outline:none;transition:border-color .2s,background .2s}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);background:var(--white)}.form-group textarea{resize:vertical;min-height:80px}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    .form-success{display:none;text-align:center;padding:1.5rem}.form-success .check{font-size:2.5rem;margin-bottom:.75rem}.form-success h4{font-family:var(--heading);font-size:1.3rem;color:var(--navy);margin-bottom:.5rem}.form-success p{color:var(--gray);font-size:.9rem}
-
+    .lb-inner{position:relative;max-width:860px;width:100%;max-height:90vh}
+    .lb-inner img{width:100%;max-height:80vh;object-fit:contain;border-radius:8px;display:block}
+    .lb-caption{color:var(--white);text-align:center;margin-top:.6rem;font-size:.88rem}
+    .lb-close{position:absolute;top:-38px;right:0;background:none;border:none;color:var(--white);font-size:1.8rem;cursor:pointer;opacity:.8;line-height:1}.lb-close:hover{opacity:1}
+    .lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:var(--white);font-size:1.6rem;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+    .lb-prev{left:-56px}.lb-next{right:-56px}
+    .lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.3)}
+    /* ADMIN */
+    .admin-bar{position:fixed;bottom:0;left:0;right:0;background:var(--navy);padding:.6rem 1.5rem;display:none;align-items:center;justify-content:space-between;z-index:1000;box-shadow:0 -4px 20px rgba(13,37,69,.3)}
+    .admin-bar.show{display:flex}
+    .ab-left{display:flex;align-items:center;gap:.75rem}
+    .ab-left span{color:var(--gold-lt);font-size:.82rem;font-weight:600}
+    .ab-status{font-size:.8rem;color:var(--gold-lt);max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .ab-btn{padding:.45rem 1rem;border-radius:7px;font-size:.82rem;font-weight:600;cursor:pointer;border:none;font-family:"DM Sans",sans-serif;display:inline-flex;align-items:center;gap:.35rem;transition:all .2s}
+    .ab-btn-gold{background:var(--gold);color:var(--white)}.ab-btn-gold:hover{background:#b5831e}
+    .ab-btn-outline{background:rgba(255,255,255,.1);color:var(--white)}.ab-btn-outline:hover{background:rgba(255,255,255,.2)}
+    .ab-btn:disabled{opacity:.5;cursor:not-allowed}
+    .admin-spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top:2px solid var(--white);border-radius:50%;animation:aSpin .8s linear infinite}
+    @keyframes aSpin{to{transform:rotate(360deg)}}
+    .del-photo-btn{position:absolute;top:.5rem;right:.5rem;background:rgba(185,28,28,.9);color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:.75rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:2}
+    .admin-mode .gallery-item:hover .del-photo-btn{display:flex}
+    /* UPLOAD PANEL */
+    .upload-panel{background:var(--navy);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;display:none}
+    .upload-panel.show{display:block}
+    .upload-panel h3{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--gold-lt);margin-bottom:1.1rem}
+    .up-field{margin-bottom:.75rem}
+    .up-field label{display:block;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:.3rem}
+    .up-field input,.up-field select{width:100%;padding:.6rem .85rem;font-family:"DM Sans",sans-serif;font-size:.88rem;color:var(--navy);background:var(--white);border:none;border-radius:7px;outline:none}
+    .up-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    .upload-zone{border:2px dashed rgba(255,255,255,.3);border-radius:10px;padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .2s}
+    .upload-zone:hover{border-color:var(--gold)}
+    .upload-zone input{display:none}
+    .upload-zone p{font-size:.85rem;color:rgba(255,255,255,.6)}
+    .upload-zone .uz-name{color:var(--gold-lt);font-weight:600;margin-top:.3rem;font-size:.82rem}
+    /* LOGIN */
+    .login-overlay{position:fixed;inset:0;background:rgba(9,28,56,.85);backdrop-filter:blur(6px);z-index:3000;display:none;align-items:center;justify-content:center;padding:1rem}
+    .login-overlay.show{display:flex}
+    .login-box{background:var(--white);border-radius:18px;padding:2rem;width:100%;max-width:320px;text-align:center;box-shadow:var(--shadow-lg)}
+    .login-box img{width:56px;height:56px;object-fit:contain;margin:0 auto .75rem;display:block}
+    .login-box h3{font-family:"Playfair Display",serif;font-size:1.15rem;color:var(--navy);margin-bottom:.25rem}
+    .login-box p{font-size:.82rem;color:var(--gray);margin-bottom:1.25rem}
+    .pin-inp{width:100%;padding:.75rem;font-size:1.1rem;letter-spacing:.25em;text-align:center;font-family:"DM Sans",sans-serif;font-weight:600;color:var(--navy);background:var(--light);border:2px solid transparent;border-radius:8px;outline:none}
+    .pin-inp:focus{border-color:var(--gold)}
+    .pin-btn{width:100%;padding:.75rem;background:var(--gold);color:var(--white);border:none;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer;margin-top:.6rem;font-family:"DM Sans",sans-serif}
+    .pin-err{color:#b91c1c;font-size:.82rem;margin-top:.5rem;display:none}
     footer{background:#091c38;color:rgba(255,255,255,.6);padding:3rem 1.5rem 1.5rem}
     .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
     .footer-logo{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;text-decoration:none}.footer-logo img{height:44px;width:44px;object-fit:contain}
-    .footer-logo-text .school-name{font-family:var(--heading);font-weight:700;font-size:.95rem;color:var(--white)}.footer-logo-text .school-sub{font-size:.7rem;color:var(--gold-lt);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+    .footer-logo-text .school-name{font-family:"Playfair Display",serif;font-weight:700;font-size:.95rem;color:var(--white)}.footer-logo-text .school-sub{font-size:.7rem;color:var(--gold-lt);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
     .footer-about{font-size:.85rem;line-height:1.7;max-width:300px}
     .footer-col h4{font-size:.85rem;font-weight:700;color:var(--white);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.9rem}
     .footer-links{list-style:none}.footer-links li{margin-bottom:.45rem}.footer-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;transition:color .2s}.footer-links a:hover{color:var(--gold-lt)}
     .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;font-size:.78rem}
+    .modal-overlay{position:fixed;inset:0;background:rgba(9,28,56,.7);backdrop-filter:blur(4px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s}.modal-overlay.open{opacity:1;pointer-events:all}
+    .modal{background:var(--white);border-radius:20px;width:100%;max-width:480px;padding:2rem;box-shadow:var(--shadow-lg);transform:translateY(20px);transition:transform .3s}.modal-overlay.open .modal{transform:translateY(0)}
+    .modal-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem}.modal-header h3{font-family:"Playfair Display",serif;font-size:1.4rem;color:var(--navy)}
+    .modal-close{background:var(--light);border:none;border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;color:var(--navy)}
+    .form-group{margin-bottom:1rem}.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.35rem}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;font-family:"DM Sans",sans-serif;font-size:.9rem;color:var(--navy);background:var(--light);border:1.5px solid transparent;border-radius:8px;outline:none}
+    .form-group input:focus,.form-group select:focus{border-color:var(--gold);background:var(--white)}.form-group textarea{resize:vertical;min-height:80px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     .fab-wa{position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);text-decoration:none;z-index:999;animation:waPulse 2.5s infinite}
     @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5)}50%{box-shadow:0 4px 30px rgba(37,211,102,.75),0 0 0 12px rgba(37,211,102,.1)}}.fab-wa svg{width:28px;height:28px;fill:var(--white)}
-    @media(max-width:680px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.nav-links.mobile-show{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--white);box-shadow:var(--shadow-md);padding:1rem 1.5rem;z-index:100;gap:0}.nav-links.mobile-show a{padding:.7rem 0;border-bottom:1px solid var(--light)}.footer-inner{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.gallery-grid{grid-template-columns:1fr 1fr}.lightbox-prev{left:-20px}.lightbox-next{right:-20px}}
-    @media(max-width:420px){.gallery-grid{grid-template-columns:1fr}}
+    @media(max-width:680px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.nav-links.mobile-show{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--white);box-shadow:var(--shadow-md);padding:1rem 1.5rem;z-index:100;gap:0}.nav-links.mobile-show a{padding:.7rem 0;border-bottom:1px solid var(--light)}.footer-inner{grid-template-columns:1fr}.form-row,.up-row{grid-template-columns:1fr}.gallery-grid{grid-template-columns:1fr 1fr}.lb-prev{left:-16px}.lb-next{right:-16px}}
   </style>
 </head>
 <body>
@@ -94,15 +119,7 @@
     <div class="nav-inner">
       <a class="nav-logo" href="/"><img src="/images/logo.png" alt="HAPS Logo" width="52" height="52" onerror="this.style.display='none'"/><div class="nav-logo-text"><span class="school-name">Holy Angels Public School</span><span class="school-sub">CBSE Curriculum &middot; Aurangabad, Bihar</span></div></a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/academics">Academics</a></li>
-        <li><a href="/campuses">Campuses</a></li>
-        <li><a href="/admissions">Admissions</a></li>
-        <li><a href="/notices">Notices</a></li>
-        <li><a href="/gallery" class="active">Gallery</a></li>
-        <li><a href="/downloads">Downloads</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/academics">Academics</a></li><li><a href="/campuses">Campuses</a></li><li><a href="/admissions">Admissions</a></li><li><a href="/notices">Notices</a></li><li><a href="/gallery" class="active">Gallery</a></li><li><a href="/downloads">Downloads</a></li><li><a href="/contact">Contact</a></li>
       </ul>
       <button class="btn btn-gold nav-cta" onclick="openModal()">Enquire Now</button>
       <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -119,6 +136,28 @@
 
   <section>
     <div class="section-inner">
+
+      <!-- UPLOAD PANEL (admin only) -->
+      <div class="upload-panel" id="uploadPanel">
+        <h3>&#43; Upload New Photo</h3>
+        <div class="up-row">
+          <div class="up-field"><label>Caption *</label><input type="text" id="up-title" placeholder="e.g. Annual Sports Day 2025"/></div>
+          <div class="up-field"><label>Category</label><select id="up-cat"><option value="events">Events</option><option value="sports">Sports</option><option value="cultural">Cultural</option><option value="academics">Academics</option><option value="campus">Campus</option><option value="other">Other</option></select></div>
+        </div>
+        <div class="up-field">
+          <label>Photo</label>
+          <div class="upload-zone" onclick="document.getElementById('up-file').click()">
+            <input type="file" id="up-file" accept="image/*" onchange="previewUpload(this)"/>
+            <p>&#128247; Click to choose a photo (JPG or PNG, max 5MB)</p>
+            <p class="uz-name" id="up-fname"></p>
+          </div>
+        </div>
+        <div style="display:flex;gap:.6rem;margin-top:.25rem">
+          <button class="ab-btn ab-btn-gold" id="up-save-btn" onclick="uploadPhoto()">&#128247; Publish Photo</button>
+          <button class="ab-btn ab-btn-outline" onclick="document.getElementById('uploadPanel').classList.remove('show')">Cancel</button>
+        </div>
+      </div>
+
       <div class="filter-row">
         <button class="filter-btn active" data-filter="all">All Photos</button>
         <button class="filter-btn" data-filter="events">Events</button>
@@ -128,100 +167,111 @@
         <button class="filter-btn" data-filter="campus">Campus</button>
       </div>
 
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Photos are loaded dynamically from _gallery markdown files -->
-        <!-- While gallery is empty, show placeholder -->
-      </div>
-
-      <div class="empty-state" id="emptyState">
+      <div class="gallery-grid" id="galleryGrid"></div>
+      <div class="empty-state" id="emptyState" style="display:none">
         <div class="icon">&#128247;</div>
         <h3>Photos Coming Soon</h3>
-        <p>We are adding photos from our school events and activities. Check back soon!</p>
+        <p>We are adding photos from school events. Check back soon!</p>
+      </div>
+      <div id="loadingState" style="text-align:center;padding:3rem;color:var(--gray)">
+        <p>Loading gallery...</p>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="footer-inner">
-      <div><a class="footer-logo" href="/"><img src="/images/logo.png" alt="HAPS Logo" width="44" height="44" onerror="this.style.display='none'"/><div class="footer-logo-text"><div class="school-name">Holy Angels Public School (HAPS)</div><div class="school-sub">CBSE Curriculum &middot; Aurangabad, Bihar</div></div></a><p class="footer-about">A trusted CBSE school in Aurangabad, Bihar with nearly 30 years of nurturing confident, disciplined and value-driven students.</p></div>
+      <div><a class="footer-logo" href="/"><img src="/images/logo.png" alt="HAPS Logo" width="44" height="44" onerror="this.style.display='none'"/><div class="footer-logo-text"><div class="school-name">Holy Angels Public School (HAPS)</div><div class="school-sub">CBSE Curriculum &middot; Aurangabad, Bihar</div></div></a><p class="footer-about">A trusted CBSE school in Aurangabad, Bihar with nearly 30 years of excellent education.</p></div>
       <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/academics">Academics</a></li><li><a href="/campuses">Campuses</a></li><li><a href="/admissions">Admissions</a></li><li><a href="/notices">Notices</a></li><li><a href="/gallery">Gallery</a></li><li><a href="/downloads">Downloads</a></li><li><a href="/contact">Contact</a></li></ul></div>
       <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="tel:9931921825">Main: 9931921825</a></li><li><a href="tel:9128614032">Poiwan: 9128614032</a></li><li><a href="mailto:haps.aub@gmail.com">haps.aub@gmail.com</a></li></ul></div>
     </div>
     <div class="footer-bottom"><span>&#169; 2026 Holy Angels Public School (HAPS). All rights reserved.</span><span>CBSE Curriculum &middot; Aurangabad, Bihar</span></div>
   </footer>
 
-  <a class="fab-wa" href="https://wa.me/919931921825?text=Hello+HAPS" target="_blank" rel="noopener" title="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.83.74 5.5 2.03 7.83L.5 31.5l7.87-2.05A15.43 15.43 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm0 28.1a12.57 12.57 0 01-6.4-1.75l-.46-.27-4.67 1.22 1.25-4.55-.3-.47A12.55 12.55 0 1116 28.6zm6.9-9.4c-.38-.19-2.24-1.1-2.59-1.23-.35-.12-.6-.19-.85.19-.25.38-.97 1.23-1.19 1.48-.22.25-.44.28-.82.09-.38-.19-1.6-.59-3.05-1.88-1.13-1-1.89-2.24-2.11-2.62-.22-.38-.02-.58.17-.77.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.12-.25.06-.47-.03-.66-.09-.19-.85-2.04-1.16-2.79-.3-.73-.61-.63-.85-.64h-.72c-.25 0-.66.09-1.01.47-.34.38-1.31 1.28-1.31 3.12 0 1.84 1.34 3.62 1.53 3.87.19.25 2.64 4.03 6.4 5.65.9.39 1.6.62 2.14.79.9.28 1.72.24 2.37.15.72-.11 2.24-.92 2.56-1.8.31-.89.31-1.65.22-1.8-.09-.16-.34-.25-.72-.44z"/></svg></a>
+  <a class="fab-wa" href="https://wa.me/919931921825?text=Hello+HAPS" target="_blank" rel="noopener"><svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.83.74 5.5 2.03 7.83L.5 31.5l7.87-2.05A15.43 15.43 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm0 28.1a12.57 12.57 0 01-6.4-1.75l-.46-.27-4.67 1.22 1.25-4.55-.3-.47A12.55 12.55 0 1116 28.6zm6.9-9.4c-.38-.19-2.24-1.1-2.59-1.23-.35-.12-.6-.19-.85.19-.25.38-.97 1.23-1.19 1.48-.22.25-.44.28-.82.09-.38-.19-1.6-.59-3.05-1.88-1.13-1-1.89-2.24-2.11-2.62-.22-.38-.02-.58.17-.77.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.12-.25.06-.47-.03-.66-.09-.19-.85-2.04-1.16-2.79-.3-.73-.61-.63-.85-.64h-.72c-.25 0-.66.09-1.01.47-.34.38-1.31 1.28-1.31 3.12 0 1.84 1.34 3.62 1.53 3.87.19.25 2.64 4.03 6.4 5.65.9.39 1.6.62 2.14.79.9.28 1.72.24 2.37.15.72-.11 2.24-.92 2.56-1.8.31-.89.31-1.65.22-1.8-.09-.16-.34-.25-.72-.44z"/></svg></a>
 
-  <!-- Enquiry Modal -->
+  <!-- ENQUIRY MODAL -->
   <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-    <div class="modal">
-      <div class="modal-header"><div><h3>Admission Enquiry</h3><p style="font-size:.82rem;color:var(--gray);margin-top:.2rem">We will call you within one working day.</p></div><button class="modal-close" onclick="closeModal()">&#10005;</button></div>
-      <div id="formBody">
-        <form id="enquiryForm" name="enquiry" method="POST" data-netlify="true" onsubmit="submitForm(event)" novalidate>
-          <input type="hidden" name="form-name" value="enquiry"/>
-          <div style="display:none"><input tabindex="-1" name="website" autocomplete="off"/></div>
-          <div class="form-row">
-            <div class="form-group"><label>Child's Name *</label><input type="text" name="childName" required/></div>
-            <div class="form-group"><label>Class *</label><select name="classApplied" required><option value="">Select</option><option>Nursery</option><option>LKG</option><option>UKG</option><option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option><option>Class VI</option><option>Class VII</option><option>Class VIII</option><option>Class IX</option><option>Class X</option></select></div>
-          </div>
-          <div class="form-group"><label>Parent / Guardian Name *</label><input type="text" name="parentName" required/></div>
-          <div class="form-row">
-            <div class="form-group"><label>Mobile *</label><input type="tel" id="mobileInput" name="mobile" required maxlength="10"/></div>
-            <div class="form-group"><label>Campus</label><select name="campus"><option value="">Not sure</option><option>Maharana Pratap Nagar (Main)</option><option>Nawgarh Moad, Poiwan</option></select></div>
-          </div>
-          <div class="form-group"><label>Message (optional)</label><textarea name="message"></textarea></div>
-          <button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;margin-top:.5rem">Submit Enquiry &#8594;</button>
-        </form>
-      </div>
-      <div class="form-success" id="formSuccess"><div class="check">&#9989;</div><h4>Enquiry Received!</h4><p>Our team will call you within one working day.</p></div>
+    <div class="modal"><div class="modal-header"><div><h3>Admission Enquiry</h3><p style="font-size:.82rem;color:var(--gray);margin-top:.2rem">We will call you within one working day.</p></div><button class="modal-close" onclick="closeModal()">&#10005;</button></div>
+      <div id="formBody"><form id="enquiryForm" name="enquiry" method="POST" data-netlify="true" onsubmit="submitForm(event)" novalidate><input type="hidden" name="form-name" value="enquiry"/><div style="display:none"><input tabindex="-1" name="website" autocomplete="off"/></div><div class="form-row"><div class="form-group"><label>Child's Name *</label><input type="text" name="childName" required/></div><div class="form-group"><label>Class *</label><select name="classApplied" required><option value="">Select</option><option>Nursery</option><option>LKG</option><option>UKG</option><option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option><option>Class VI</option><option>Class VII</option><option>Class VIII</option><option>Class IX</option><option>Class X</option></select></div></div><div class="form-group"><label>Parent Name *</label><input type="text" name="parentName" required/></div><div class="form-row"><div class="form-group"><label>Mobile *</label><input type="tel" id="mobileInput" name="mobile" required maxlength="10"/></div><div class="form-group"><label>Campus</label><select name="campus"><option value="">Not sure</option><option>Maharana Pratap Nagar (Main)</option><option>Nawgarh Moad, Poiwan</option></select></div></div><div class="form-group"><label>Message</label><textarea name="message"></textarea></div><button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;margin-top:.5rem">Submit &#8594;</button></form></div>
+      <div id="formSuccess" style="display:none;text-align:center;padding:1.5rem"><div style="font-size:2.5rem;margin-bottom:.75rem">&#9989;</div><h4 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:.5rem">Enquiry Received!</h4><p style="color:var(--gray);font-size:.9rem">Our team will call you within one working day.</p></div>
     </div>
   </div>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-    <div class="lightbox-inner">
-      <button class="lightbox-close" onclick="closeLightboxBtn()">&#10005;</button>
-      <button class="lightbox-prev" onclick="lightboxNav(-1)">&#8249;</button>
-      <button class="lightbox-next" onclick="lightboxNav(1)">&#8250;</button>
-      <img id="lightboxImg" src="" alt=""/>
-      <div class="lightbox-caption" id="lightboxCaption"></div>
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLb()">
+    <div class="lb-inner">
+      <button class="lb-close" onclick="closeLb()">&#10005;</button>
+      <button class="lb-prev" onclick="lbNav(-1)">&#8249;</button>
+      <button class="lb-next" onclick="lbNav(1)">&#8250;</button>
+      <img id="lbImg" src="" alt=""/>
+      <div class="lb-caption" id="lbCap"></div>
     </div>
   </div>
 
-  <!-- Netlify Identity for CMS login -->
-  
+  <!-- ADMIN LOGIN -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <img src="/images/logo.png" alt="HAPS" onerror="this.style.display='none'"/>
+      <h3>Admin Login</h3>
+      <p>Enter your PIN to manage the gallery</p>
+      <input type="password" class="pin-inp" id="adminPin" placeholder="Enter PIN" onkeydown="if(event.key==='Enter')doAdminLogin()"/>
+      <button class="pin-btn" onclick="doAdminLogin()">Login &#8594;</button>
+      <div class="pin-err" id="pinErr">Incorrect PIN</div>
+      <button onclick="document.getElementById('loginOverlay').classList.remove('show')" style="background:none;border:none;color:var(--gray);font-size:.82rem;cursor:pointer;margin-top:.75rem;font-family:'DM Sans',sans-serif">Cancel</button>
+    </div>
+  </div>
+
+  <!-- ADMIN BAR -->
+  <div class="admin-bar" id="adminBar">
+    <div class="ab-left">
+      <span>&#128272; Admin Mode</span>
+      <span class="ab-status" id="adminStatus">Loading...</span>
+    </div>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button class="ab-btn ab-btn-gold" onclick="toggleUpload()">&#43; Upload Photo</button>
+      <button class="ab-btn ab-btn-outline" onclick="doAdminLogout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- TRIPLE-CLICK LOGO TO OPEN ADMIN LOGIN -->
   <script>
-    // Nav
-    (function(){
-      var h=document.getElementById('hamburger'),n=document.getElementById('navLinks');
-      if(h){h.addEventListener('click',function(){n.classList.toggle('mobile-show');document.querySelector('nav').classList.toggle('mobile-open');});}
-    })();
+    var lc=0,lt;
+    document.querySelector('.nav-logo').addEventListener('click',function(e){
+      if(window.location.pathname!=='/gallery'&&window.location.pathname!=='/gallery.html')return;
+      e.preventDefault(); lc++;
+      clearTimeout(lt); lt=setTimeout(function(){lc=0;},600);
+      if(lc>=3){lc=0; if(isAdminLoggedIn())doAdminLogout(); else document.getElementById('loginOverlay').classList.add('show');}
+    });
+  </script>
 
-    // Modal
+  <script>
+    var GH_USER='kumarprium', GH_REPO='haps-website', GH_BRANCH='main';
+    var DATA_FILE='_data/site-data.json', FN='/.netlify/functions/github';
+    var DEFAULT_PIN='haps2026';
+    var siteData={gallery:[]};
+    var filteredPhotos=[], currentLbIdx=0;
+    var pendingUpload=null;
+
+    // ── NAV ───────────────────────────────────────────────────
+    var hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+    if(hb){hb.addEventListener('click',function(){nl.classList.toggle('mobile-show');document.querySelector('nav').classList.toggle('mobile-open');});}
+
+    // ── ENQUIRY MODAL ─────────────────────────────────────────
     function openModal(){document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';}
     function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeLightboxBtn();}});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeLb();}});
     function submitForm(e){
       e.preventDefault();
-      var f=document.getElementById('enquiryForm');
-      var m=document.getElementById('mobileInput').value.trim();
+      var f=document.getElementById('enquiryForm'),m=document.getElementById('mobileInput').value.trim();
       if(f.querySelector('[name="website"]').value)return;
-      if(m.length!==10||!/^\d{10}$/.test(m)){alert('Please enter a valid 10-digit mobile number.');return;}
+      if(m.length!==10||!/^[0-9]{10}$/.test(m)){alert('Please enter a valid 10-digit mobile number.');return;}
       fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()}).catch(function(){});
       document.getElementById('formBody').style.display='none';
       document.getElementById('formSuccess').style.display='block';
     }
 
-    // Gallery data — populated from _gallery markdown files via Netlify build
-    // For static hosting, photos are listed here and updated by the CMS
-    var galleryItems = (function(){
-      try {
-        var stored = localStorage.getItem('haps_gallery');
-        return stored ? JSON.parse(stored) : [];
-      } catch(e) { return []; }
-    })();
-
-    // Filter
+    // ── FILTER ────────────────────────────────────────────────
     document.querySelectorAll('.filter-btn').forEach(function(btn){
       btn.addEventListener('click',function(){
         document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
@@ -230,58 +280,178 @@
       });
     });
 
-    var currentIndex = 0;
-    var filteredItems = [];
+    // ── LOAD DATA ────────────────────────────────────────────
+    function ghCall(method,path,payload){
+      return fetch(FN,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({method:method,path:path,payload:payload})}).then(function(r){return r.json();});
+    }
 
+    function loadData(){
+      return ghCall('GET','/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+DATA_FILE+'?ref='+GH_BRANCH)
+        .then(function(d){
+          if(d.content){
+            try{
+              var json=decodeURIComponent(escape(atob(d.content.replace(/
+/g,''))));
+              var p=JSON.parse(json);
+              siteData=p; siteData.gallery=p.gallery||[];
+            }catch(e){console.warn('parse',e);}
+          }
+          return siteData;
+        }).catch(function(){return siteData;});
+    }
+
+    function getFileSha(fp){
+      return ghCall('GET','/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+fp+'?ref='+GH_BRANCH)
+        .then(function(d){return d.sha||null;}).catch(function(){return null;});
+    }
+
+    function writeFile(fp,content,msg){
+      return getFileSha(fp).then(function(sha){
+        var body={message:msg,content:btoa(unescape(encodeURIComponent(content))),branch:GH_BRANCH};
+        if(sha)body.sha=sha;
+        return ghCall('PUT','/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+fp,body);
+      });
+    }
+
+    function writeBinary(fp,b64data,msg){
+      return getFileSha(fp).then(function(sha){
+        var b64=b64data.indexOf(',')>-1?b64data.split(',')[1]:b64data;
+        var body={message:msg,content:b64,branch:GH_BRANCH};
+        if(sha)body.sha=sha;
+        return ghCall('PUT','/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+fp,body);
+      });
+    }
+
+    // ── RENDER GALLERY ────────────────────────────────────────
     function renderGallery(filter){
-      var grid = document.getElementById('galleryGrid');
-      var empty = document.getElementById('emptyState');
-      filteredItems = filter === 'all' ? galleryItems : galleryItems.filter(function(i){return i.category===filter;});
-      if(filteredItems.length === 0){
-        grid.innerHTML = '';
-        empty.style.display = 'block';
-        return;
-      }
-      empty.style.display = 'none';
-      grid.innerHTML = filteredItems.map(function(item, idx){
-        return '<div class="gallery-item" data-index="' + idx + '" onclick="openLightbox(' + idx + ')">'
-          + '<img src="' + item.image + '" alt="' + item.title + '" loading="lazy"/>'
-          + '<div class="gallery-caption">'
-          + '<h4>' + item.title + '</h4>'
-          + '<div class="meta"><span class="date">' + item.date + '</span>'
-          + '<span class="cat-badge cat-' + item.category + '">' + item.category + '</span></div>'
-          + '</div></div>';
+      var grid=document.getElementById('galleryGrid');
+      var empty=document.getElementById('emptyState');
+      var loading=document.getElementById('loadingState');
+      loading.style.display='none';
+      var all=siteData.gallery||[];
+      filteredPhotos=filter==='all'?all:all.filter(function(p){return p.category===filter;});
+      if(!filteredPhotos.length){grid.innerHTML='';empty.style.display='block';return;}
+      empty.style.display='none';
+      grid.innerHTML=filteredPhotos.map(function(p,i){
+        return '<div class="gallery-item" data-cat="'+p.category+'">'
+          +'<button class="del-photo-btn" onclick="deletePhoto('+i+')" title="Delete">&#10005;</button>'
+          +'<img src="'+p.url+'" alt="'+p.title+'" loading="lazy" onclick="openLb('+i+')" />'
+          +'<div class="gallery-caption"><h4>'+p.title+'</h4>'
+          +'<div class="meta"><span class="date">'+p.date+'</span>'
+          +'<span class="cat-badge cat-'+p.category+'">'+p.category+'</span></div></div></div>';
       }).join('');
     }
 
-    // Lightbox
-    function openLightbox(idx){
-      currentIndex = idx;
-      showLightboxItem();
+    // Load on page open
+    loadData().then(function(){
+      renderGallery('all');
+      if(isAdminLoggedIn()) setAdminStatus('Ready &middot; '+( siteData.gallery.length)+' photos');
+    });
+
+    // ── LIGHTBOX ─────────────────────────────────────────────
+    function openLb(i){
+      currentLbIdx=i;
+      showLbItem();
       document.getElementById('lightbox').classList.add('open');
       document.body.style.overflow='hidden';
     }
-    function showLightboxItem(){
-      var item = filteredItems[currentIndex];
-      document.getElementById('lightboxImg').src = item.image;
-      document.getElementById('lightboxImg').alt = item.title;
-      document.getElementById('lightboxCaption').textContent = item.title + (item.date ? ' · ' + item.date : '');
+    function showLbItem(){
+      var p=filteredPhotos[currentLbIdx];
+      document.getElementById('lbImg').src=p.url;
+      document.getElementById('lbImg').alt=p.title;
+      document.getElementById('lbCap').textContent=p.title+(p.date?' · '+p.date:'');
     }
-    function lightboxNav(dir){
-      currentIndex = (currentIndex + dir + filteredItems.length) % filteredItems.length;
-      showLightboxItem();
+    function lbNav(dir){currentLbIdx=(currentLbIdx+dir+filteredPhotos.length)%filteredPhotos.length; showLbItem();}
+    function closeLb(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+
+    // ── ADMIN AUTH ────────────────────────────────────────────
+    function getPin(){return localStorage.getItem('haps_pin')||DEFAULT_PIN;}
+    function isAdminLoggedIn(){return sessionStorage.getItem('haps_admin')==='1';}
+    function doAdminLogin(){
+      var p=document.getElementById('adminPin').value;
+      if(p===getPin()){
+        sessionStorage.setItem('haps_admin','1');
+        document.getElementById('loginOverlay').classList.remove('show');
+        document.getElementById('adminPin').value='';
+        document.getElementById('pinErr').style.display='none';
+        activateAdmin();
+      } else {document.getElementById('pinErr').style.display='block'; document.getElementById('adminPin').value='';}
     }
-    function closeLightboxBtn(){
-      document.getElementById('lightbox').classList.remove('open');
-      document.body.style.overflow='';
+    function doAdminLogout(){
+      sessionStorage.removeItem('haps_admin');
+      document.getElementById('adminBar').classList.remove('show');
+      document.body.classList.remove('admin-mode');
     }
-    function closeLightbox(e){
-      if(e.target===document.getElementById('lightbox'))closeLightboxBtn();
+    function activateAdmin(){
+      document.getElementById('adminBar').classList.add('show');
+      document.body.classList.add('admin-mode');
+      setAdminStatus('Ready &middot; '+(siteData.gallery.length)+' photos');
+    }
+    function setAdminStatus(m){document.getElementById('adminStatus').textContent=m;}
+    if(isAdminLoggedIn()) activateAdmin();
+
+    function toggleUpload(){
+      var p=document.getElementById('uploadPanel');
+      p.classList.toggle('show');
+      if(p.classList.contains('show')) document.getElementById('up-title').focus();
     }
 
-    // Gallery loaded asynchronously above
+    // ── UPLOAD PHOTO ─────────────────────────────────────────
+    function previewUpload(input){
+      if(!input.files||!input.files[0])return;
+      var file=input.files[0];
+      if(file.size>5*1024*1024){setAdminStatus('Photo too large (max 5MB)');return;}
+      document.getElementById('up-fname').textContent=file.name+' ('+Math.round(file.size/1024)+'KB)';
+      var r=new FileReader();
+      r.onload=function(e){pendingUpload={data:e.target.result,name:file.name};};
+      r.readAsDataURL(file);
+    }
 
+    function uploadPhoto(){
+      var title=document.getElementById('up-title').value.trim();
+      var cat=document.getElementById('up-cat').value;
+      if(!title){setAdminStatus('Please enter a caption');return;}
+      if(!pendingUpload){setAdminStatus('Please select a photo');return;}
+      var btn=document.getElementById('up-save-btn');
+      btn.disabled=true; btn.innerHTML='<div class="admin-spinner"></div> Uploading...';
+      setAdminStatus('Uploading photo...');
+      var ext=pendingUpload.name.split('.').pop().toLowerCase()||'jpg';
+      var fname='images/uploads/'+Date.now()+'-'+title.replace(/[^a-z0-9]/gi,'_').toLowerCase()+'.'+ext;
+      writeBinary(fname,pendingUpload.data,'Upload: '+title)
+        .then(function(){
+          if(!siteData.gallery)siteData.gallery=[];
+          siteData.gallery.unshift({
+            title:title,category:cat,url:'/'+fname,
+            date:new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})
+          });
+          return writeFile(DATA_FILE,JSON.stringify(siteData,null,2),'Add photo: '+title);
+        })
+        .then(function(){
+          renderGallery('all');
+          document.getElementById('up-title').value='';
+          document.getElementById('up-fname').textContent='';
+          document.getElementById('up-file').value='';
+          pendingUpload=null;
+          document.getElementById('uploadPanel').classList.remove('show');
+          btn.disabled=false; btn.innerHTML='&#128247; Publish Photo';
+          setAdminStatus('&#10003; Photo live in ~2 min &middot; '+(siteData.gallery.length)+' photos');
+        })
+        .catch(function(e){
+          btn.disabled=false; btn.innerHTML='&#128247; Publish Photo';
+          setAdminStatus('Error: '+e.message);
+        });
+    }
 
+    function deletePhoto(i){
+      if(!confirm('Delete this photo from the website?'))return;
+      var title=filteredPhotos[i].title;
+      var idx=siteData.gallery.findIndex(function(p){return p.url===filteredPhotos[i].url;});
+      if(idx>-1) siteData.gallery.splice(idx,1);
+      setAdminStatus('Deleting...');
+      writeFile(DATA_FILE,JSON.stringify(siteData,null,2),'Delete photo: '+title)
+        .then(function(){renderGallery('all'); setAdminStatus('&#10003; Photo deleted');})
+        .catch(function(e){setAdminStatus('Error: '+e.message);});
+    }
   </script>
 </body>
 </html>

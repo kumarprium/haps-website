@@ -2,59 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <meta name="description" content="School notices, holiday info, exam schedules and events from HAPS Aurangabad."/>
+  <meta name="description" content="Notices and Announcements from Holy Angels Public School (HAPS), Aurangabad, Bihar."/>
   <title>Notices & Announcements | Holy Angels Public School (HAPS)</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#0D2545;--gold:#C9922A;--gold-lt:#F2B84B;--cream:#FDF8F0;--white:#FFFFFF;--gray:#6B7280;--light:#F4F6F9;--heading:'Playfair Display',Georgia,serif;--body:'DM Sans',sans-serif;--shadow-sm:0 2px 8px rgba(13,37,69,.08);--shadow-md:0 8px 32px rgba(13,37,69,.12);--shadow-lg:0 20px 60px rgba(13,37,69,.18)}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--body);color:var(--navy);background:var(--white);line-height:1.65;overflow-x:hidden}img{display:block;max-width:100%}
+    :root{--navy:#0D2545;--gold:#C9922A;--gold-lt:#F2B84B;--cream:#FDF8F0;--white:#FFFFFF;--gray:#6B7280;--light:#F4F6F9;--shadow-sm:0 2px 8px rgba(13,37,69,.08);--shadow-md:0 8px 32px rgba(13,37,69,.12);--shadow-lg:0 20px 60px rgba(13,37,69,.18)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:'DM Sans',sans-serif;color:var(--navy);background:var(--white);line-height:1.65;overflow-x:hidden}
     .ann-bar{background:var(--navy);color:var(--gold-lt);text-align:center;font-size:.82rem;font-weight:500;letter-spacing:.04em;padding:.5rem 1rem}.ann-bar a{color:var(--gold-lt);text-decoration:underline}
-    nav{position:sticky;top:0;z-index:999;background:var(--white);border-bottom:2px solid var(--cream);box-shadow:var(--shadow-sm)}
+    nav{position:sticky;top:0;z-index:200;background:var(--white);border-bottom:2px solid var(--cream);box-shadow:var(--shadow-sm)}
     .nav-inner{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
     .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}.nav-logo img{height:52px;width:52px;object-fit:contain}
-    .nav-logo-text .school-name{display:block;font-family:var(--heading);font-weight:700;font-size:1.05rem;color:var(--navy)}.nav-logo-text .school-sub{display:block;font-size:.73rem;color:var(--gold);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+    .nav-logo-text .school-name{display:block;font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:var(--navy)}.nav-logo-text .school-sub{display:block;font-size:.73rem;color:var(--gold);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
     .nav-links{display:flex;align-items:center;gap:.2rem;list-style:none}.nav-links a{display:block;padding:.45rem .75rem;font-size:.88rem;font-weight:500;color:var(--navy);text-decoration:none;border-radius:6px;transition:background .2s,color .2s}.nav-links a:hover{background:var(--light);color:var(--gold)}.nav-links a.active{color:var(--gold);font-weight:600}
-    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.4rem;border-radius:8px;font-family:var(--body);font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:transform .18s,box-shadow .18s,background .18s;border:none}.btn:active{transform:scale(.97)}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.4rem;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:transform .18s,box-shadow .18s,background .18s;border:none}.btn:active{transform:scale(.97)}
     .btn-gold{background:var(--gold);color:var(--white);box-shadow:0 4px 14px rgba(201,146,42,.35)}.btn-gold:hover{background:#b5831e;transform:translateY(-1px)}
-    .btn-outline{background:transparent;color:var(--navy);border:2px solid var(--navy)}.btn-outline:hover{background:var(--navy);color:var(--white)}
-    .btn-lg{padding:.85rem 2rem;font-size:1rem;border-radius:10px}.btn-white{background:var(--white);color:var(--navy)}.btn-white:hover{background:var(--cream)}
+    .btn-lg{padding:.85rem 2rem;font-size:1rem;border-radius:10px}
     .hamburger{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px}.hamburger span{display:block;width:26px;height:2.5px;background:var(--navy);border-radius:2px;transition:transform .3s,opacity .3s}
     .mobile-open .hamburger span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}.mobile-open .hamburger span:nth-child(2){opacity:0}.mobile-open .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
-    .page-hero{background:var(--navy);padding:4.5rem 1.5rem;position:relative;overflow:hidden}.page-hero::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,146,42,.12) 0%,transparent 70%);top:-150px;right:-100px;pointer-events:none}
+    .page-hero{background:var(--navy);padding:4.5rem 1.5rem;position:relative;overflow:hidden}.page-hero::before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,146,42,.12) 0%,transparent 70%);top:-150px;right:-100px;pointer-events:none}
     .page-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2}
-    .breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:1rem;list-style:none}.breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none}.breadcrumb a:hover{color:var(--gold-lt)}.breadcrumb li:not(:last-child)::after{content:'›';margin-left:.5rem}
-    .page-hero h1{font-family:var(--heading);font-size:clamp(2rem,4.5vw,3.2rem);color:var(--white);line-height:1.2;margin-bottom:.75rem}.page-hero p{color:rgba(255,255,255,.65);font-size:1.05rem;max-width:560px;font-weight:300}
-    section{padding:5rem 1.5rem}.section-inner{max-width:1200px;margin:0 auto}
-    .tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
-    h2.section-title{font-family:var(--heading);font-size:clamp(1.7rem,3.5vw,2.5rem);color:var(--navy);line-height:1.25;margin-bottom:1rem}
-    .section-lead{color:var(--gray);font-size:1.05rem;max-width:580px;font-weight:300}
-    .section-header{margin-bottom:3rem}.section-header.center{text-align:center}.section-header.center .section-lead{margin:0 auto}
-    footer{background:#091c38;color:rgba(255,255,255,.6);padding:3rem 1.5rem 1.5rem}
-    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
-    .footer-logo{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;text-decoration:none}.footer-logo img{height:44px;width:44px;object-fit:contain}
-    .footer-logo-text .school-name{font-family:var(--heading);font-weight:700;font-size:.95rem;color:var(--white)}.footer-logo-text .school-sub{font-size:.7rem;color:var(--gold-lt);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
-    .footer-about{font-size:.85rem;line-height:1.7;max-width:300px}
-    .footer-col h4{font-size:.85rem;font-weight:700;color:var(--white);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.9rem}
-    .footer-links{list-style:none}.footer-links li{margin-bottom:.45rem}.footer-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;transition:color .2s}.footer-links a:hover{color:var(--gold-lt)}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;font-size:.78rem}
-    .modal-overlay{position:fixed;inset:0;background:rgba(9,28,56,.7);backdrop-filter:blur(4px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s}.modal-overlay.open{opacity:1;pointer-events:all}
-    .modal{background:var(--white);border-radius:20px;width:100%;max-width:480px;padding:2rem;box-shadow:var(--shadow-lg);transform:translateY(20px);transition:transform .3s}.modal-overlay.open .modal{transform:translateY(0)}
-    .modal-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem}.modal-header h3{font-family:var(--heading);font-size:1.4rem;color:var(--navy)}
-    .modal-close{background:var(--light);border:none;border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;color:var(--navy)}.modal-close:hover{background:#dde0e5}
-    .form-group{margin-bottom:1rem}.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.35rem}
-    .form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;font-family:var(--body);font-size:.9rem;color:var(--navy);background:var(--light);border:1.5px solid transparent;border-radius:8px;outline:none;transition:border-color .2s,background .2s}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);background:var(--white)}.form-group textarea{resize:vertical;min-height:80px}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    .fab-wa{position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);text-decoration:none;z-index:999;animation:waPulse 2.5s infinite}
-    @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5)}50%{box-shadow:0 4px 30px rgba(37,211,102,.75),0 0 0 12px rgba(37,211,102,.1)}}.fab-wa svg{width:28px;height:28px;fill:var(--white)}
-    @media(max-width:680px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.nav-links.mobile-show{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--white);box-shadow:var(--shadow-md);padding:1rem 1.5rem;z-index:100;gap:0}.nav-links.mobile-show a{padding:.7rem 0;border-bottom:1px solid var(--light)}.footer-inner{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+    .breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:1rem;list-style:none}.breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none}.breadcrumb li:not(:last-child)::after{content:"&#8250;";margin-left:.5rem}
+    .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.2rem);color:var(--white);line-height:1.2;margin-bottom:.75rem}.page-hero p{color:rgba(255,255,255,.65);font-size:1.05rem;max-width:560px;font-weight:300}
+    section{padding:5rem 1.5rem}.section-inner{max-width:900px;margin:0 auto}
     .filter-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
-    .filter-btn{padding:.45rem 1rem;border-radius:100px;font-size:.82rem;font-weight:600;border:1.5px solid var(--light);background:var(--white);color:var(--gray);cursor:pointer;transition:all .2s}
+    .filter-btn{padding:.45rem 1rem;border-radius:100px;font-size:.82rem;font-weight:600;border:1.5px solid var(--light);background:var(--white);color:var(--gray);cursor:pointer;transition:all .2s;font-family:"DM Sans",sans-serif}
     .filter-btn.active,.filter-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
-    .notice-card{display:flex;gap:1.25rem;padding:1.5rem;border-radius:14px;background:var(--white);box-shadow:var(--shadow-sm);margin-bottom:1rem;border-left:4px solid transparent;transition:border-color .2s,box-shadow .2s}
+    .notice-card{display:flex;gap:1.25rem;padding:1.5rem;border-radius:14px;background:var(--white);box-shadow:var(--shadow-sm);margin-bottom:1rem;border-left:4px solid transparent;transition:border-color .2s,box-shadow .2s;position:relative}
     .notice-card:hover{border-left-color:var(--gold);box-shadow:var(--shadow-md)}
     .nd-box{min-width:52px;text-align:center;background:var(--light);border-radius:8px;padding:.5rem;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-    .nd-day{font-family:var(--heading);font-size:1.4rem;font-weight:900;color:var(--navy);line-height:1}
+    .nd-day{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:900;color:var(--navy);line-height:1}
     .nd-mon{font-size:.65rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.05em}
     .nd-yr{font-size:.62rem;color:var(--gray);margin-top:.1rem}
     .notice-type{display:inline-block;font-size:.68rem;font-weight:700;padding:.15rem .55rem;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
@@ -62,165 +39,368 @@
     .notice-content h3{font-size:.98rem;font-weight:600;color:var(--navy);margin-bottom:.3rem}
     .notice-content p{font-size:.86rem;color:var(--gray);line-height:1.6}
     .notice-campus{font-size:.75rem;font-weight:600;color:var(--gold);margin-top:.35rem}
-    @media(max-width:680px){.notice-card{flex-direction:column;gap:.75rem}}</style>
+    footer{background:#091c38;color:rgba(255,255,255,.6);padding:3rem 1.5rem 1.5rem}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+    .footer-logo{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;text-decoration:none}.footer-logo img{height:44px;width:44px;object-fit:contain}
+    .footer-logo-text .school-name{font-family:"Playfair Display",serif;font-weight:700;font-size:.95rem;color:var(--white)}.footer-logo-text .school-sub{font-size:.7rem;color:var(--gold-lt);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+    .footer-about{font-size:.85rem;line-height:1.7;max-width:300px}
+    .footer-col h4{font-size:.85rem;font-weight:700;color:var(--white);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.9rem}
+    .footer-links{list-style:none}.footer-links li{margin-bottom:.45rem}.footer-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;transition:color .2s}.footer-links a:hover{color:var(--gold-lt)}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;font-size:.78rem}
+    .modal-overlay{position:fixed;inset:0;background:rgba(9,28,56,.7);backdrop-filter:blur(4px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s}.modal-overlay.open{opacity:1;pointer-events:all}
+    .modal{background:var(--white);border-radius:20px;width:100%;max-width:480px;padding:2rem;box-shadow:var(--shadow-lg);transform:translateY(20px);transition:transform .3s}.modal-overlay.open .modal{transform:translateY(0)}
+    .modal-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem}.modal-header h3{font-family:"Playfair Display",serif;font-size:1.4rem;color:var(--navy)}
+    .modal-close{background:var(--light);border:none;border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;color:var(--navy)}.modal-close:hover{background:#dde0e5}
+    .form-group{margin-bottom:1rem}.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.35rem}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;font-family:"DM Sans",sans-serif;font-size:.9rem;color:var(--navy);background:var(--light);border:1.5px solid transparent;border-radius:8px;outline:none;transition:border-color .2s}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);background:var(--white)}.form-group textarea{resize:vertical;min-height:80px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .form-success{display:none;text-align:center;padding:1.5rem}.form-success .check{font-size:2.5rem;margin-bottom:.75rem}.form-success h4{font-family:"Playfair Display",serif;font-size:1.3rem;color:var(--navy);margin-bottom:.5rem}.form-success p{color:var(--gray);font-size:.9rem}
+    .fab-wa{position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);text-decoration:none;z-index:999;animation:waPulse 2.5s infinite}
+    @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5)}50%{box-shadow:0 4px 30px rgba(37,211,102,.75),0 0 0 12px rgba(37,211,102,.1)}}.fab-wa svg{width:28px;height:28px;fill:var(--white)}
+
+    /* ── ADMIN STYLES ── */
+    .admin-bar{position:fixed;bottom:0;left:0;right:0;background:var(--navy);padding:.6rem 1.5rem;display:none;align-items:center;justify-content:space-between;z-index:1000;box-shadow:0 -4px 20px rgba(13,37,69,.3)}
+    .admin-bar.show{display:flex}
+    .admin-bar-left{display:flex;align-items:center;gap:.75rem}
+    .admin-bar-left span{color:var(--gold-lt);font-size:.82rem;font-weight:600}
+    .ab-btn{padding:.45rem 1rem;border-radius:7px;font-size:.82rem;font-weight:600;cursor:pointer;border:none;font-family:"DM Sans",sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:.35rem}
+    .ab-btn-gold{background:var(--gold);color:var(--white)}.ab-btn-gold:hover{background:#b5831e}
+    .ab-btn-outline{background:rgba(255,255,255,.1);color:var(--white)}.ab-btn-outline:hover{background:rgba(255,255,255,.2)}
+    .ab-btn:disabled{opacity:.5;cursor:not-allowed}
+    .admin-spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top:2px solid var(--white);border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .admin-status{font-size:.8rem;color:var(--gold-lt);max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .del-notice-btn{position:absolute;top:.75rem;right:.75rem;background:#fef2f2;color:#b91c1c;border:none;border-radius:6px;padding:.25rem .6rem;font-size:.72rem;font-weight:600;cursor:pointer;display:none;font-family:"DM Sans",sans-serif}
+    .admin-mode .notice-card:hover .del-notice-btn{display:block}
+
+    /* ADD NOTICE PANEL */
+    .add-notice-panel{background:var(--navy);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;display:none}
+    .add-notice-panel.show{display:block}
+    .add-notice-panel h3{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--gold-lt);margin-bottom:1.1rem}
+    .anp-field{margin-bottom:.75rem}
+    .anp-field label{display:block;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:.3rem}
+    .anp-field input,.anp-field select,.anp-field textarea{width:100%;padding:.6rem .85rem;font-family:"DM Sans",sans-serif;font-size:.88rem;color:var(--navy);background:var(--white);border:none;border-radius:7px;outline:none}
+    .anp-field textarea{resize:vertical;min-height:75px}
+    .anp-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+
+    /* LOGIN MODAL */
+    .login-overlay{position:fixed;inset:0;background:rgba(9,28,56,.85);backdrop-filter:blur(6px);z-index:3000;display:none;align-items:center;justify-content:center;padding:1rem}
+    .login-overlay.show{display:flex}
+    .login-box{background:var(--white);border-radius:18px;padding:2rem;width:100%;max-width:320px;text-align:center;box-shadow:var(--shadow-lg)}
+    .login-box img{width:56px;height:56px;object-fit:contain;margin:0 auto .75rem;display:block}
+    .login-box h3{font-family:"Playfair Display",serif;font-size:1.15rem;color:var(--navy);margin-bottom:.25rem}
+    .login-box p{font-size:.82rem;color:var(--gray);margin-bottom:1.25rem}
+    .pin-inp{width:100%;padding:.75rem;font-size:1.1rem;letter-spacing:.25em;text-align:center;font-family:"DM Sans",sans-serif;font-weight:600;color:var(--navy);background:var(--light);border:2px solid transparent;border-radius:8px;outline:none}
+    .pin-inp:focus{border-color:var(--gold)}
+    .pin-btn{width:100%;padding:.75rem;background:var(--gold);color:var(--white);border:none;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer;margin-top:.6rem;font-family:"DM Sans",sans-serif}
+    .pin-err{color:#b91c1c;font-size:.82rem;margin-top:.5rem;display:none}
+
+    @media(max-width:680px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.nav-links.mobile-show{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--white);box-shadow:var(--shadow-md);padding:1rem 1.5rem;z-index:100;gap:0}.nav-links.mobile-show a{padding:.7rem 0;border-bottom:1px solid var(--light)}.footer-inner{grid-template-columns:1fr}.form-row,.anp-row{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-  <div class="ann-bar">&#128226; Admissions open 2026&#8211;27 &middot; <a href="tel:9931921825">Main: 9931921825</a> &middot; <a href="tel:9128614032">Poiwan: 9128614032</a></div>
-  <nav id="mainNav"><div class="nav-inner">
-    <a class="nav-logo" href="/"><img src="/images/logo.png" alt="HAPS Logo" width="52" height="52" onerror="this.style.display='none'"/><div class="nav-logo-text"><span class="school-name">Holy Angels Public School</span><span class="school-sub">CBSE Curriculum &middot; Aurangabad, Bihar</span></div></a>
-    <ul class="nav-links" id="navLinks"><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/academics">Academics</a></li><li><a href="/campuses">Campuses</a></li><li><a href="/admissions">Admissions</a></li><li><a href="/notices" class="active">Notices</a></li><li><a href="/gallery">Gallery</a></li>
-        <li><a href="/downloads">Downloads</a></li><li><a href="/contact">Contact</a></li></ul>
-    <button class="btn btn-gold nav-cta" onclick="openModal()">Enquire Now</button>
-    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div></nav>
-  <div class="page-hero"><div class="page-hero-inner">
-    <ul class="breadcrumb"><li><a href="/">Home</a></li><li>Notices</li></ul>
-    <h1>Notices &amp; Announcements</h1>
-    <p>School circulars, holiday information, examination schedules and event announcements from HAPS.</p>
-  </div></div>
+  <div class="ann-bar">&#128226; Admissions open for 2026&#8211;27 &middot; <a href="tel:9931921825">Main: 9931921825</a> &middot; <a href="tel:9128614032">Poiwan: 9128614032</a></div>
+  <nav id="mainNav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/"><img src="/images/logo.png" alt="HAPS Logo" width="52" height="52" onerror="this.style.display='none'"/><div class="nav-logo-text"><span class="school-name">Holy Angels Public School</span><span class="school-sub">CBSE Curriculum &middot; Aurangabad, Bihar</span></div></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/academics">Academics</a></li><li><a href="/campuses">Campuses</a></li><li><a href="/admissions">Admissions</a></li><li><a href="/notices" class="active">Notices</a></li><li><a href="/gallery">Gallery</a></li><li><a href="/downloads">Downloads</a></li><li><a href="/contact">Contact</a></li>
+      </ul>
+      <button class="btn btn-gold nav-cta" onclick="openModal()">Enquire Now</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
 
-  <section><div class="section-inner" style="max-width:900px">
-    <div class="filter-row">
-      <button class="filter-btn active" data-filter="all">All Notices</button>
-      <button class="filter-btn" data-filter="adm">Admissions</button>
-      <button class="filter-btn" data-filter="exam">Exams</button>
-      <button class="filter-btn" data-filter="event">Events</button>
-      <button class="filter-btn" data-filter="holiday">Holidays</button>
-      <button class="filter-btn" data-filter="general">General</button>
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <ul class="breadcrumb"><li><a href="/">Home</a></li><li>Notices</li></ul>
+      <h1>Notices &amp; Announcements</h1>
+      <p>Important circulars, holiday information, exam schedules and event announcements from HAPS.</p>
     </div>
-    <div id="noticeList">
-      <div class="notice-card" data-type="adm"><div class="nd-box"><div class="nd-day">08</div><div class="nd-mon">Apr</div><div class="nd-yr">2026</div></div><div class="notice-content"><span class="notice-type nt-adm">Admission</span><h3>Admissions Open for 2026&#8211;27 Academic Session</h3><p>Seats are available for Nursery to Class 10 at both campuses. Contact the school office or fill the enquiry form.</p><div class="notice-campus">&#128205; Both Campuses</div></div></div>
-      <div class="notice-card" data-type="general"><div class="nd-box"><div class="nd-day">01</div><div class="nd-mon">Apr</div><div class="nd-yr">2026</div></div><div class="notice-content"><span class="notice-type nt-general">General</span><h3>New Academic Session 2026&#8211;27 Commences</h3><p>The new academic year has begun at both campuses. All students are expected to attend in full uniform from day one.</p><div class="notice-campus">&#128205; Both Campuses</div></div></div>
-      <div class="notice-card" data-type="event"><div class="nd-box"><div class="nd-day">20</div><div class="nd-mon">Mar</div><div class="nd-yr">2026</div></div><div class="notice-content"><span class="notice-type nt-event">Event</span><h3>Annual Function 2025&#8211;26 &#8212; Grand Celebration</h3><p>The Annual Function was held successfully. Students showcased their talents in dance, drama and music. Thank you to all parents who attended.</p><div class="notice-campus">&#128205; Main Campus</div></div></div>
-      <div class="notice-card" data-type="exam"><div class="nd-box"><div class="nd-day">10</div><div class="nd-mon">Mar</div><div class="nd-yr">2026</div></div><div class="notice-content"><span class="notice-type nt-exam">Exam</span><h3>Class X CBSE Board Examinations &#8212; Best Wishes</h3><p>HAPS extends its best wishes to all Class X students appearing for CBSE Board Examinations.</p><div class="notice-campus">&#128205; Both Campuses</div></div></div>
-      <div class="notice-card" data-type="holiday"><div class="nd-box"><div class="nd-day">25</div><div class="nd-mon">Feb</div><div class="nd-yr">2026</div></div><div class="notice-content"><span class="notice-type nt-holiday">Holiday</span><h3>Holiday List 2026&#8211;27 Published</h3><p>The complete holiday list for the 2026&#8211;27 academic session is now available for download.</p><div class="notice-campus"><a href="/downloads" style="color:var(--gold)">Download Holiday List &#8594;</a></div></div></div>
-      <div class="notice-card" data-type="adm"><div class="nd-box"><div class="nd-day">23</div><div class="nd-mon">Jan</div><div class="nd-yr">2026</div></div><div class="notice-content"><span class="notice-type nt-adm">Admission</span><h3>Saraswati Puja Special Admission Drive</h3><p>On the occasion of Saraswati Puja, HAPS conducted a special admission drive. Contact the office for details.</p><div class="notice-campus">&#128205; Both Campuses</div></div></div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+
+      <!-- ADD NOTICE PANEL (admin only) -->
+      <div class="add-notice-panel" id="addNoticePanel">
+        <h3>&#43; Add New Notice</h3>
+        <div class="anp-row">
+          <div class="anp-field"><label>Title *</label><input type="text" id="an-title" placeholder="e.g. Admissions Open for 2026-27"/></div>
+          <div class="anp-field"><label>Date *</label><input type="date" id="an-date"/></div>
+        </div>
+        <div class="anp-row">
+          <div class="anp-field"><label>Type</label><select id="an-type"><option value="adm">Admission</option><option value="exam">Exam</option><option value="event">Event</option><option value="holiday">Holiday</option><option value="general" selected>General</option></select></div>
+          <div class="anp-field"><label>Campus</label><select id="an-campus"><option value="both">Both Campuses</option><option value="main">Main Campus Only</option><option value="poiwan">Poiwan Campus Only</option></select></div>
+        </div>
+        <div class="anp-field"><label>Message *</label><textarea id="an-body" placeholder="Notice content..."></textarea></div>
+        <div style="display:flex;gap:.6rem;margin-top:.25rem">
+          <button class="ab-btn ab-btn-gold" id="an-save-btn" onclick="saveNotice()">&#128226; Publish Notice</button>
+          <button class="ab-btn ab-btn-outline" onclick="document.getElementById('addNoticePanel').classList.remove('show')">Cancel</button>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">All Notices</button>
+        <button class="filter-btn" data-filter="adm">Admissions</button>
+        <button class="filter-btn" data-filter="exam">Exams</button>
+        <button class="filter-btn" data-filter="event">Events</button>
+        <button class="filter-btn" data-filter="holiday">Holidays</button>
+        <button class="filter-btn" data-filter="general">General</button>
+      </div>
+
+      <div id="noticeList">
+        <!-- Static notices shown until dynamic data loads -->
+        <div class="notice-card" data-type="adm"><div class="nd-box"><div class="nd-day">08</div><div class="nd-mon">APR</div><div class="nd-yr">2026</div></div><div class="notice-content"><span class="notice-type nt-adm">Admission</span><h3>Admissions Open for 2026&#8211;27</h3><p>Seats are available for Nursery to Class 10 at both campuses.</p><div class="notice-campus">&#128205; Both Campuses</div></div></div>
+        <div class="notice-card" data-type="general"><div class="nd-box"><div class="nd-day">01</div><div class="nd-mon">APR</div><div class="nd-yr">2026</div></div><div class="notice-content"><span class="notice-type nt-general">General</span><h3>New Academic Session 2026&#8211;27 Commences</h3><p>The new academic year has begun at both campuses.</p><div class="notice-campus">&#128205; Both Campuses</div></div></div>
+        <div class="notice-card" data-type="exam"><div class="nd-box"><div class="nd-day">10</div><div class="nd-mon">MAR</div><div class="nd-yr">2026</div></div><div class="notice-content"><span class="notice-type nt-exam">Exam</span><h3>Class X CBSE Board Examinations &#8212; Best Wishes</h3><p>HAPS extends its best wishes to all Class X students.</p><div class="notice-campus">&#128205; Both Campuses</div></div></div>
+        <div class="notice-card" data-type="holiday"><div class="nd-box"><div class="nd-day">25</div><div class="nd-mon">FEB</div><div class="nd-yr">2026</div></div><div class="notice-content"><span class="notice-type nt-holiday">Holiday</span><h3>Holiday List 2026&#8211;27 Published</h3><p>Download the complete holiday list from the Downloads page.</p><div class="notice-campus"><a href="/downloads" style="color:var(--gold)">Download &#8594;</a></div></div></div>
+      </div>
+      <p style="color:var(--gray);font-size:.85rem;margin-top:2rem;text-align:center">For the latest circulars, contact the school office directly.</p>
     </div>
-    <p style="color:var(--gray);font-size:.85rem;margin-top:2rem;text-align:center">For the latest circulars, contact the school office directly. This page is updated periodically.</p>
-  </div></section>
+  </section>
 
   <footer>
     <div class="footer-inner">
-      <div><a class="footer-logo" href="/"><img src="/images/logo.png" alt="HAPS Logo" width="44" height="44" onerror="this.style.display='none'"/><div class="footer-logo-text"><div class="school-name">Holy Angels Public School (HAPS)</div><div class="school-sub">CBSE Curriculum &middot; Aurangabad, Bihar</div></div></a>
-      <p class="footer-about">A trusted CBSE school in Aurangabad, Bihar with nearly 30 years of nurturing confident, disciplined and value-driven students.</p></div>
-      <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/academics">Academics</a></li><li><a href="/campuses">Campuses</a></li><li><a href="/admissions">Admissions</a></li><li><a href="/notices">Notices</a></li><li><a href="/downloads">Downloads</a></li><li><a href="/contact">Contact</a></li></ul></div>
+      <div><a class="footer-logo" href="/"><img src="/images/logo.png" alt="HAPS Logo" width="44" height="44" onerror="this.style.display='none'"/><div class="footer-logo-text"><div class="school-name">Holy Angels Public School (HAPS)</div><div class="school-sub">CBSE Curriculum &middot; Aurangabad, Bihar</div></div></a><p class="footer-about">A trusted CBSE school in Aurangabad, Bihar with nearly 30 years of nurturing confident, disciplined and value-driven students.</p></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/academics">Academics</a></li><li><a href="/campuses">Campuses</a></li><li><a href="/admissions">Admissions</a></li><li><a href="/notices">Notices</a></li><li><a href="/gallery">Gallery</a></li><li><a href="/downloads">Downloads</a></li><li><a href="/contact">Contact</a></li></ul></div>
       <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="tel:9931921825">Main: 9931921825</a></li><li><a href="tel:9128614032">Poiwan: 9128614032</a></li><li><a href="mailto:haps.aub@gmail.com">haps.aub@gmail.com</a></li></ul></div>
     </div>
     <div class="footer-bottom"><span>&#169; 2026 Holy Angels Public School (HAPS). All rights reserved.</span><span>CBSE Curriculum &middot; Aurangabad, Bihar</span></div>
   </footer>
-<a class="fab-wa" href="https://wa.me/919931921825?text=Hello+HAPS" target="_blank" rel="noopener" title="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.83.74 5.5 2.03 7.83L.5 31.5l7.87-2.05A15.43 15.43 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm0 28.1a12.57 12.57 0 01-6.4-1.75l-.46-.27-4.67 1.22 1.25-4.55-.3-.47A12.55 12.55 0 1116 28.6zm6.9-9.4c-.38-.19-2.24-1.1-2.59-1.23-.35-.12-.6-.19-.85.19-.25.38-.97 1.23-1.19 1.48-.22.25-.44.28-.82.09-.38-.19-1.6-.59-3.05-1.88-1.13-1-1.89-2.24-2.11-2.62-.22-.38-.02-.58.17-.77.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.12-.25.06-.47-.03-.66-.09-.19-.85-2.04-1.16-2.79-.3-.73-.61-.63-.85-.64h-.72c-.25 0-.66.09-1.01.47-.34.38-1.31 1.28-1.31 3.12 0 1.84 1.34 3.62 1.53 3.87.19.25 2.64 4.03 6.4 5.65.9.39 1.6.62 2.14.79.9.28 1.72.24 2.37.15.72-.11 2.24-.92 2.56-1.8.31-.89.31-1.65.22-1.8-.09-.16-.34-.25-.72-.44z"/></svg></a>
 
+  <a class="fab-wa" href="https://wa.me/919931921825?text=Hello+HAPS" target="_blank" rel="noopener"><svg viewBox="0 0 32 32"><path d="M16 .5C7.44.5.5 7.44.5 16c0 2.83.74 5.5 2.03 7.83L.5 31.5l7.87-2.05A15.43 15.43 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm0 28.1a12.57 12.57 0 01-6.4-1.75l-.46-.27-4.67 1.22 1.25-4.55-.3-.47A12.55 12.55 0 1116 28.6zm6.9-9.4c-.38-.19-2.24-1.1-2.59-1.23-.35-.12-.6-.19-.85.19-.25.38-.97 1.23-1.19 1.48-.22.25-.44.28-.82.09-.38-.19-1.6-.59-3.05-1.88-1.13-1-1.89-2.24-2.11-2.62-.22-.38-.02-.58.17-.77.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.12-.25.06-.47-.03-.66-.09-.19-.85-2.04-1.16-2.79-.3-.73-.61-.63-.85-.64h-.72c-.25 0-.66.09-1.01.47-.34.38-1.31 1.28-1.31 3.12 0 1.84 1.34 3.62 1.53 3.87.19.25 2.64 4.03 6.4 5.65.9.39 1.6.62 2.14.79.9.28 1.72.24 2.37.15.72-.11 2.24-.92 2.56-1.8.31-.89.31-1.65.22-1.8-.09-.16-.34-.25-.72-.44z"/></svg></a>
+
+  <!-- ENQUIRY MODAL -->
   <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-    <div class="modal">
-      <div class="modal-header"><div><h3>Admission Enquiry</h3><p style="font-size:.82rem;color:var(--gray);margin-top:.2rem">We will call you within one working day.</p></div><button class="modal-close" onclick="closeModal()">&#10005;</button></div>
-      <div id="formBody">
-        <form id="enquiryForm" name="enquiry" method="POST" data-netlify="true" onsubmit="submitForm(event)" novalidate>
-          <input type="hidden" name="form-name" value="enquiry"/>
-          <div style="display:none"><input tabindex="-1" name="website" autocomplete="off"/></div>
-          <div class="form-row">
-            <div class="form-group"><label>Child's Name *</label><input type="text" name="childName" required placeholder="e.g. Rahul Kumar"/></div>
-            <div class="form-group"><label>Class *</label><select name="classApplied" required><option value="">Select class</option><option>Nursery</option><option>LKG</option><option>UKG</option><option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option><option>Class VI</option><option>Class VII</option><option>Class VIII</option><option>Class IX</option><option>Class X</option></select></div>
-          </div>
-          <div class="form-group"><label>Parent / Guardian Name *</label><input type="text" name="parentName" required/></div>
-          <div class="form-row">
-            <div class="form-group"><label>Mobile Number *</label><input type="tel" id="mobileInput" name="mobile" required maxlength="10" placeholder="10-digit number"/></div>
-            <div class="form-group"><label>Campus</label><select name="campus"><option value="">Not sure yet</option><option>Maharana Pratap Nagar (Main)</option><option>Nawgarh Moad, Poiwan</option></select></div>
-          </div>
-          <div class="form-group"><label>Message (optional)</label><textarea name="message"></textarea></div>
-          <button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;margin-top:.5rem">Submit Enquiry &#8594;</button>
-        </form>
-      </div>
-      <div class="form-success" id="formSuccess" style="display:none;text-align:center;padding:1.5rem"><div style="font-size:2.5rem;margin-bottom:.75rem">&#9989;</div><h4 style="font-family:var(--heading);font-size:1.3rem;color:var(--navy);margin-bottom:.5rem">Enquiry Received!</h4><p style="color:var(--gray);font-size:.9rem">Our team will call you within one working day. You can also reach us at <strong>9931921825</strong> or <strong>9128614032</strong>.</p></div>
+    <div class="modal"><div class="modal-header"><div><h3>Admission Enquiry</h3><p style="font-size:.82rem;color:var(--gray);margin-top:.2rem">We will call you within one working day.</p></div><button class="modal-close" onclick="closeModal()">&#10005;</button></div>
+      <div id="formBody"><form id="enquiryForm" name="enquiry" method="POST" data-netlify="true" onsubmit="submitForm(event)" novalidate><input type="hidden" name="form-name" value="enquiry"/><div style="display:none"><input tabindex="-1" name="website" autocomplete="off"/></div><div class="form-row"><div class="form-group"><label>Child's Name *</label><input type="text" name="childName" required/></div><div class="form-group"><label>Class *</label><select name="classApplied" required><option value="">Select</option><option>Nursery</option><option>LKG</option><option>UKG</option><option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option><option>Class VI</option><option>Class VII</option><option>Class VIII</option><option>Class IX</option><option>Class X</option></select></div></div><div class="form-group"><label>Parent Name *</label><input type="text" name="parentName" required/></div><div class="form-row"><div class="form-group"><label>Mobile *</label><input type="tel" id="mobileInput" name="mobile" required maxlength="10"/></div><div class="form-group"><label>Campus</label><select name="campus"><option value="">Not sure</option><option>Maharana Pratap Nagar (Main)</option><option>Nawgarh Moad, Poiwan</option></select></div></div><div class="form-group"><label>Message</label><textarea name="message"></textarea></div><button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;margin-top:.5rem">Submit &#8594;</button></form></div>
+      <div class="form-success" id="formSuccess" style="display:none;text-align:center;padding:1.5rem"><div style="font-size:2.5rem;margin-bottom:.75rem">&#9989;</div><h4 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:.5rem">Enquiry Received!</h4><p style="color:var(--gray);font-size:.9rem">Our team will call you within one working day.</p></div>
     </div>
   </div>
 
+  <!-- ADMIN LOGIN MODAL -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <img src="/images/logo.png" alt="HAPS" onerror="this.style.display='none'"/>
+      <h3>Admin Login</h3>
+      <p>Enter your PIN to manage the website</p>
+      <input type="password" class="pin-inp" id="adminPin" placeholder="Enter PIN" onkeydown="if(event.key==='Enter')doAdminLogin()"/>
+      <button class="pin-btn" onclick="doAdminLogin()">Login &#8594;</button>
+      <div class="pin-err" id="pinErr">Incorrect PIN</div>
+      <button onclick="document.getElementById('loginOverlay').classList.remove('show')" style="background:none;border:none;color:var(--gray);font-size:.82rem;cursor:pointer;margin-top:.75rem;font-family:'DM Sans',sans-serif">Cancel</button>
+    </div>
+  </div>
+
+  <!-- ADMIN BAR (shown when logged in) -->
+  <div class="admin-bar" id="adminBar">
+    <div class="admin-bar-left">
+      <span>&#128272; Admin Mode</span>
+      <span class="admin-status" id="adminStatus">Loading...</span>
+    </div>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button class="ab-btn ab-btn-gold" onclick="toggleAddNotice()">&#43; Add Notice</button>
+      <button class="ab-btn ab-btn-outline" onclick="doAdminLogout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- HIDDEN ADMIN TRIGGER (triple-click logo) -->
   <script>
-    (function(){
-      var h=document.getElementById('hamburger'), n=document.getElementById('navLinks');
-      if(h){h.addEventListener('click',function(){n.classList.toggle('mobile-show');document.querySelector('nav').classList.toggle('mobile-open');});}
-    })();
+    var logoClicks = 0, logoTimer;
+    document.querySelector('.nav-logo').addEventListener('click', function(e) {
+      if (window.location.pathname !== '/notices' && window.location.pathname !== '/notices.html') return;
+      e.preventDefault();
+      logoClicks++;
+      clearTimeout(logoTimer);
+      logoTimer = setTimeout(function(){ logoClicks=0; }, 600);
+      if (logoClicks >= 3) {
+        logoClicks = 0;
+        if (isAdminLoggedIn()) doAdminLogout();
+        else document.getElementById('loginOverlay').classList.add('show');
+      }
+    });
+  </script>
+
+  <script>
+    // ── GITHUB CONFIG ─────────────────────────────────────────
+    var GH_USER = 'kumarprium';
+    var GH_REPO = 'haps-website';
+    var GH_BRANCH = 'main';
+    var DATA_FILE = '_data/site-data.json';
+    var FN = '/.netlify/functions/github';
+    var DEFAULT_PIN = 'haps2026';
+
+    // ── NAV ───────────────────────────────────────────────────
+    var hamburger=document.getElementById('hamburger'),navLinks=document.getElementById('navLinks');
+    if(hamburger){hamburger.addEventListener('click',function(){navLinks.classList.toggle('mobile-show');document.querySelector('nav').classList.toggle('mobile-open');});}
+
+    // ── ENQUIRY MODAL ─────────────────────────────────────────
     function openModal(){document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';}
     function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();}});
     function submitForm(e){
       e.preventDefault();
-      var f=document.getElementById('enquiryForm');
-      var m=document.getElementById('mobileInput').value.trim();
+      var f=document.getElementById('enquiryForm'),m=document.getElementById('mobileInput').value.trim();
       if(f.querySelector('[name="website"]').value)return;
       if(m.length!==10||!/^\d{10}$/.test(m)){alert('Please enter a valid 10-digit mobile number.');return;}
       fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()}).catch(function(){});
       document.getElementById('formBody').style.display='none';
       document.getElementById('formSuccess').style.display='block';
     }
-  
+
+    // ── NOTICE FILTER ─────────────────────────────────────────
     document.querySelectorAll('.filter-btn').forEach(function(btn){
       btn.addEventListener('click',function(){
         document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
         btn.classList.add('active');
         var f=btn.dataset.filter;
-        document.querySelectorAll('.notice-card').forEach(function(card){
-          card.style.display=(f==='all'||card.dataset.type===f)?'flex':'none';
+        document.querySelectorAll('.notice-card').forEach(function(c){
+          c.style.display=(f==='all'||c.dataset.type===f)?'flex':'none';
         });
       });
     });
-  </script>
 
+    // ── ADMIN AUTH ────────────────────────────────────────────
+    function getPin(){return localStorage.getItem('haps_pin')||DEFAULT_PIN;}
+    function isAdminLoggedIn(){return sessionStorage.getItem('haps_admin')==='1';}
 
-  <script>
-  // Load notices added via admin panel
-  (function(){
-    try {
-      var stored = localStorage.getItem('haps_notices');
-      if (!stored) return;
-      var notices = JSON.parse(stored);
-      if (!notices || !notices.length) return;
-      var list = document.getElementById('noticeList');
-      if (!list) return;
-      var badges = {adm:'nt-adm',exam:'nt-exam',event:'nt-event',holiday:'nt-holiday',general:'nt-general'};
-      var labels = {adm:'Admission',exam:'Exam',event:'Event',holiday:'Holiday',general:'General'};
-      var campusLabel = {both:'Both Campuses',main:'Main Campus',poiwan:'Poiwan Campus'};
-      var newCards = notices.map(function(n){
-        var d = new Date(n.id);
-        var day = String(d.getDate()).padStart(2,'0');
-        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        var mon = months[d.getMonth()];
-        var yr = d.getFullYear();
+    function doAdminLogin(){
+      var p=document.getElementById('adminPin').value;
+      if(p===getPin()){
+        sessionStorage.setItem('haps_admin','1');
+        document.getElementById('loginOverlay').classList.remove('show');
+        document.getElementById('adminPin').value='';
+        document.getElementById('pinErr').style.display='none';
+        activateAdminMode();
+      } else {
+        document.getElementById('pinErr').style.display='block';
+        document.getElementById('adminPin').value='';
+      }
+    }
+
+    function doAdminLogout(){
+      sessionStorage.removeItem('haps_admin');
+      document.getElementById('adminBar').classList.remove('show');
+      document.body.classList.remove('admin-mode');
+      document.querySelectorAll('.del-notice-btn').forEach(function(b){b.style.display='none';});
+      setAdminStatus('');
+    }
+
+    function activateAdminMode(){
+      document.getElementById('adminBar').classList.add('show');
+      document.body.classList.add('admin-mode');
+      setAdminStatus('Loading data...');
+      loadNotices();
+    }
+
+    // Auto-activate if session exists
+    if(isAdminLoggedIn()) activateAdminMode();
+
+    function setAdminStatus(msg){document.getElementById('adminStatus').textContent=msg;}
+
+    // ── GITHUB API ────────────────────────────────────────────
+    var siteData={notices:[],gallery:[],downloads:[],settings:{}};
+    var dataLoaded=false;
+
+    function ghCall(method,path,payload){
+      return fetch(FN,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({method:method,path:path,payload:payload})}).then(function(r){return r.json();});
+    }
+
+    function getFileSha(fp){
+      return ghCall('GET','/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+fp+'?ref='+GH_BRANCH)
+        .then(function(d){return d.sha||null;}).catch(function(){return null;});
+    }
+
+    function writeFile(fp,content,msg){
+      return getFileSha(fp).then(function(sha){
+        var body={message:msg,content:btoa(unescape(encodeURIComponent(content))),branch:GH_BRANCH};
+        if(sha)body.sha=sha;
+        return ghCall('PUT','/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+fp,body);
+      });
+    }
+
+    function loadNotices(){
+      ghCall('GET','/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+DATA_FILE+'?ref='+GH_BRANCH)
+        .then(function(d){
+          if(d.content){
+            try{
+              var json=decodeURIComponent(escape(atob(d.content.replace(/
+/g,''))));
+              var p=JSON.parse(json);
+              siteData=p; siteData.notices=p.notices||[]; siteData.gallery=p.gallery||[];
+              siteData.downloads=p.downloads||[]; siteData.settings=p.settings||{};
+              if(siteData.notices.length>0) renderDynamicNotices();
+              dataLoaded=true;
+            }catch(e){console.warn('parse error',e);}
+          }
+          setAdminStatus('&#10003; Ready &middot; '+( siteData.notices.length)+' notices');
+        })
+        .catch(function(){setAdminStatus('&#10003; Ready (no data yet)'); dataLoaded=true;});
+    }
+
+    function renderDynamicNotices(){
+      var list=document.getElementById('noticeList');
+      var tc={adm:'nt-adm',exam:'nt-exam',event:'nt-event',holiday:'nt-holiday',general:'nt-general'};
+      list.innerHTML=siteData.notices.map(function(n,i){
+        var d=new Date(n.date);
+        var day=isNaN(d.getTime())?'--':d.getDate();
+        var mon=isNaN(d.getTime())?'':d.toLocaleString('en',{month:'short'}).toUpperCase();
+        var yr=isNaN(d.getTime())?'':d.getFullYear();
+        var campus=n.campus==='both'?'Both Campuses':n.campus==='main'?'Main Campus':'Poiwan Campus';
         return '<div class="notice-card" data-type="'+n.type+'">'
+          +'<button class="del-notice-btn" onclick="deleteNotice('+i+')" title="Delete notice">&#10005; Delete</button>'
           +'<div class="nd-box"><div class="nd-day">'+day+'</div><div class="nd-mon">'+mon+'</div><div class="nd-yr">'+yr+'</div></div>'
-          +'<div class="notice-content"><span class="notice-type '+badges[n.type]+'">'+labels[n.type]+'</span>'
+          +'<div class="notice-content"><span class="notice-type '+(tc[n.type]||'nt-general')+'">'+n.type+'</span>'
           +'<h3>'+n.title+'</h3><p>'+n.body+'</p>'
-          +'<div class="notice-campus">&#128205; '+campusLabel[n.campus]+'</div></div></div>';
+          +'<div class="notice-campus">&#128205; '+campus+'</div></div></div>';
       }).join('');
-      list.insertAdjacentHTML('afterbegin', newCards);
-    } catch(e) {}
-  })();
-  </script>
+    }
 
-  <script>
-    // Load latest notices from site-data.json (updated by admin panel)
-    fetch('/_data/site-data.json')
-      .then(function(r){ if(!r.ok) throw new Error('no data'); return r.json(); })
-      .then(function(d){
-        var notices = (d.notices || []).filter(function(n){ return n.published !== false; });
-        if(!notices.length) return; // keep static notices
-        var list = document.getElementById('noticeList');
-        if(!list) return;
-        // Type color map
-        var tc = {adm:'nt-adm',exam:'nt-exam',event:'nt-event',holiday:'nt-holiday',general:'nt-general'};
-        list.innerHTML = notices.map(function(n){
-          var d = new Date(n.date);
-          var day = isNaN(d) ? '--' : d.getDate();
-          var mon = isNaN(d) ? '' : d.toLocaleString('en',{month:'short'}).toUpperCase();
-          var yr  = isNaN(d) ? '' : d.getFullYear();
-          var campus = n.campus==='both' ? 'Both Campuses' : n.campus==='main' ? 'Main Campus' : 'Poiwan Campus';
-          return '<div class="notice-card" data-type="'+n.type+'">'
-            +'<div class="nd-box"><div class="nd-day">'+day+'</div><div class="nd-mon">'+mon+'</div><div class="nd-yr">'+yr+'</div></div>'
-            +'<div class="notice-content"><span class="notice-type '+(tc[n.type]||'nt-general')+'">'+n.type+'</span>'
-            +'<h3>'+n.title+'</h3><p>'+n.body+'</p>'
-            +'<div class="notice-campus">&#128205; '+campus+'</div></div></div>';
-        }).join('');
-      })
-      .catch(function(){ /* keep static notices */ });
+    function toggleAddNotice(){
+      var p=document.getElementById('addNoticePanel');
+      p.classList.toggle('show');
+      if(p.classList.contains('show')) document.getElementById('an-title').focus();
+    }
+
+    function saveNotice(){
+      var title=document.getElementById('an-title').value.trim();
+      var date=document.getElementById('an-date').value;
+      var type=document.getElementById('an-type').value;
+      var campus=document.getElementById('an-campus').value;
+      var body=document.getElementById('an-body').value.trim();
+      if(!title||!date||!body){setAdminStatus('Please fill Title, Date and Message');return;}
+      var btn=document.getElementById('an-save-btn');
+      btn.disabled=true; btn.innerHTML='<div class="admin-spinner"></div> Publishing...';
+      setAdminStatus('Publishing...');
+      if(!siteData.notices) siteData.notices=[];
+      siteData.notices.unshift({title:title,date:date,type:type,campus:campus,body:body});
+      writeFile(DATA_FILE,JSON.stringify(siteData,null,2),'Add notice: '+title)
+        .then(function(){
+          renderDynamicNotices();
+          document.getElementById('an-title').value='';
+          document.getElementById('an-date').value='';
+          document.getElementById('an-body').value='';
+          document.getElementById('addNoticePanel').classList.remove('show');
+          btn.disabled=false; btn.innerHTML='&#128226; Publish Notice';
+          setAdminStatus('&#10003; Notice published! Live in ~2 min');
+        })
+        .catch(function(e){
+          btn.disabled=false; btn.innerHTML='&#128226; Publish Notice';
+          setAdminStatus('Error: '+e.message);
+          siteData.notices.shift();
+        });
+    }
+
+    function deleteNotice(i){
+      if(!confirm('Delete this notice from the website?'))return;
+      var title=siteData.notices[i].title;
+      siteData.notices.splice(i,1);
+      setAdminStatus('Deleting...');
+      writeFile(DATA_FILE,JSON.stringify(siteData,null,2),'Delete notice: '+title)
+        .then(function(){renderDynamicNotices(); setAdminStatus('&#10003; Deleted');})
+        .catch(function(e){setAdminStatus('Error: '+e.message);});
+    }
   </script>
 </body>
 </html>
